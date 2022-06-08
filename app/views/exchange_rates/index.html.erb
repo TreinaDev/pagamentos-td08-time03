@@ -1,1 +1,21 @@
+<h2>Histórico de Cotação</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Valor</th>
+      <th>Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @exchange_rates.each do |er| %>
+      <tr>
+        <td><%= er.real %></td>
+        <td><%= er.created_at.strftime('%d/%m/%Y') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 <%= link_to 'Configurar taxa de câmbio', new_exchange_rate_path %>

@@ -15,9 +15,15 @@
     <nav>
      <%= link_to 'Taxa de câmbio', exchange_rates_path %> 
     </nav>
-    </header>
     <h1>Pagamentos</h1>
+    </header>
     <main>
+      <% if notice || alert %>
+        <div>
+          <p><%= notice %></p>
+          <p><%= alert %></p>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
   </body>

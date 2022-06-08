@@ -23,8 +23,11 @@ describe 'Administrador cria uma taxa de câmbio' do
     expect(current_path).to eq(exchange_rates_path)
     expect(page).to have_content 'Taxa de câmbio criada com sucesso.'
     within('table') do
-      expect(page).to have_content '15.00'
+      expect(page).to have_content '15.0'
       expect(page).to have_content today
     end
+  end
+
+  it 'com dados inválidos' do
   end
 end 
