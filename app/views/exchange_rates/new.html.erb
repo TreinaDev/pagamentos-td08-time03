@@ -1,0 +1,5 @@
+<%= form_with model: @exchange_rate do |f| %>
+  <%= f.label :real, 'Cotação' %>
+  <%= f.number_field :real %>
+  <%= f.submit 'Enviar' %>
+<% end %>

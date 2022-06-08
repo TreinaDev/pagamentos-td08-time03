@@ -11,7 +11,14 @@
   </head>
 
   <body>
+   <header> 
+    <nav>
+     <%= link_to 'Taxa de câmbio', exchange_rates_path %> 
+    </nav>
+    </header>
     <h1>Pagamentos</h1>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
