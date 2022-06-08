@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
   <head>
     <title>Pagamentos</title>
@@ -11,7 +11,22 @@
   </head>
 
   <body>
-    <h1>Pagamentos</h1>
-    <%= yield %>
+
+    <header>
+      <nav>
+        <%= render 'shared/home/flash' %>
+        <% if admin_signed_in? %>
+          <p>Olá, <%= current_admin.email %></p>
+        <% end %>
+        <%= link_to 'Cadastrar-se', new_admin_registration_path %>
+      </nav>
+    </header>
+
+    <main>
+        <h1>Pagamentos</h1>
+
+      <%= yield %>
+    </main>
+
   </body>
 </html>
