@@ -9,23 +9,25 @@
     <%= stylesheet_link_tag "application" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
 
     <header>
       <nav>
-        <%= render 'shared/home/flash' %>
-        <% if admin_signed_in? %>
-          <p>Olá, <%= current_admin.email %></p>
-          <%= button_to 'Sair', destroy_admin_session_path, method: :delete%>
-        <% end %>
+          <%= render 'shared/home/flash' %>
+          <%= link_to 'Início', root_path %>
+
+          <% if admin_signed_in? %>
+            <p>Olá, <%= current_admin.email %></p>
+            <%= button_to 'Sair', destroy_admin_session_path, method: :delete%>
+            <%= link_to 'Cotação de Rubis', exchange_rates_path %>
+          <% end %>
+
       </nav>
     </header>
 
     <main>
         <h1>Pagamentos</h1>
-
-      <%= yield %>
+        <%= yield %>
     </main>
 
   </body>

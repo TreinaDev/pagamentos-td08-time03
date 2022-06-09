@@ -2,11 +2,10 @@ require 'rails_helper'
 
 describe 'Admin se autentica' do
   it 'com sucesso' do
-    Admin.create!(full_name: "João Fernandes Aguiar", cpf:"012345678901", email:"joaofernandes@userubis.com.br", password: "123456")
-
+    admin = create(:admin)
     visit(root_path)
 
-    fill_in "E-mail", with: "joaofernandes@userubis.com.br"
+    fill_in "E-mail", with: "joao@userubis.com.br"
     fill_in "Senha", with: "123456"
 
     click_on("Fazer login")
@@ -16,8 +15,7 @@ describe 'Admin se autentica' do
   end
 
   it 'com dados inválidos ou incompletos' do
-    Admin.create!(full_name: "João Fernandes Aguiar", cpf:"012345678901", email:"joaofernandes@userubis.com.br", password: "123456")
-
+    admin = create(:admin)
     visit(root_path)
 
     fill_in "E-mail", with: ""
@@ -29,14 +27,11 @@ describe 'Admin se autentica' do
   end
 
   it 'e faz logout'do
-    Admin.create!(full_name: "João Fernandes Aguiar", cpf:"012345678901", email:"joaofernandes@userubis.com.br", password: "123456")
+    admin = create(:admin)
+    login_as(admin)
 
     visit(root_path)
 
-    fill_in "E-mail", with: "joaofernandes@userubis.com.br"
-    fill_in "Senha", with: "123456"
-
-    click_on("Fazer login")
     click_on("Sair")
 
     expect(page).to have_button("Fazer login")
