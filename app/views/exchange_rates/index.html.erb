@@ -1,5 +1,6 @@
 <h2>Histórico de Cotação</h2>
 
+<% if @exchange_rates.any? %>
 <table>
   <thead>
     <tr>
@@ -16,6 +17,8 @@
     <% end %>
   </tbody>
 </table>
-
+<% else %>
+  <p>Nenhuma taxa criada</p>
+<% end %>
 
 <%= link_to 'Configurar taxa de câmbio', new_exchange_rate_path %>

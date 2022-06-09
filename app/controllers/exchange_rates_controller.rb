@@ -1,6 +1,6 @@
 class ExchangeRatesController < ApplicationController
   def index
-    @exchange_rates = ExchangeRate.all
+    @exchange_rates = ExchangeRate.all.order(created_at: :desc)
   end
 
   def new
@@ -12,7 +12,8 @@ class ExchangeRatesController < ApplicationController
     if @exchange_rate.save
       redirect_to exchange_rates_path, notice: 'Taxa de câmbio criada com sucesso.'
     else
-
+      flash.now[:alert] = 'Erro ao criar a taxa.'
+      render 'new'
     end
   end
 
