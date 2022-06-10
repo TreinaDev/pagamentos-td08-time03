@@ -1,0 +1,5 @@
+pt-BR:
+  activerecord:
+    attributes:
+      exchange_rate:
+        real: Cotação

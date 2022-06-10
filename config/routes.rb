@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :admins
-  root 'home#index'
+
+  authenticated :admin do
+    root to: 'home#index', as: :authenticated_root
+  end
+  root to: redirect('/admins/sign_in')
 
   resources :exchange_rates, only: [:index, :new, :create]
 end

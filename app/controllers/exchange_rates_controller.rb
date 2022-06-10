@@ -1,4 +1,6 @@
 class ExchangeRatesController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @exchange_rates = ExchangeRate.all.order(created_at: :desc)
   end

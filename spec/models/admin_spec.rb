@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Admin, type: :model do
-  describe 'validations' do
+  describe "validations" do
     context "presence" do
       it { should validate_presence_of(:email) }
 
@@ -27,6 +27,5 @@ RSpec.describe Admin, type: :model do
 
       it { should_not allow_value("joao@gmail.com.br").for(:email) }
     end
-
   end
 end

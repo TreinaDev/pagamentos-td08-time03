@@ -1,0 +1,6 @@
+pt-BR:
+  activerecord:
+    attributes:
+      admin:
+        cpf: 'CPF'
+        full_name: "Nome Completo"
