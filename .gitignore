@@ -37,3 +37,7 @@ coverage
 
 # Ignore asdf config file
 .tool-versions
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+/node_modules
