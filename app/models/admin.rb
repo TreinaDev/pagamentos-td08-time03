@@ -9,5 +9,5 @@ class Admin < ApplicationRecord
   validates :full_name, :cpf, presence: true
   validates :cpf, length: {is: 11}
   validates :full_name, :cpf, uniqueness: true
-  validates :email, format:{ with: %r{[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@userubis.com.br\z} }
+  validates :email, format:{ with: %r{\A[\w\-\+]+@userubis.com.br\z} }
 end
