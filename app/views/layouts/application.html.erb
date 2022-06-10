@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
   <head>
     <title>Pagamentos</title>
@@ -9,22 +9,21 @@
     <%= stylesheet_link_tag "application" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-   <header> 
-    <nav>
-      <%= link_to 'Início', root_path %>
-      <%= link_to 'Cotação de Rubis', exchange_rates_path %> 
-    </nav>
-    <h1>Pagamentos</h1>
-    </header>
-    <main>
-      <% if notice || alert %>
-        <div>
-          <p><%= notice %></p>
-          <p><%= alert %></p>
-        </div>
+    <header>
+      <h1>Pagamentos</h1>
+      <% if admin_signed_in? %>
+      <nav>
+        <%= link_to 'Início', root_path %>
+        <p>Olá, <%= current_admin.email %></p>
+        <%= button_to 'Sair', destroy_admin_session_path, method: :delete%>
+        <%= link_to 'Cotação de Rubis', exchange_rates_path %>
+      </nav>
       <% end %>
+    </header>
+
+    <main>
+      <%= render 'shared/home/flash' %>
       <%= yield %>
     </main>
   </body>

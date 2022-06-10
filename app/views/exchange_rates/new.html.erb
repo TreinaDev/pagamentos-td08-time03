@@ -6,7 +6,7 @@
   </div>
 <% end %>
 <%= form_with model: @exchange_rate do |f| %>
-  <%= f.label :real, 'Cotação' %>
+  <%= f.label :real %>
   <%= f.number_field :real %>
   <%= f.submit 'Enviar' %>
 <% end %>

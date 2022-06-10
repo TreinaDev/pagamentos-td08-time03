@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe 'Administrador visualiza histórico de cotação' do
   it 'a partir da página inicial' do
+    admin = create(:admin)
+    login_as(admin)
     exchange_rate = create(:exchange_rate)
 
     visit root_path
@@ -15,6 +17,8 @@ describe 'Administrador visualiza histórico de cotação' do
   end
 
   it 'mas não há nenhuma taxa criada' do
+    admin = create(:admin)
+    login_as(admin)
     visit exchange_rates_path
 
     expect(page).to have_content('Nenhuma taxa criada')
@@ -22,6 +26,9 @@ describe 'Administrador visualiza histórico de cotação' do
   end
 
   it 'e volta para a página inicial' do
+    admin = create(:admin)
+    login_as(admin)
+
     visit exchange_rates_path
     within('nav') do
       click_on 'Início'
