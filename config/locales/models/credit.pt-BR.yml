@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      credit: Crédito
+    attributes:
+      credit:
+        real_amount: Valor
+        client: Cliente
+        company: Empresa

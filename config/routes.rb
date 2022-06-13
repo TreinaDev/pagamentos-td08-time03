@@ -7,4 +7,12 @@ Rails.application.routes.draw do
   root to: redirect('/admins/sign_in')
 
   resources :exchange_rates, only: [:index, :new, :create]
+
+  namespace :api do
+    namespace :v1 do
+      resources :clients do
+        post 'credit', on: :member
+      end
+    end
+  end
 end
