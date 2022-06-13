@@ -1,0 +1,15 @@
+
+<div>
+  <% @pending_admins.each do |admin| %>
+  <div class="pending_admin">
+    <p><%= admin.full_name %></p>
+    <p><%= admin.email %></p>
+      <% if admin.no_approval? %>
+        <p>Aprovações 0/2</p>
+      <% else %>
+        <p>Aprovações 1/2</p>
+      <% end %>
+      <%= button_to 'Aprovar', approval_path(admin), { method: :patch }%>
+  </div>
+  <% end %>
+</div>
