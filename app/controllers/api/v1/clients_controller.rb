@@ -1,15 +1,25 @@
 class Api::V1::ClientsController < ActionController::API
-  def credit
-    credit_params = params.permit(:client_id, :company_id, :real_amount)
-    credit = Credit.new(credit_params)
-    exchange_rate = ExchangeRate.last
-    credit.exchange_rate = exchange_rate
+  before_action :credit, only: [:add_credit]
 
-    credit.rubi_amount = credit.real_amount / exchange_rate.real if credit.real_amount
-    if credit.save
-      render status: 201, json: credit
+  def add_credit
+    if @credit.save
+      render status: 201
     else
-      render status: 402, json: { errors: credit.errors.full_messages }
+      render status: 402, json: { errors: @credit.errors.full_messages }
     end
+  end
+
+  private
+
+  def client_params
+    params.require(:client).permit(:registration_number, :name)
+  end
+
+  def credit_params
+    params.permit(:real_amount)
+  end
+
+  def credit
+    @credit ||= Credit.builder(client_params, credit_params, params.require(:company).permit(:registration_number))
   end
 end

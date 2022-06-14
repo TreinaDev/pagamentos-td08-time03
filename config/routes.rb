@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :clients do
-        post 'credit', on: :member
+      resources :clients, only: [:show] do
+        post 'credit', on: :collection, to: 'clients#add_credit'
       end
     end
   end
