@@ -20,6 +20,7 @@ class Api::V1::ClientsController < ActionController::API
   end
 
   def credit
-    @credit ||= Credit.builder(client_params, credit_params, params.require(:company).permit(:registration_number))
+    @credit = Credit.builder(client_params, credit_params,
+                             params.require(:company).permit(:registration_number))
   end
 end
