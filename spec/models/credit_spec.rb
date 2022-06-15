@@ -20,4 +20,10 @@ RSpec.describe Credit, type: :model do
       it { should belong_to(:exchange_rate) }
     end
   end
+
+  describe 'enum' do
+    it { should define_enum_for(:status).with_values({ pending: 0, approved: 5, rejected: 10 }) }
+  end
+
+  
 end
