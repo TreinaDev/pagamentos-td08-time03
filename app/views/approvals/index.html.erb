@@ -1,29 +1,32 @@
 <h2>Admins não aprovados</h2>
 <p>Solicitações: <%= @requested_admins.length %></p>
-<table style="text-align: center">
-  <tr>
-    <th>Index</th>
-    <th>Nome</th>
-    <th>Email</th>
-    <th>Situação</th>
-    <th>Ação</th>
-  </tr>
-  <% @requested_admins.each_with_index do |admin, index| %>
-    <div class="pending_admin-<%= index%> ">
-
+<% if @requested_admins.empty? %>
+<p>Nenhum pedido de aprovação encontrado.</p>
+<% else %>
+  <table style="text-align: center">
     <tr>
-      <td><%= index %></td>
-      <td><%= admin.full_name %></td>
-      <td><%= admin.email %></td>
-      <% if admin.not_approved? %>
-        <td>Aprovações 0/2</td>
-      <% else %>
-        <td>Aprovações 1/2</td>
-      <% end %>
-        <td><%= button_to 'Aprovar', approval_path(admin), { method: :patch }%></td>
+      <th>Index</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Situação</th>
+      <th>Ação</th>
     </tr>
-  <% end %>
-</table>
+    <% @requested_admins.each_with_index do |admin, index| %>
+      <tr class="pending_admin-<%= index%>" >
+        <td><%= index %></td>
+        <td><%= admin.full_name %></td>
+        <td><%= admin.email %></td>
+        <% if admin.not_approved? %>
+          <td>Aprovações 0/2</td>
+        <% else %>
+          <td>Aprovações 1/2</td>
+        <% end %>
+          <td><%= button_to 'Aprovar', approval_path(admin), { method: :patch }%></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
 
 
 

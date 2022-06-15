@@ -3,11 +3,13 @@ Rails.application.routes.draw do
 
   authenticated :admin do
     root to: 'home#index', as: :authenticated_root
-  end
-  root to: redirect('/admins/sign_in')
-  resources :approvals, only: [:index] do
-    patch 'new', on: :member
+    resources :exchange_rates, only: [:index, :new, :create]
+    resources :approvals, only: [:index] do
+      patch 'new', on: :member
+    end
   end
 
-  resources :exchange_rates, only: [:index, :new, :create]
+  root to: redirect('/admins/sign_in')
+
+
 end

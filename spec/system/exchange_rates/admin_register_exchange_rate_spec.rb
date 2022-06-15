@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Administrador cria uma taxa de câmbio' do
   it 'a partir do menu inicial' do
     admin = create(:admin)
+    admin.approved!
 
     login_as(admin)
     visit root_path
@@ -18,7 +19,8 @@ describe 'Administrador cria uma taxa de câmbio' do
 
   it 'e volta para o histórico de cotações' do
     admin = create(:admin)
-    
+    admin.approved!
+
     login_as(admin)
     visit new_exchange_rate_path
     click_on 'Voltar para histórico de cotações'
@@ -28,6 +30,7 @@ describe 'Administrador cria uma taxa de câmbio' do
 
   it 'com sucesso' do
     admin = create(:admin)
+    admin.approved!
     today = DateTime.now.strftime('%d/%m/%Y')
 
     login_as(admin)
@@ -45,6 +48,7 @@ describe 'Administrador cria uma taxa de câmbio' do
 
   it 'com dados inválidos' do
     admin = create(:admin)
+    admin.approved!
 
     login_as(admin)
     visit new_exchange_rate_path
