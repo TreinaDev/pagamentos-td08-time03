@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :exchange_rate do
-    real { "9.99" }
+    real { "10.00" }
   end
 end
