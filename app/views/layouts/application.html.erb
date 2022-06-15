@@ -14,16 +14,28 @@
       <h1>Pagamentos</h1>
       <% if admin_signed_in? %>
       <nav>
-        <%= link_to 'Início', root_path %>
-        <p>Olá, <%= current_admin.email %></p>
-        <%= button_to 'Sair', destroy_admin_session_path, method: :delete%>
-        <%= link_to 'Cotação de Rubis', exchange_rates_path %>
+        <ul>
+          <li><%= link_to 'Início', root_path %></li>
+          <li><%= current_admin.email %></li>
+          <li><%= link_to 'Cotação de Rubis', exchange_rates_path %></li>
+          <li><%= button_to 'Sair', destroy_admin_session_path, method: :delete %></li>
+        </ul>
       </nav>
       <% end %>
     </header>
 
     <main>
       <%= render 'shared/home/flash' %>
+      <% if admin_signed_in? && ExchangeRate.last %>
+        <div class="current-exchange-rate">
+          <p>Taxa de câmbio RB 1 <-> <%= number_to_currency(ExchangeRate.last.real) %> | <%= ExchangeRate.fluctuation %></p>
+          <em>Última atualização em <%= l(ExchangeRate.last.created_at.localtime) %></em>
+        </div>
+      <% else %>
+        <div class="current-exchange-rate">
+          <p>Você precisa cadastrar uma nova taxa de câmbio.</p>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
