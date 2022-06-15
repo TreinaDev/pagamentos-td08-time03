@@ -24,6 +24,4 @@ RSpec.describe Credit, type: :model do
   describe 'enum' do
     it { should define_enum_for(:status).with_values({ pending: 0, approved: 5, rejected: 10 }) }
   end
-
-  
 end
