@@ -12,13 +12,18 @@ describe "Admin visualiza lista de admins não-aprovados" do
   end
 
   it 'com sucesso' do
-    admin = create(:admin) #superadmin
+    admin = create(:admin)
     admin.approved!
     first = Admin.create!(full_name: "Fernando", cpf:"12555778904", email:"fernando@userubis.com.br", password:"123456")
     second = Admin.create!(full_name: "Gabriel", cpf:"00355778901", email:"gabriel@userubis.com.br", password:"123456")
     third = Admin.create!(full_name: "Maria", cpf:"10455778900", email:"maria@userubis.com.br", password:"123456")
+
     Approval.create!(super_admin_email: "joao@userubis.com.br", admin: third)
+
+    Admin.create!(full_name: "josimar@userubis.com.br", cpf:"19283774652", email:"josimar@userubis.com.br", password:"123456")
     Approval.create!(super_admin_email: "josimar@userubis.com.br", admin: third)
+
+    Admin.create!(full_name: "lucas@userubis.com.br", cpf:"18283774652",email:"lucas@userubis.com.br", password:"123456")
     Approval.create!(super_admin_email: "lucas@userubis.com.br", admin: second)
 
     login_as(admin)
