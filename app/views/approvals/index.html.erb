@@ -1,15 +1,29 @@
+<h2>Admins não aprovados</h2>
+<p>Solicitações: <%= @requested_admins.length %></p>
+<table style="text-align: center">
+  <tr>
+    <th>Index</th>
+    <th>Nome</th>
+    <th>Email</th>
+    <th>Situação</th>
+    <th>Ação</th>
+  </tr>
+  <% @requested_admins.each_with_index do |admin, index| %>
+    <div class="pending_admin-<%= index%> ">
 
-<div>
-  <% @arrayfinal.each do |admin| %>
-  <div class="pending_admin">
-    <p><%= admin.full_name %></p>
-    <p><%= admin.email %></p>
-      <% if admin.no_approval? %>
-        <p>Aprovações 0/2</p>
+    <tr>
+      <td><%= index %></td>
+      <td><%= admin.full_name %></td>
+      <td><%= admin.email %></td>
+      <% if admin.not_approved? %>
+        <td>Aprovações 0/2</td>
       <% else %>
-        <p>Aprovações 1/2</p>
+        <td>Aprovações 1/2</td>
       <% end %>
-      <%= button_to 'Aprovar', approval_path(admin), { method: :patch }%>
-  </div>
+        <td><%= button_to 'Aprovar', approval_path(admin), { method: :patch }%></td>
+    </tr>
   <% end %>
-</div>
+</table>
+
+
+

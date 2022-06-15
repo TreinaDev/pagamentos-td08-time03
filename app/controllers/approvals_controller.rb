@@ -2,19 +2,9 @@ class ApprovalsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    #unir as duas
 
-    pending_admins = Admin.where("activation != ?", 10)
-    #mostra todos os admins recém criados que não estejam aprovados
+    @requested_admins = Admin.where("activation != ?", 10).left_outer_joins(:approvals).merge(Approval.where(super_admin_email: nil).or(Approval.where.not(super_admin_email: current_admin.email))).where(activation: [0, 5])
 
-    requested_admins = pending_admins.joins(:approvals).where.not(approvals: {super_admin_email: current_admin.email})
-    #consulta todos os admins que possuam relação com o model APPROVAL e que ainda não estejam aprovados pelo current_admin
-
-    #### criar consulta com os admins que ainda nao possuem um model APPROVAL
-    admins_without_approval = pending_admins.where(activation: "no_approval")
-
-    @arrayfinal = requested_admins + admins_without_approval
-    #Mostra na view o arrayfinal
   end
 
   def new
@@ -23,10 +13,10 @@ class ApprovalsController < ApplicationController
 
     a = Approval.create!(admin: admin, super_admin_email: current_admin.email)
 
-    if admin.half_approval?
+    if admin.half_approved?
       admin.approved!
     else
-      admin.half_approval!
+      admin.half_approved!
     end
 
 

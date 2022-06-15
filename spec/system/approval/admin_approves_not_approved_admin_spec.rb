@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe "Admin aprova um admin recém cadastrado" do
-
   it 'com sucesso' do
     admin = create(:admin) #superadmin
     admin.approved!
@@ -13,7 +12,7 @@ describe "Admin aprova um admin recém cadastrado" do
       click_on("Aprovações Pendentes")
     end
 
-    # expect(page).to have_content("Solicitações: 1")
+    expect(page).to have_content("Solicitações: 1")
     expect(page).to have_content("Fernando")
     expect(page).to have_content("fernando@userubis.com.br")
     expect(page).to have_content("Aprovações 0/2")
@@ -22,8 +21,8 @@ describe "Admin aprova um admin recém cadastrado" do
     expect(page).to have_content("Usuário aprovado com sucesso")
     expect(page).not_to have_content("Fernando")
     expect(page).not_to have_content("fernando@userubis.com.br")
-    # expect(page).to have_content("Solicitações: 0")
+    expect(page).to have_content("Solicitações: 0")
 
   end
-  
+
 end
