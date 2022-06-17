@@ -11,8 +11,7 @@ describe 'Admin visualiza taxa de câmbio atual' do
     visit root_path
 
     within('div.current-exchange-rate') do
-      expect(page).to have_content 'Taxa de câmbio'
-      expect(page).to have_content 'RB 1 <-> R$ 11,00 | 10.0%'
+      expect(page).to have_content 'RB 1 R$ 11,00 | 10.0%'
       expect(page).to have_content "Última atualização em #{update_date}"
     end
   end
@@ -25,7 +24,7 @@ describe 'Admin visualiza taxa de câmbio atual' do
 
     expect(page).to have_content('Você precisa cadastrar uma nova taxa de câmbio.')
     expect(page).not_to have_content 'Taxa de câmbio'
-    expect(page).not_to have_content 'RB 1 <-> R$ 11,00 | 10.0%'    
+    expect(page).not_to have_content 'RB 1 <-> R$ 11,00 | 10.0%'
     expect(page).not_to have_content 'Última atualização'
   end
 end

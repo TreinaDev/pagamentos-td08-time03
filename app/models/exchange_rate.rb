@@ -4,6 +4,6 @@ class ExchangeRate < ApplicationRecord
 
   def self.fluctuation
     former, latter = ExchangeRate.last(2)
-    "#{(((latter.real / former.real) - 1) * 100).round(2)}%"
+    (((latter.real / former.real) - 1) * 100).round(2) if latter
   end
 end
