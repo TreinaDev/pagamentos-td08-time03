@@ -6,8 +6,6 @@
 
 Admin.create!(full_name: 'Maria', cpf: '12344444901', email: 'maria@userubis.com.br', password: '123456')
 Admin.create!(full_name: 'Gabriel', cpf: '10123478901', email: 'gabriel@userubis.com.br', password: '123456')
-Admin.find(1).approved!
-Admin.find(2).approved!
 
 Admin.create!(full_name: 'Mateus Cézar', cpf: '99023478901', email: 'matheus@userubis.com.br', password: '123456')
 Admin.create!(full_name: 'Fábio Júnior', cpf: '01211278901', email: 'fabiojr@userubis.com.br', password: '123456')

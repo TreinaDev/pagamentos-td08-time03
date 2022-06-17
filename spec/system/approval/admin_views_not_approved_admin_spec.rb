@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe "Admin visualiza lista de admins não-aprovados" do
   it 'apenas se estiver aprovado' do
-    admin = create(:admin)
-    admin.not_approved!
+    admin = create(:admin, :not_approved)
 
     login_as(admin)
     visit(approvals_path)
@@ -12,27 +11,20 @@ describe "Admin visualiza lista de admins não-aprovados" do
   end
 
   it 'com sucesso' do
-    admin = create(:admin)
-    admin.approved!
-    first = Admin.create!(full_name: "Fernando", cpf:"12555778904", email:"fernando@userubis.com.br", password:"123456")
-    second = Admin.create!(full_name: "Gabriel", cpf:"00355778901", email:"gabriel@userubis.com.br", password:"123456")
-    third = Admin.create!(full_name: "Maria", cpf:"10455778900", email:"maria@userubis.com.br", password:"123456")
-
-    Approval.create!(super_admin_email: "joao@userubis.com.br", admin: third)
-
-    Admin.create!(full_name: "josimar@userubis.com.br", cpf:"19283774652", email:"josimar@userubis.com.br", password:"123456")
-    Approval.create!(super_admin_email: "josimar@userubis.com.br", admin: third)
-
-    Admin.create!(full_name: "lucas@userubis.com.br", cpf:"18283774652",email:"lucas@userubis.com.br", password:"123456")
-    Approval.create!(super_admin_email: "lucas@userubis.com.br", admin: second)
+    admin = create(:admin, :approved)
+    create(:admin, :not_approved, full_name:"Fernando", email: "fernando@userubis.com.br", cpf:"12555778904", password:"123456")
+    create(:admin, :half_approved, full_name:"Gabriel", email: "gabriel@userubis.com.br", cpf:"00355778901", password:"123456")
+    create(:admin, :approved, full_name:"Maria", email: "maria@userubis.com.br", cpf:"12555778905", password:"123456")
+    create(:admin, :approved, full_name:"Josimar", cpf:"19283774652", email:"josimar@userubis.com.br", password:"123456")
+    create(:admin, :approved, full_name:"Lucas", email: "lucas@userubis.com.br", cpf:"18283774652", password:"123456")
 
     login_as(admin)
     visit(root_path)
     within("nav") do
       click_on("Aprovações Pendentes")
     end
-    expect(page).to have_content("Admins não aprovados")
 
+    expect(page).to have_content("Admins não aprovados")
      within(".pending_admin-0") do
       expect(page).to have_content("Fernando")
       expect(page).to have_content("fernando@userubis.com.br")
@@ -45,15 +37,13 @@ describe "Admin visualiza lista de admins não-aprovados" do
       expect(page).to have_content("Aprovações 1/2")
       expect(page).to have_button("Aprovar")
     end
-
     expect(page).not_to have_content("Maria")
     expect(page).not_to have_content("maria@userubis.com.br")
     expect(page).not_to have_content("Aprovações 2/2")
   end
 
   it 'sem nenhum cadastrado' do
-    admin = create(:admin) #superadmin
-    admin.approved!
+    admin = create(:admin, :approved) #superadmin
 
     login_as(admin)
     visit(root_path)
@@ -66,16 +56,12 @@ describe "Admin visualiza lista de admins não-aprovados" do
   end
 
   it 'mas todos os admins já estão aprovados' do
-    super_admin = create(:admin)
-    super_admin.approved!
-    first_admin = Admin.create!(full_name: "Fernando", cpf:"12555778904", email:"fernando@userubis.com.br", password:"123456")
-    second_admin = Admin.create!(full_name: "Gabriel", cpf:"00355778901", email:"gabriel@userubis.com.br", password:"123456")
-    third_admin = Admin.create!(full_name: "Maria", cpf:"10455778900", email:"maria@userubis.com.br", password:"123456")
-    first_admin.approved!
-    second_admin.approved!
-    third_admin.approved!
+    admin = create(:admin, :approved)
+    create(:admin, :approved, full_name:"Fernando", cpf:"12555778904", email:"fernando@userubis.com.br", password:"123456")
+    create(:admin, :approved, full_name:"Maria", cpf:"12555778905", email:"gabriel@userubis.com.br", password:"123456")
+    create(:admin, :approved, full_name:"Gabriel", cpf:"00355778901", email:"maria@userubis.com.br", password:"123456")
 
-    login_as(super_admin)
+    login_as(admin)
     visit approvals_path
 
     expect(page).to have_content("Solicitações: 0")

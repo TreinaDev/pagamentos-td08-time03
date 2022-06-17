@@ -6,7 +6,7 @@ class ApprovalsController < ApplicationController
 
   end
 
-  def new
+  def create
     admin = Admin.find(params[:id])
     approval = Approval.new(admin: admin, super_admin_email: current_admin.email)
 
@@ -18,5 +18,9 @@ class ApprovalsController < ApplicationController
   private
     def authenticate_approved_admin
       redirect_to root_path if !current_admin.approved?
+    end
+
+    def approvals_parameters
+      params.require(:approval).permit(:admin, :super_admin_email)
     end
 end

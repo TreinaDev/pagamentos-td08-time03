@@ -2,30 +2,27 @@ require 'rails_helper'
 
 describe 'Admin visita a página inicial' do
   it 'está pendente de aprovação, e é solicitado login' do
-    admin = create(:admin)
-    admin.not_approved!
-    login_as(admin)
+    admin = create(:admin, :not_approved)
 
+    login_as(admin)
     visit root_path
 
     expect(page).to have_content("Sua conta ainda falta ser ativada.")
   end
 
   it 'possui uma aprovação, e é solicitado login' do
-    admin = create(:admin)
-    admin.half_approved!
-    login_as(admin)
+    admin = create(:admin, :half_approved)
 
+    login_as(admin)
     visit root_path
 
     expect(page).to have_content("Sua conta ainda falta ser ativada.")
   end
 
   it 'é totalmente aprovado e consegue acessar a aplicação' do
-    admin = create(:admin)
-    admin.approved!
-    login_as(admin)
+    admin = create(:admin, :approved)
 
+    login_as(admin)
     visit root_path
 
     expect(page).to have_content("Pagamentos")

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :approval do
-    admin { nil }
-    super_admin { "MyString" }
+    association(:admin)
+    super_admin_email { "joao@userubis.com.br" }
   end
 end

@@ -10,8 +10,7 @@ describe 'Administrador visualiza histórico de cotação' do
     expect(current_path).to eq(root_path)
   end
   it 'a partir da página inicial' do
-    admin = create(:admin)
-    admin.approved!
+    admin = create(:admin, :approved)
     exchange_rate = create(:exchange_rate)
 
     login_as(admin)
@@ -26,8 +25,7 @@ describe 'Administrador visualiza histórico de cotação' do
   end
 
   it 'mas não há nenhuma taxa criada' do
-    admin = create(:admin)
-    admin.approved!
+    admin = create(:admin, :approved)
 
     login_as(admin)
     visit exchange_rates_path
@@ -37,8 +35,7 @@ describe 'Administrador visualiza histórico de cotação' do
   end
 
   it 'e volta para a página inicial' do
-    admin = create(:admin)
-    admin.approved!
+    admin = create(:admin, :approved)
 
     login_as(admin)
     visit exchange_rates_path

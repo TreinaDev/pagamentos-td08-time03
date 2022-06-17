@@ -21,7 +21,7 @@
         <% else %>
           <td>Aprovações 1/2</td>
         <% end %>
-          <td><%= button_to 'Aprovar', approval_path(admin), { method: :patch }%></td>
+          <td><%= button_to 'Aprovar', create_approval_path(admin) %></td>
       </tr>
     <% end %>
   </table>
