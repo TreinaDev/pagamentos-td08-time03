@@ -6,9 +6,16 @@ Rails.application.routes.draw do
     resources :exchange_rates, only: [:index, :new, :create]
     resources :approvals, only: [:index]
     post '/approvals/:id', to: 'approvals#create', as: 'create_approval'
+    resources :exchange_rates, only: [:index, :new, :create]
   end
 
   root to: redirect('/admins/sign_in')
 
-
+  namespace :api do
+    namespace :v1 do
+      resources :clients, only: [:show] do
+        post 'credit', on: :collection, to: 'clients#add_credit'
+      end
+    end
+  end
 end
