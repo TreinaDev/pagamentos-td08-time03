@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_204752) do
     t.datetime "updated_at", null: false
     t.string "cpf"
     t.string "full_name"
+    t.integer "activation", default: 0
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -51,6 +52,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_204752) do
     t.index ["client_id"], name: "index_credits_on_client_id"
     t.index ["company_id"], name: "index_credits_on_company_id"
     t.index ["exchange_rate_id"], name: "index_credits_on_exchange_rate_id"
+  create_table "approvals", force: :cascade do |t|
+    t.integer "admin_id"
+    t.string "super_admin_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_approvals_on_admin_id"
   end
 
   create_table "exchange_rates", force: :cascade do |t|
@@ -62,4 +69,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_204752) do
   add_foreign_key "credits", "clients"
   add_foreign_key "credits", "companies"
   add_foreign_key "credits", "exchange_rates"
+  add_foreign_key "approvals", "admins"
+  end
 end

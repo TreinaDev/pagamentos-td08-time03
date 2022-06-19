@@ -1,0 +1,6 @@
+pt-BR:
+  activerecord:
+    attributes:
+      approval:
+        admin_id:
+        super_admin_email: 'Email de Admin aprovador'
