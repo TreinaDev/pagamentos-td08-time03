@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe "Admin se autentica" do
+describe "Administrador se autentica" do
   it "com sucesso" do
-    admin = create(:admin)
+    create(:admin, :approved)
 
     visit(root_path)
     fill_in "E-mail", with: "joao@userubis.com.br"
@@ -13,8 +13,21 @@ describe "Admin se autentica" do
     expect(page).to have_content("Sair")
   end
 
+  it "não estando aprovado ainda" do
+    create(:admin, :not_approved)
+
+    visit(root_path)
+
+    fill_in "E-mail", with: "joao@userubis.com.br"
+    fill_in "Senha", with: "123456"
+    click_on("Login")
+
+    expect(page).to have_content("Aguarde a aprovação do seu cadastro")
+    expect(current_path).to eq(new_admin_session_path)
+  end
+
   it "com dados inválidos ou incompletos" do
-    admin = create(:admin)
+    create(:admin)
 
     visit(root_path)
     fill_in "E-mail", with: ""
@@ -25,7 +38,7 @@ describe "Admin se autentica" do
   end
 
   it "e faz logout" do
-    admin = create(:admin)
+    create(:admin)
 
     login_as(admin)
     visit(root_path)
