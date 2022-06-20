@@ -38,7 +38,7 @@ describe "Administrador se autentica" do
   end
 
   it "e faz logout" do
-    create(:admin)
+    admin = create(:admin)
 
     login_as(admin)
     visit(root_path)

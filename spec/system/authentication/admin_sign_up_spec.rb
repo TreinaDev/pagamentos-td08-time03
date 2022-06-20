@@ -26,7 +26,6 @@ describe "Administrador se registra" do
     fill_in "Confirme sua senha",	with: ""
     click_on("Inscrever-se")
 
-    expect(page).to have_content("Não foi possível salvar administrador")
     expect(page).to have_content("Senha não pode ficar em branco")
     expect(page).to have_content("CPF não pode ficar em branco")
   end
@@ -41,7 +40,6 @@ describe "Administrador se registra" do
     fill_in "Confirme sua senha",	with: "123456789"
     click_on("Inscrever-se")
 
-    expect(page).to have_content("Não foi possível salvar administrador")
     expect(page).to have_content("E-mail não é válido")
   end
 end
