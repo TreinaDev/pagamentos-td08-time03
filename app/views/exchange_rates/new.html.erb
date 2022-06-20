@@ -7,7 +7,7 @@
 <% end %>
 <%= form_with model: @exchange_rate do |f| %>
   <%= f.label :real %>
-  <%= f.number_field :real %>
+  <%= f.number_field :real, step: 0.01 %>
   <%= f.submit 'Enviar' %>
 <% end %>
 <%= link_to 'Voltar para histórico de cotações', exchange_rates_path %>
