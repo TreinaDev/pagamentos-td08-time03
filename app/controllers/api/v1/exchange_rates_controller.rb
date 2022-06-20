@@ -4,7 +4,7 @@ class Api::V1::ExchangeRatesController < ActionController::API
     if @exchange_rate
       render status: 200
     else
-      render status: 204, json: { errors: 'Nenhuma taxa cadastrada' }
+      render status: 200, json: { errors: 'Nenhuma taxa cadastrada' }
     end
   end
 end
