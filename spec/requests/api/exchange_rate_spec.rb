@@ -14,7 +14,6 @@ describe 'API de Pagamentos' do
     end
 
     it 'mas não existe taxa de câmbio cadastrada' do
-      
       get '/api/v1/exchange_rates/current'
       json_response = JSON.parse(response.body)
 
