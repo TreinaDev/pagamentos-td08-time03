@@ -25,11 +25,11 @@ describe 'Admin visita a página inicial' do
     login_as(admin)
     visit root_path
 
-    expect(page).to have_content("Pagamentos")
+    expect(page).to have_content("USERUBIS")
     within('nav') do
       expect(page).to have_link("Início")
       expect(page).to have_link("Aprovações Pendentes")
-      expect(page).to have_content("Olá, joao@userubis.com.br")
+      expect(page).to have_content("joao@userubis.com.br")
       expect(page).to have_button("Sair")
       expect(page).to have_link("Cotação de Rubis")
     end

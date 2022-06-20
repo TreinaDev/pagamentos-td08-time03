@@ -1,7 +1,0 @@
-<nav>
-  <%= link_to 'Início', root_path %>
-  <%= link_to 'Aprovações Pendentes', approvals_path %>
-  <p>Olá, <%= current_admin.email %></p>
-  <%= button_to 'Sair', destroy_admin_session_path, method: :delete%>
-  <%= link_to 'Cotação de Rubis', exchange_rates_path %>
-</nav>

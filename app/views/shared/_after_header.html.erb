@@ -1,0 +1,20 @@
+<div class="current-exchange-rate container-fluid bg-danger d-flex justify-content-center gap-3 py-2 text-white ">
+  <i class="bi bi-dot"></i>
+  <div class="fw-bolder me-1">
+    <span>
+      <i class="bi bi-gem fs-6 ">
+      </i>RB 1 <i class="bi bi-arrow-left-right mx-1"></i>
+      <%= number_to_currency(ExchangeRate.last.real) %>
+      <span class="mx-2 ">|</span>
+    </span>
+    <% if ExchangeRate.fluctuation %>
+      <span class="<%= ExchangeRate.fluctuation == 0 ? 'd-none' : '' %>">
+        <i class="<%= ExchangeRate.fluctuation < 0 ? 'bi bi-arrow-down-short' : 'bi bi-arrow-up-short'%>"></i>
+        <%= ExchangeRate.fluctuation %>%
+    <% end %>
+    </span>
+  </div>
+  <span class="fw-bolder">|</span>
+  <span>Última atualização em <%= l(ExchangeRate.last.created_at.localtime) %></span>
+  <i class="bi bi-dot"></i>
+</div>
