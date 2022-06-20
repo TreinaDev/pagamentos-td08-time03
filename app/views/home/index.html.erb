@@ -1,3 +1,5 @@
-<% if admin_signed_in? %>
+<% if admin_signed_in? && !current_admin.approved? %>
   <p>Sua conta ainda falta ser ativada.</p>
+<% else %>
+  
 <% end %>

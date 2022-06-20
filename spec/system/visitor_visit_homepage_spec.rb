@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe 'Visitante visita a app' do
-  xit 'com sucesso' do
+  it 'e é solicitado login' do
     visit root_path
 
-    expect(page).to have_content 'USERUBIS'
+    expect(current_path).to eq(new_admin_session_path)
   end
 end

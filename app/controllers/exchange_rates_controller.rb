@@ -1,5 +1,5 @@
 class ExchangeRatesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_approved_admin
 
   def index
     @exchange_rates = ExchangeRate.all.order(created_at: :desc)
@@ -23,5 +23,9 @@ class ExchangeRatesController < ApplicationController
 
   def exchange_rate_params
     params.require(:exchange_rate).permit(:real)
+  end
+
+  def authenticate_approved_admin
+      redirect_to root_path if !current_admin.approved?
   end
 end
