@@ -7,7 +7,7 @@ describe 'Admin visita a página inicial' do
     login_as(admin)
     visit root_path
 
-    expect(page).to have_content("Sua conta ainda falta ser ativada.")
+    expect(page).to have_content('Sua conta ainda falta ser ativada.')
   end
 
   it 'possui uma aprovação, e é solicitado login' do
@@ -16,7 +16,7 @@ describe 'Admin visita a página inicial' do
     login_as(admin)
     visit root_path
 
-    expect(page).to have_content("Sua conta ainda falta ser ativada.")
+    expect(page).to have_content('Sua conta ainda falta ser ativada.')
   end
 
   it 'é totalmente aprovado e consegue acessar a aplicação' do
@@ -25,13 +25,13 @@ describe 'Admin visita a página inicial' do
     login_as(admin)
     visit root_path
 
-    expect(page).to have_content("USERUBIS")
+    expect(page).to have_content('USERUBIS')
     within('nav') do
-      expect(page).to have_link("Início")
-      expect(page).to have_link("Aprovações Pendentes")
-      expect(page).to have_content("joao@userubis.com.br")
-      expect(page).to have_button("Sair")
-      expect(page).to have_link("Cotação de Rubis")
+      expect(page).to have_link('Início')
+      expect(page).to have_link('Aprovações Pendentes')
+      expect(page).to have_content('joao@userubis.com.br')
+      expect(page).to have_button('Sair')
+      expect(page).to have_link('Cotação de Rubis')
     end
   end
 end

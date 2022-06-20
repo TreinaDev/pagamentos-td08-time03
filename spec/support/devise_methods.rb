@@ -1,1 +1,1 @@
-include Warden::Test::Helpers 
+include Warden::Test::Helpers
