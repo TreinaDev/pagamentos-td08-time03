@@ -29,7 +29,7 @@ describe 'Admin visualiza lista de admins não-aprovados' do
       click_on('Aprovações Pendentes')
     end
 
-    expect(page).to have_content('Admins não aprovados')
+    expect(page).to have_content('Aprovações Pendentes')
     within('.pending_admin-0') do
       expect(page).to have_content('Fernando')
       expect(page).to have_content('fernando@userubis.com.br')
