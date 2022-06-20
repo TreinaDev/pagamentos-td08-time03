@@ -7,11 +7,10 @@ class Approval < ApplicationRecord
   private
 
   def update_admin_status
-    if self.admin.half_approved?
+    if admin.half_approved?
       admin.approved!
     else
       admin.half_approved!
     end
   end
-
 end

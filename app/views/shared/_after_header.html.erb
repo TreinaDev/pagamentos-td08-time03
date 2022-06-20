@@ -8,11 +8,11 @@
       <span class="mx-2 ">|</span>
     </span>
     <% if ExchangeRate.fluctuation %>
-      <span class="<%= ExchangeRate.fluctuation == 0 ? 'd-none' : '' %>">
-        <i class="<%= ExchangeRate.fluctuation < 0 ? 'bi bi-arrow-down-short' : 'bi bi-arrow-up-short'%>"></i>
+      <span class="<%= ExchangeRate.fluctuation.zero? ? 'd-none' : '' %>">
+        <i class="<%= ExchangeRate.fluctuation.negative? ? 'bi bi-arrow-down-short' : 'bi bi-arrow-up-short' %>"></i>
         <%= ExchangeRate.fluctuation %>%
+      </span>
     <% end %>
-    </span>
   </div>
   <span class="fw-bolder">|</span>
   <span>Última atualização em <%= l(ExchangeRate.last.created_at.localtime) %></span>

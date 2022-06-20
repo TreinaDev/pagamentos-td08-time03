@@ -1,18 +1,16 @@
 <nav class="navbar nav bg-dark ">
   <div class="container text-white">
-    <a class="navbar-brand text-decoration-none fw-bolder display-5 " href="/">USERUBIS
-    <i class="bi bi-gem text-danger"></i>
+    <a class="navbar-brand text-decoration-none fw-bolder display-5" href="/">USERUBIS
+      <i class="bi bi-gem text-danger"></i>
     </a>
-
     <ul class="navbar nav gap-4 ">
       <li class="nav-item">
-        <%= link_to 'Início', root_path, class:"nav-item" %>
+        <%= link_to 'Início', root_path, class: 'nav-item' %>
       </li>
       <li><%= link_to 'Aprovações Pendentes', approvals_path %></li>
       <li class="nav-item"><%= link_to 'Cotação de Rubis', exchange_rates_path %></li>
       <li><%= current_admin.email %></li>
-
-      <%= button_to 'Sair', destroy_admin_session_path, method: :delete, class:"btn btn-outline-danger " %>
+      <%= button_to 'Sair', destroy_admin_session_path, method: :delete, class: 'btn btn-outline-danger' %>
     </ul>
   </div>
 </nav>
