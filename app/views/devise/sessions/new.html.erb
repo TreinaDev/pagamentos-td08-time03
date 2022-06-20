@@ -4,7 +4,7 @@
 <h3 class="mb-3"><%= t('.sign_in') %></h3>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field form-floating">
+  <div class="field form-floating mb-2">
     <%= f.email_field :email, class:"form-control",placeholder: "name@example.com",autofocus: true, autocomplete: "email" %>
     <%= f.label :email %>
   </div>
