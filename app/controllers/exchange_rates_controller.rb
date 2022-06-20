@@ -10,9 +10,17 @@ class ExchangeRatesController < ApplicationController
   end
 
   def create
-    @exchange_rate = ExchangeRate.new(exchange_rate_params)
+    @exchange_rate = ExchangeRate.new(exchange_rate_params, admin: current_admin)
+    approval = ExchangeRateApproval.new(admin: current_admin, exchange_rate: @exchange_rate)
+
     if @exchange_rate.save
-      redirect_to exchange_rates_path, notice: 'Taxa de câmbio criada com sucesso.'
+      approval.save
+      if ExchangeRate.last(2).one? || (ExchangeRate.fluctuation && ExchangeRate.fluctuation <= 10.0)
+        ExchangeRateApproval.create!(admin: current_admin, exchange_rate: @exchange_rate)
+        redirect_to exchange_rates_path, notice: 'Taxa de câmbio criada com sucesso.'
+      else
+        redirect_to exchange_rates_path, notice: 'Taxa com variação maior que 10%. Aprovação pendente'
+      end
     else
       flash.now[:alert] = 'Erro ao criar a taxa.'
       render 'new'

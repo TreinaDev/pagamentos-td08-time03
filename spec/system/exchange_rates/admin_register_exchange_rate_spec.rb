@@ -55,4 +55,28 @@ describe 'Administrador cria uma taxa de câmbio' do
     expect(page).to have_content 'Erro ao criar a taxa.'
     expect(page).to have_content 'Cotação não pode ficar em branco'
   end
+
+  it 'com a variação maior que 10%' do
+    admin = create(:admin, :approved)
+    create(:exchange_rate)
+
+    login_as(admin)
+    visit new_exchange_rate_path
+    fill_in 'Cotação', with: '30'
+    click_on 'Enviar'
+
+    expect(page).to have_content('Taxa com variação maior que 10%. Aprovação pendente')
+  end
+
+  it 'com a variação menor que 10%' do
+    admin = create(:admin, :approved)
+    create(:exchange_rate)
+
+    login_as(admin)
+    visit new_exchange_rate_path
+    fill_in 'Cotação', with: '11'
+    click_on 'Enviar'
+
+    expect(page).to have_content 'Taxa de câmbio criada com sucesso.'
+  end
 end

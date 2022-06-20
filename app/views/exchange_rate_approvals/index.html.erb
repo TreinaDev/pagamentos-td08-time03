@@ -1,0 +1,3 @@
+<% @pending_exchange_rates.each do |er| %>
+  <p><%= er.real %>  <span><%= er.created_at.strftime('%d/%m/%Y') %></span><span><%= button_to 'Aprovar', create_exchange_rate_approval_path, method: :post, class: 'btn btn-outline-success' %></span></p>
+<% end %>
