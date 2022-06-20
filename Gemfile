@@ -38,6 +38,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'erb_lint', require: false
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
+gem 'htmlbeautifier', require: false
 
 group :development do
   gem 'bundler-audit'
