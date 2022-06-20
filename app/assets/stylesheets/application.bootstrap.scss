@@ -1,2 +1,15 @@
-@import 'bootstrap/scss/bootstrap';
-@import 'bootstrap-icons/font/bootstrap-icons';
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons";
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+* {
+  font-size: 1.05rem;
+}
+
+.navbar-brand:hover, li.nav-item > a:hover{
+  color: var(--bs-danger);
+}

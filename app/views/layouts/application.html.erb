@@ -6,35 +6,29 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application" %>
+
     <%= javascript_importmap_tags %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" defer></script>
   </head>
-
   <body>
-      <% if admin_signed_in? && current_admin.approved? %>
-        <header>
-          <h1>Pagamentos</h1>
-          <%= render 'shared/home/nav' %>
-        </header>
-      <% else %>
-
-        <header>
-          <h1>Header de boas vindas</h1>
-        </header>
-
-        <% if admin_signed_in?%>
-          <%= button_to 'Sair', destroy_admin_session_path, method: :delete%>
-        <% else %>
-          <%= link_to 'Entrar', new_admin_session_path %>
-        <% end %>
-
+    <header class="sticky-top shadow-sm">
+      <% if admin_signed_in? %>
+        <%= render 'shared/nav'%>
       <% end %>
-
-      <main>
-        <%= render 'shared/home/flash' %>
-          <%= yield %>
-      </main>
-
-    <footer></footer>
+    </header>
+    <% if admin_signed_in? && ExchangeRate.last %>
+      <section class="after_header">
+        <%= render 'shared/after_header'%>
+      </section>
+    <% elsif admin_signed_in? %>
+        <section class="after_header">
+          <p>Você precisa cadastrar uma nova taxa de câmbio.</p>
+        </section>
+    <% end %>
+    <main class="container mt-4">
+      <%= render 'shared/home/flash' %>
+      <%= yield %>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
 </html>
