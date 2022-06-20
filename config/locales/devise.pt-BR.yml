@@ -77,7 +77,7 @@ pt-BR:
       confirmation_instructions:
         action: Confirmar minha conta
         greeting: Bem-vindo %{recipient}!
-        instruction: 'Você pode confirmar sua conta através do link abaixo:'
+        instruction: "Você pode confirmar sua conta através do link abaixo:"
         subject: Instruções de confirmação
       email_changed:
         greeting: Olá %{recipient}!
@@ -98,7 +98,7 @@ pt-BR:
       unlock_instructions:
         action: Desbloquear minha conta
         greeting: Olá %{recipient}!
-        instruction: 'Clique no link abaixo para desbloquear sua conta:'
+        instruction: "Clique no link abaixo para desbloquear sua conta:"
         message: Sua conta foi bloqueada devido ao excessivo número de tentativas acesso inválidas.
         subject: Instruções de desbloqueio
     omniauth_callbacks:
@@ -123,7 +123,7 @@ pt-BR:
       edit:
         are_you_sure: Você tem certeza?
         cancel_my_account: Cancelar minha conta
-        currently_waiting_confirmation_for_email: 'No momento esperando por: %{email}'
+        currently_waiting_confirmation_for_email: "No momento esperando por: %{email}"
         leave_blank_if_you_don_t_want_to_change_it: deixe em branco caso não queira alterá-la
         title: Editar %{resource}
         unhappy: Não está contente?
@@ -143,7 +143,7 @@ pt-BR:
       new:
         sign_in: Login
       signed_in: Login efetuado com sucesso.
-      signed_out: Logout efetuado com sucesso.
+      signed_out: ""
     shared:
       links:
         back: Voltar
@@ -170,5 +170,5 @@ pt-BR:
       not_found: não encontrado
       not_locked: não foi bloqueado
       not_saved:
-        one: 'Não foi possível salvar %{resource}: 1 erro'
-        other: 'Não foi possível salvar %{resource}: %{count} erros.'
+        one: "Não foi possível salvar %{resource}: 1 erro"
+        other: "Não foi possível salvar %{resource}: %{count} erros."

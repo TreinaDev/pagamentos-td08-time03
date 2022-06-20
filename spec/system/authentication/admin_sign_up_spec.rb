@@ -11,14 +11,14 @@ describe "Administrador se registra" do
     fill_in "Confirme sua senha",	with: "123456"
     click_on("Inscrever-se")
 
-    expect(page).to have_content("Sua conta ainda falta ser ativada.")
+    expect(page).to have_content("Aguarde a aprovação do seu cadastro")
     expect(Admin.all.length).to eq(1)
     expect(Admin.last.email).to eq("joaofernandes@userubis.com.br")
   end
 
   it "com dados inválidos" do
     visit root_path
-    click_on("Inscrever-se") 
+    click_on("Inscrever-se")
     fill_in "Nome Completo",	with: "João Fernandes Aguiar"
     fill_in "CPF", with: ""
     fill_in "E-mail", with: "joaofernandes@userubis.com.br"
@@ -26,7 +26,6 @@ describe "Administrador se registra" do
     fill_in "Confirme sua senha",	with: ""
     click_on("Inscrever-se")
 
-    expect(page).to have_content("Não foi possível salvar administrador")
     expect(page).to have_content("Senha não pode ficar em branco")
     expect(page).to have_content("CPF não pode ficar em branco")
   end
@@ -41,7 +40,6 @@ describe "Administrador se registra" do
     fill_in "Confirme sua senha",	with: "123456789"
     click_on("Inscrever-se")
 
-    expect(page).to have_content("Não foi possível salvar administrador")
     expect(page).to have_content("E-mail não é válido")
   end
 end

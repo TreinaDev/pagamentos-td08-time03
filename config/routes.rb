@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     resources :exchange_rates, only: [:index, :new, :create]
     resources :approvals, only: [:index]
     post '/approvals/:id', to: 'approvals#create', as: 'create_approval'
-    resources :exchange_rates, only: [:index, :new, :create]
   end
 
   root to: redirect('/admins/sign_in')
