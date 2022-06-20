@@ -40,3 +40,7 @@ input[type="color"]:focus,
 .field_with_errors {
   display: inline;
 }
+
+label {
+  opacity: 0.7;
+}
