@@ -7,7 +7,7 @@
         </i>RB 1 <i class="bi bi-arrow-left-right mx-1"></i>
         <%= number_to_currency(ExchangeRate.last.real) %>
       </span>
-      <% if ExchangeRate.fluctuation %>
+      <% if ExchangeRate.fluctuation && ExchangeRate.fluctuation > 0 %>
         <span class="mx-2 ">|</span>
         <span class="<%= ExchangeRate.fluctuation.zero? ? 'd-none' : '' %>">
           <i class="<%= ExchangeRate.fluctuation.negative? ? 'bi bi-arrow-down-short' : 'bi bi-arrow-up-short' %>"></i>

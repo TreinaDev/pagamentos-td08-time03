@@ -11,7 +11,7 @@
       <% @exchange_rates.each do |er| %>
         <tr>
           <td><%= number_to_currency(er.real) %></td>
-          <td><%= er.created_at.strftime('%d/%m/%Y') %></td>
+          <td><%= er.created_at.localtime.strftime('%d/%m/%Y') %></td>
         </tr>
       <% end %>
     </tbody>
