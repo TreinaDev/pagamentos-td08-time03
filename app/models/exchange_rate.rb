@@ -1,6 +1,6 @@
 class ExchangeRate < ApplicationRecord
   validates :real, presence: true
-  validates :real, numericality: true
+  validates :real, numericality: { greater_than: 0 }
   has_many :exchange_rate_approvals
   belongs_to :admin
   enum status: { not_approved: 0, approved: 10 }

@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       resources :clients, only: [:show] do
         post 'credit', on: :collection, to: 'clients#add_credit'
       end
+      resources :exchange_rates, only: [:index] do
+        get 'current', on: :collection
+      end
     end
   end
 end

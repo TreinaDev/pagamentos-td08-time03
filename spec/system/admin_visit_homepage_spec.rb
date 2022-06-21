@@ -28,7 +28,7 @@ describe 'Admin visita a página inicial' do
     expect(page).to have_content('USERUBIS')
     within('nav') do
       expect(page).to have_link('Início')
-      expect(page).to have_link('Aprovações Pendentes')
+      expect(page).to have_link('Usuários Pendentes')
       expect(page).to have_content('joao@userubis.com.br')
       expect(page).to have_button('Sair')
       expect(page).to have_link('Cotação de Rubis')
