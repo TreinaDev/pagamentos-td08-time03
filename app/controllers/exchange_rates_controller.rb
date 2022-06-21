@@ -2,7 +2,7 @@ class ExchangeRatesController < ApplicationController
   before_action :authenticate_approved_admin
 
   def index
-    @exchange_rates = ExchangeRate.all.order(created_at: :desc)
+    @exchange_rates = ExchangeRate.all_approved
   end
 
   def new
@@ -10,12 +10,13 @@ class ExchangeRatesController < ApplicationController
   end
 
   def create
-    @exchange_rate = ExchangeRate.new(exchange_rate_params, admin: current_admin)
+    @exchange_rate = ExchangeRate.new(exchange_rate_params)
+    @exchange_rate.admin = current_admin
     approval = ExchangeRateApproval.new(admin: current_admin, exchange_rate: @exchange_rate)
 
     if @exchange_rate.save
       approval.save
-      if ExchangeRate.last(2).one? || (ExchangeRate.fluctuation && ExchangeRate.fluctuation <= 10.0)
+      if ExchangeRate.where(status: 10).count.zero? || (ExchangeRate.fluctuation(@exchange_rate) && ExchangeRate.fluctuation(@exchange_rate).abs <= 10.0)
         ExchangeRateApproval.create!(admin: current_admin, exchange_rate: @exchange_rate)
         redirect_to exchange_rates_path, notice: 'Taxa de câmbio criada com sucesso.'
       else

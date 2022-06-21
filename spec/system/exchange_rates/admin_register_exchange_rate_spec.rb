@@ -58,7 +58,7 @@ describe 'Administrador cria uma taxa de câmbio' do
 
   it 'com a variação maior que 10%' do
     admin = create(:admin, :approved)
-    create(:exchange_rate)
+    create(:exchange_rate, :approved, admin: admin)
 
     login_as(admin)
     visit new_exchange_rate_path
@@ -70,11 +70,11 @@ describe 'Administrador cria uma taxa de câmbio' do
 
   it 'com a variação menor que 10%' do
     admin = create(:admin, :approved)
-    create(:exchange_rate)
+    create(:exchange_rate, admin: admin)
 
     login_as(admin)
     visit new_exchange_rate_path
-    fill_in 'Cotação', with: '11'
+    fill_in 'Cotação', with: '10'
     click_on 'Enviar'
 
     expect(page).to have_content 'Taxa de câmbio criada com sucesso.'

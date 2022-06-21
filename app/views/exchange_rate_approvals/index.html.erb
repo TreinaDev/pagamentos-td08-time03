@@ -1,3 +1,7 @@
 <% @pending_exchange_rates.each do |er| %>
-  <p><%= er.real %>  <span><%= er.created_at.strftime('%d/%m/%Y') %></span><span><%= button_to 'Aprovar', create_exchange_rate_approval_path, method: :post, class: 'btn btn-outline-success' %></span></p>
+  <p><%= er.admin.email %> | <%= number_to_currency(er.real) %>  |<span><%= er.created_at.localtime.strftime('%d/%m/%Y às %H:%M:%S') %></span>|<span><%= button_to 'Aprovar', create_exchange_rate_approvals_path(er), method: :post, class: 'btn btn-outline-success' %></span></p>
 <% end %>
+
+<% if @pending_exchange_rates.empty? %>
+  <p>Não foram encontradas taxas pendentes no sistema.</p>
+<% end %>          

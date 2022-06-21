@@ -1,19 +1,23 @@
 <h2>Histórico de Cotação</h2>
-<%= link_to 'Taxas pendentes', exchange_rate_approvals_path %>
-
+<div>
+  <%= link_to 'Taxas pendentes', exchange_rate_approvals_path, class: 'btn btn-danger mb-2' %>
+  <%= link_to 'Configurar taxa de câmbio', new_exchange_rate_path, class: 'btn btn-danger mb-2' %>
+</div>
 <% if @exchange_rates.any? %>
-  <table class="table align-middle">
+  <table class="table align-middle text-center">
     <thead class="table-light">
       <tr>
         <th>Valor</th>
         <th>Data</th>
+        <th>Cadastrada por</th>
       </tr>
     </thead>
     <tbody>
       <% @exchange_rates.each do |er| %>
         <tr>
           <td><%= number_to_currency(er.real) %></td>
-          <td><%= er.created_at.localtime.strftime('%d/%m/%Y') %></td>
+          <td><%= er.created_at.localtime.strftime('%d/%m/%Y às %H:%M:%S') %></td>
+          <td><%= er.admin.email %></td>
         </tr>
       <% end %>
     </tbody>
@@ -21,4 +25,3 @@
 <% else %>
   <p>Nenhuma taxa criada</p>
 <% end %>
-<%= link_to 'Configurar taxa de câmbio', new_exchange_rate_path, class: 'btn btn-danger' %>
