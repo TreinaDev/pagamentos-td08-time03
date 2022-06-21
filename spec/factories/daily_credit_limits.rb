@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :daily_credit_limit do
-    value { "9.99" }
+    value { 10_000 }
   end
 end
