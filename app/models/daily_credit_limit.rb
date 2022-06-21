@@ -1,0 +1,2 @@
+class DailyCreditLimit < ApplicationRecord
+end

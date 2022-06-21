@@ -1,0 +1,7 @@
+<h1>Título de Daily Credit Limits</h1>
+
+<% if @daily_credit_limit %>
+  <p>Limite atual: <%= number_to_currency(@daily_credit_limit.value) %></p>
+<% end %>
+
+<%= link_to 'Configurar limite', new_daily_credit_limit_path %>
