@@ -20,7 +20,7 @@ describe 'Administrador visualiza histórico de cotação' do
     end
 
     within('table') do
-      expect(page).to have_content exchange_rate.real
+      expect(page).to have_content 'R$ 10,00'
     end
   end
 

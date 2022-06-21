@@ -1,20 +1,24 @@
-<div class="current-exchange-rate container-fluid bg-danger d-flex justify-content-center gap-3 py-2 text-white ">
+<div class="current-exchange-rate container-fluid bg-danger d-flex justify-content-center gap-3 py-2 text-white mb-4">
   <i class="bi bi-dot"></i>
-  <div class="fw-bolder me-1">
-    <span>
-      <i class="bi bi-gem fs-6 ">
-      </i>RB 1 <i class="bi bi-arrow-left-right mx-1"></i>
-      <%= number_to_currency(ExchangeRate.last.real) %>
-      <span class="mx-2 ">|</span>
-    </span>
-    <% if ExchangeRate.fluctuation %>
-      <span class="<%= ExchangeRate.fluctuation.zero? ? 'd-none' : '' %>">
-        <i class="<%= ExchangeRate.fluctuation.negative? ? 'bi bi-arrow-down-short' : 'bi bi-arrow-up-short' %>"></i>
-        <%= ExchangeRate.fluctuation %>%
+  <% if ExchangeRate.last %>
+    <div class="fw-bolder me-1">
+      <span>
+        <i class="bi bi-gem fs-6 ">
+        </i>RB 1 <i class="bi bi-arrow-left-right mx-1"></i>
+        <%= number_to_currency(ExchangeRate.last.real) %>
       </span>
-    <% end %>
-  </div>
-  <span class="fw-bolder">|</span>
-  <span>Última atualização em <%= l(ExchangeRate.last.created_at.localtime) %></span>
+      <% if ExchangeRate.fluctuation && ExchangeRate.fluctuation > 0 %>
+        <span class="mx-2 ">|</span>
+        <span class="<%= ExchangeRate.fluctuation.zero? ? 'd-none' : '' %>">
+          <i class="<%= ExchangeRate.fluctuation.negative? ? 'bi bi-arrow-down-short' : 'bi bi-arrow-up-short' %>"></i>
+          <%= ExchangeRate.fluctuation %>%
+        </span>
+      <% end %>
+    </div>
+    <span class="fw-bolder">|</span>
+    <span>Última atualização em <%= l(ExchangeRate.last.created_at.localtime) %></span>
+  <% else %>
+    <span class="fw-bolder">Você precisa cadastrar uma nova taxa de câmbio.</span>
+  <% end %>
   <i class="bi bi-dot"></i>
 </div>

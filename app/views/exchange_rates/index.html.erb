@@ -1,7 +1,7 @@
 <h2>Histórico de Cotação</h2>
 <% if @exchange_rates.any? %>
-  <table>
-    <thead>
+  <table class="table align-middle">
+    <thead class="table-light">
       <tr>
         <th>Valor</th>
         <th>Data</th>
@@ -10,8 +10,8 @@
     <tbody>
       <% @exchange_rates.each do |er| %>
         <tr>
-          <td><%= er.real %></td>
-          <td><%= er.created_at.strftime('%d/%m/%Y') %></td>
+          <td><%= number_to_currency(er.real) %></td>
+          <td><%= er.created_at.localtime.strftime('%d/%m/%Y') %></td>
         </tr>
       <% end %>
     </tbody>
@@ -19,4 +19,4 @@
 <% else %>
   <p>Nenhuma taxa criada</p>
 <% end %>
-<%= link_to 'Configurar taxa de câmbio', new_exchange_rate_path %>
+<%= link_to 'Configurar taxa de câmbio', new_exchange_rate_path, class: 'btn btn-danger' %>
