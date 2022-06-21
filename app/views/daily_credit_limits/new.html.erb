@@ -1,0 +1,16 @@
+<h2>Configuração de limite de crédito</h2>
+<% if @daily_credit_limit.errors.any? %>
+  <div>
+    <% @daily_credit_limit.errors.full_messages.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with(model: @daily_credit_limit, id: 'daily_credit_limit') do |f| %>
+  <div>
+    <%= f.label :value %>
+    <%= f.number_field :value, step: 0.01 %>
+  </div>
+  <%= f.submit 'Criar limite' %>
+<% end %>
