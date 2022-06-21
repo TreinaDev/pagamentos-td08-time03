@@ -1,13 +1,25 @@
 <% if @exchange_rate.errors.any? %>
-  <div>
-    <% @exchange_rate.errors.full_messages.each do |m| %>
-      <p><%= m %></p>
-    <% end %>
+  <div id="error_explanation">
+    <ul class="list-group">
+      <% @exchange_rate.errors.full_messages.each do |m| %>
+        <li class="alert alert-danger mb-2 fs-6 fw-bolder list-unstyled"><%= m %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
-<%= form_with model: @exchange_rate do |f| %>
-  <%= f.label :real %>
-  <%= f.number_field :real %>
-  <%= f.submit 'Enviar' %>
-<% end %>
-<%= link_to 'Voltar para histórico de cotações', exchange_rates_path %>
+<div class="p-3">
+  <%= form_with model: @exchange_rate do |f| %>
+    <div class="row">
+      <div class="form-group col-lg-2 p-0 mb-2">
+        <%= f.label :real, class: 'form-label' %>
+        <%= f.number_field :real, step: 0.01, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.submit 'Enviar', class: 'btn btn-danger col-lg-2 mb-2' %>
+    </div>
+  <% end %>
+  <div class="row">
+    <%= link_to 'Voltar para histórico de cotações', exchange_rates_path, class: 'btn btn-danger col-lg-4' %>
+  </div>
+</div>

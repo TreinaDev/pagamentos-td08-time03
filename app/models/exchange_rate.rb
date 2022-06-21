@@ -1,6 +1,6 @@
 class ExchangeRate < ApplicationRecord
   validates :real, presence: true
-  validates :real, numericality: true
+  validates :real, numericality: { greater_than: 0 }
 
   def self.fluctuation
     former, latter = ExchangeRate.last(2)

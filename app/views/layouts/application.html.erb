@@ -16,16 +16,12 @@
         <%= render 'shared/nav' %>
       <% end %>
     </header>
-    <% if admin_signed_in? && ExchangeRate.last %>
+    <% if admin_signed_in? %>
       <section class="after_header">
         <%= render 'shared/after_header' %>
       </section>
-    <% elsif admin_signed_in? %>
-      <section class="after_header">
-        <p>Você precisa cadastrar uma nova taxa de câmbio.</p>
-      </section>
     <% end %>
-    <main class="container mt-4">
+    <main class="container">
       <%= render 'shared/home/flash' %>
       <%= yield %>
     </main>
