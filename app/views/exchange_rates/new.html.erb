@@ -1,8 +1,10 @@
 <% if @exchange_rate.errors.any? %>
-  <div>
-    <% @exchange_rate.errors.full_messages.each do |m| %>
-      <p><%= m %></p>
-    <% end %>
+  <div id="error_explanation">
+    <ul class="list-group">
+      <% @exchange_rate.errors.full_messages.each do |m| %>
+        <li class="alert alert-danger mb-2 fs-6 fw-bolder list-unstyled"><%= m %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
 <%= form_with model: @exchange_rate do |f| %>
