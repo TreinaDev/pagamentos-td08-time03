@@ -15,7 +15,7 @@ describe 'Administrador cadastra um limite de crédito diário' do
 
     expect(page).to have_content('Limite de crédito diário criado com sucesso!')
     expect(page).to have_content('R$ 10.000,00')
-    expect(page).not_to have_content('Nenhum limite diário cadastrado')
+    expect(page).not_to have_content('Nenhum limite diário configurado')
   end
 
   it 'mas não digita o valor' do
