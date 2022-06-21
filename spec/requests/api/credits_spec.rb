@@ -84,5 +84,29 @@ describe 'API de Pagamentos' do
       expect(json_response['errors']).to include 'Empresa é obrigatório(a)'
       expect(json_response['errors']).to include 'Valor não pode ficar em branco'
     end
+
+    it 'e o sistema de pagamentos está suspenso' do
+      create(:client)
+      create(:company)
+      create(:exchange_rate, created_at: DateTime.now.days_ago(4))
+      credit_params = {
+        client: {
+          name: 'João Almeida',
+          registration_number: '123.456.789-00'
+        },
+        company: {
+          name: 'E-Commerce',
+          registration_number: '00.000.000/0000-00'
+        },
+        real_amount: 1500.00
+      }
+
+      post '/api/v1/clients/credit', params: credit_params
+      json_response = JSON.parse(response.body)
+
+      expect(response).to have_http_status(503)
+      expect(response.content_type).to include 'application/json'
+      expect(json_response['errors']).to include 'Sistema de pagamentos suspenso'
+    end
   end
 end
