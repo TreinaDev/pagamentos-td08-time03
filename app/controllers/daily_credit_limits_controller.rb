@@ -13,7 +13,7 @@ class DailyCreditLimitsController < ApplicationController
     if @daily_credit_limit.save
       redirect_to daily_credit_limits_path, notice: 'Limite de crédito diário criado com sucesso!'
     else
-      flash.now[:notice] = 'Valor de limite inválido. Tente novamente.'
+      flash.now[:alert] = 'Valor de limite inválido. Tente novamente.'
       render 'new'
     end
   end
