@@ -1,0 +1,26 @@
+<h2>Taxas Pendentes</h2>
+<p>Solicitações: <%= @pending_exchange_rates.length %></p>
+<% if @pending_exchange_rates.empty? %>
+  <p>Não foram encontradas taxas pendentes no sistema.</p>
+<% else %>
+  <table class="table align-middle text-center">
+    <thead class="table-light">
+      <tr>
+        <th>Email</th>
+        <th>Data</th>
+        <th>Taxa</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pending_exchange_rates.each_with_index do |er, index| %>
+        <tr class="pending_exchange_rate-<%= index %>">
+          <td><%= er.admin.email %></td>
+          <td><%= er.created_at.localtime.strftime('%d/%m/%Y às %H:%M:%S') %></td>
+          <td><%= number_to_currency(er.real) %></td>
+          <td><%= button_to 'Aprovar', create_exchange_rate_approvals_path(er), class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
