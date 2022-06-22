@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :exchange_rate_approvals, only: %i[index] do
       post '/:exchange_rate_id', to: 'exchange_rate_approvals#create', as: 'create', on: :collection
     end
+    resources :daily_credit_limits, only: %i[index new create]
   end
 
   root to: redirect('/admins/sign_in')

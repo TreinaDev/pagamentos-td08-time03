@@ -3,12 +3,13 @@
     <a class="navbar-brand text-decoration-none fw-bolder display-5" href="/">USERUBIS
       <i class="bi bi-gem text-danger"></i>
     </a>
-    <ul class="navbar nav gap-4 ">
+    <ul class="navbar nav gap-4">
       <li class="nav-item">
         <%= link_to 'Início', root_path, class: 'nav-item' %>
       </li>
       <li class="nav-item"><%= link_to 'Usuários Pendentes', approvals_path %></li>
       <li class="nav-item"><%= link_to 'Cotação de Rubis', exchange_rates_path %></li>
+      <li class="nav-item"><%= link_to 'Limite de crédito diário', daily_credit_limits_path %></li>
       <li class="nav-item text-white-50"><%= current_admin.email %></li>
       <%= button_to 'Sair', destroy_admin_session_path, method: :delete, class: 'btn btn-outline-danger' %>
     </ul>

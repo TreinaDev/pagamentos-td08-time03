@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      daily_credit_limit: 'Limite de crédito diário'
+    attributes:
+      daily_credit_limit:
+        value: 'Valor R$'

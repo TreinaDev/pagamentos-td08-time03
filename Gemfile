@@ -36,9 +36,9 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # gem "image_processing", "~> 1.2"
 
 gem 'erb_lint', require: false
+gem 'htmlbeautifier', require: false
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
-gem 'htmlbeautifier', require: false
 
 group :development do
   gem 'bundler-audit'
