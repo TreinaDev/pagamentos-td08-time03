@@ -5,7 +5,7 @@ describe 'Admin visualiza lista de admins não-aprovados' do
     admin = create(:admin, :not_approved)
 
     login_as(admin)
-    visit(approvals_path)
+    visit(admin_approvals_path)
 
     expect(current_path).to eq(root_path)
   end
@@ -70,7 +70,7 @@ describe 'Admin visualiza lista de admins não-aprovados' do
                               password: '123456')
 
     login_as(admin)
-    visit approvals_path
+    visit admin_approvals_path
 
     expect(page).to have_content('Solicitações: 0')
     expect(page).to have_content('Nenhum pedido de aprovação encontrado.')

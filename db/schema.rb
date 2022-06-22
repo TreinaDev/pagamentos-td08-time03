@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_21_000939) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_22_133319) do
+  create_table "admin_approvals", force: :cascade do |t|
+    t.integer "admin_id"
+    t.string "super_admin_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_admin_approvals_on_admin_id"
+  end
+
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -24,14 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_000939) do
     t.integer "activation", default: 0
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
-  create_table "approvals", force: :cascade do |t|
-    t.integer "admin_id"
-    t.string "super_admin_email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["admin_id"], name: "index_approvals_on_admin_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -62,6 +62,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_000939) do
     t.index ["exchange_rate_id"], name: "index_credits_on_exchange_rate_id"
   end
 
+  create_table "daily_credit_limits", force: :cascade do |t|
+    t.decimal "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "exchange_rate_approvals", force: :cascade do |t|
     t.integer "admin_id", null: false
     t.integer "exchange_rate_id", null: false
@@ -69,11 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_000939) do
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_exchange_rate_approvals_on_admin_id"
     t.index ["exchange_rate_id"], name: "index_exchange_rate_approvals_on_exchange_rate_id"
-  end
-  create_table "daily_credit_limits", force: :cascade do |t|
-    t.decimal "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "exchange_rates", force: :cascade do |t|
@@ -85,7 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_000939) do
     t.index ["admin_id"], name: "index_exchange_rates_on_admin_id"
   end
 
-  add_foreign_key "approvals", "admins"
+  add_foreign_key "admin_approvals", "admins"
   add_foreign_key "credits", "clients"
   add_foreign_key "credits", "companies"
   add_foreign_key "credits", "exchange_rates"
