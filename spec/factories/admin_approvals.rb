@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :approval do
+  factory :admin_approval do
     association(:admin)
     super_admin_email { 'joao@userubis.com.br' }
   end

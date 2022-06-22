@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   authenticated :admin do
     root to: 'home#index', as: :authenticated_root
     resources :exchange_rates, only: %i[index new create]
-    resources :approvals, only: [:index]
-    post '/approvals/:id', to: 'approvals#create', as: 'create_approval'
+    resources :admin_approvals, only: [:index] do
+      post '/:admin_id', to: 'admin_approvals#create', as: 'create', on: :collection
+    end
     resources :exchange_rate_approvals, only: %i[index] do
       post '/:exchange_rate_id', to: 'exchange_rate_approvals#create', as: 'create', on: :collection
     end

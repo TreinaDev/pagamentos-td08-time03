@@ -1,4 +1,4 @@
-class Approval < ApplicationRecord
+class AdminApproval < ApplicationRecord
   belongs_to :admin
   after_save :update_admin_status
 

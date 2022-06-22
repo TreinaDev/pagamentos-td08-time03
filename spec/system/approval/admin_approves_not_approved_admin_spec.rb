@@ -7,7 +7,7 @@ describe 'Admin aprova um admin cadastrado' do
                                   password: '123456')
 
     login_as(admin)
-    visit(approvals_path)
+    visit(admin_approvals_path)
     within('.pending_admin-0') do
       click_on('Aprovar')
     end
@@ -27,7 +27,7 @@ describe 'Admin aprova um admin cadastrado' do
                                   password: '123456')
 
     login_as(admin)
-    visit(approvals_path)
+    visit(admin_approvals_path)
     within('.pending_admin-0') do
       click_on('Aprovar')
     end
@@ -43,16 +43,16 @@ describe 'Admin aprova um admin cadastrado' do
     admin = create(:admin, :approved)
     to_approve_admin = create(:admin, :not_approved, full_name: 'Fernando', email: 'fernando@userubis.com.br',
                                                      cpf: '12555778904', password: '123456')
-    create(:approval, super_admin_email: 'gabriela@userubis.com.br', admin: to_approve_admin)
+    create(:admin_approval, super_admin_email: 'gabriela@userubis.com.br', admin: to_approve_admin)
 
     login_as(admin)
-    visit(approvals_path)
+    visit(admin_approvals_path)
     within('.pending_admin-0') do
       click_on('Aprovar')
     end
 
-    expect(Approval.last.super_admin_email).to eq('joao@userubis.com.br')
-    expect(Approval.last.admin).to eq(to_approve_admin)
+    expect(AdminApproval.last.super_admin_email).to eq('joao@userubis.com.br')
+    expect(AdminApproval.last.admin).to eq(to_approve_admin)
     expect(Admin.last.approved?).to eq(true)
     expect(page).to have_content('Admin aprovado com sucesso!')
     expect(page).to have_content('Solicitações: 0')
