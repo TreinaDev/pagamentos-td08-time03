@@ -1,10 +1,9 @@
 class Api::V1::ExchangeRatesController < ActionController::API
+  include PaymentSuspensionService
+  before_action :suspend_payment_processing
+
   def current
-    @exchange_rate = ExchangeRate.last
-    if @exchange_rate
-      render status: 200
-    else
-      render status: 200, json: { errors: 'Nenhuma taxa cadastrada' }
-    end
+    @exchange_rate = ExchangeRate.where(status: 'approved').last
+    render status: 200 if @exchange_rate
   end
 end
