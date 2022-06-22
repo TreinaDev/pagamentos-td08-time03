@@ -15,11 +15,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :clients, only: [:show] do
-        post 'credit', on: :collection, to: 'clients#add_credit'
+      scope :clients do
+        post 'credit', to: 'clients#add_credit'
       end
-      resources :exchange_rates, only: [:index] do
-        get 'current', on: :collection
+      scope :exchange_rates do
+        get 'current', to: 'exchange_rates#current'
       end
     end
   end
