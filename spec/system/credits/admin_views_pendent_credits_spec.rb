@@ -2,13 +2,15 @@ require 'rails_helper'
 
 describe 'Administrador vê créditos pendentes' do
   it 'com sucesso' do
-    admin = create(:admin)
+    first_admin = create(:admin, :approved)
+    second_admin = create(:admin, :approved, email: 'sergio@userubis.com.br', cpf: '98765432101', full_name: 'Sergio')
     create(:daily_credit_limit)
+    er = create(:exchange_rate, admin: second_admin)
     client = create(:client)
-    first_credit = create(:credit, real_amount: 6_000, client: client)
-    second_credit = create(:credit, real_amount: 5_000, client: client)
+    first_credit = create(:credit, real_amount: 6_000, client: client, exchange_rate: er)
+    second_credit = create(:credit, real_amount: 5_000, client: client, exchange_rate: er)
 
-    login_as(admin)
+    login_as(first_admin)
     visit root_path
     click_on('Créditos Pendentes')
 
@@ -30,13 +32,15 @@ describe 'Administrador vê créditos pendentes' do
   end
 
   it 'mas não existem créditos pendentes' do
-    admin = create(:admin, :approved)
+    first_admin = create(:admin, :approved)
+    second_admin = create(:admin, :approved, email: 'sergio@userubis.com.br', cpf: '98765432101', full_name: 'Sergio')
     create(:daily_credit_limit)
+    er = create(:exchange_rate, admin: second_admin)
     client = create(:client)
-    first_credit = create(:credit, real_amount: 8_000, client: client, created_at: DateTime.now.yesterday)
-    second_credit = create(:credit, real_amount: 9_000, client: client)
+    first_credit = create(:credit, real_amount: 8_000, client: client, exchange_rate: er, created_at: DateTime.now.yesterday)
+    second_credit = create(:credit, real_amount: 9_000, client: client, exchange_rate: er)
 
-    login_as(admin)
+    login_as(first_admin)
     visit root_path
     click_on('Créditos Pendentes')
 

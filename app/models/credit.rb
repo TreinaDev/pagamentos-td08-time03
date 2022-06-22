@@ -20,6 +20,8 @@ class Credit < ApplicationRecord
   end
 
   def validates_client_last_credit
+    return unless DailyCreditLimit.any?
+
     day_range = DateTime.now.beginning_of_day..DateTime.now.tomorrow.beginning_of_day
     daily_credits_sum = Credit.where(client: client, created_at: day_range).pluck(:real_amount).sum
     return if daily_credits_sum < DailyCreditLimit.last.value

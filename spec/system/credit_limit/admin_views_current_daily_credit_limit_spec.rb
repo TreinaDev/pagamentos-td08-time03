@@ -7,7 +7,7 @@ describe 'Administrador vê limite de crédito diário atual' do
 
     login_as(admin)
     visit root_path
-    click_on('Limite de crédito diário')
+    click_on('Limite de Crédito Diário')
 
     within('h2') do
       expect(page).to have_content('Limite de Crédito Diário')
@@ -22,7 +22,7 @@ describe 'Administrador vê limite de crédito diário atual' do
 
     login_as(admin)
     visit root_path
-    click_on('Limite de crédito diário')
+    click_on('Limite de Crédito Diário')
 
     expect(page).to have_content('Nenhum limite de crédito configurado')
     expect(page).not_to have_content('Limite atual:')
