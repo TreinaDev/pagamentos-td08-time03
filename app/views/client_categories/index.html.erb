@@ -1,0 +1,30 @@
+<%= link_to "Criar categoria de clientes", new_client_category_path%>
+
+
+
+<h2>Categoria de Clientes</h2>
+<p>Total: <%= @client_categories.length %></p>
+<% if @client_categories.empty? %>
+  <p>Nenhuma categoria de clientes cadastrada.</p>
+<% else %>
+  <table class="table align-middle text-center">
+    <thead class="table-light">
+      <tr>
+        <th>Nome</th>
+        <th>Desconto</th>
+        <th>Data</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @client_categories.each_with_index do |er, index| %>
+        <tr class="pending_exchange_rate-<%= index %>">
+          <td><%= er.name %></td>
+          <td><%= er.discount %>%</td>
+          <td><%= er.created_at.localtime.strftime('%d/%m/%Y') %></td>
+          <td><%= button_to 'Desativar', create_exchange_rate_approvals_path(er), class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

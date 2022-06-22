@@ -1,5 +1,5 @@
 <% if admin_signed_in? && !current_admin.approved? %>
   <p>Sua conta ainda falta ser ativada.</p>
 <% else %>
-  
+  <%= link_to 'Categoria de Clientes', client_categories_path %>
 <% end %>
