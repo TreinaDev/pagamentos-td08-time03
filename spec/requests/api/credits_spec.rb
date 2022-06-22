@@ -107,6 +107,7 @@ describe 'API de Pagamentos' do
       expect(response).to have_http_status(503)
       expect(response.content_type).to include 'application/json'
       expect(json_response['errors']).to include 'Sistema de pagamentos suspenso'
+      expect(Credit.last).to be_nil
     end
   end
 end

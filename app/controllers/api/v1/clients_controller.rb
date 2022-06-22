@@ -1,7 +1,7 @@
 class Api::V1::ClientsController < ActionController::API
   include PaymentSuspensionService
-  before_action :credit, only: [:add_credit]
   before_action :suspend_payment_processing
+  before_action :credit, only: [:add_credit]
 
   def add_credit
     if @credit.save
