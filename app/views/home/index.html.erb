@@ -1,7 +1,31 @@
 <div class="row">
     <div class="col-lg-3">
-      <div class="card py-2 d-flex align-items-center ">
-        <img src="https://img.icons8.com/color/128/000000/ruby.png" class="card-img-top w-25" alt="...">
+      <div class="card py-2 d-flex align-items-center">
+        <img src="https://img.icons8.com/ios-filled/128/00000/%20customer-insight.png" class="card-img-top w-25" alt="...">
+        <div class="card-body">
+          <%= link_to "Usuários Pendentes", client_categories_path, class:"btn btn-outline-danger"%>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card py-2 d-flex align-items-center">
+        <img src="https://img.icons8.com/ios-filled/128/000000/exchange.png" class="card-img-top w-25" alt="...">
+        <div class="card-body">
+          <%= link_to "Cotação de Rubis", exchange_rates_path, class:"btn btn-outline-danger"%>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card py-2 d-flex align-items-center">
+        <img src="https://img.icons8.com/ios-filled/128/00000/money.png" class="card-img-top w-25" alt="...">
+        <div class="card-body">
+          <%= link_to "Limite de Crédito Diário", daily_credit_limits_path, class:"btn btn-outline-danger"%>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card py-2 d-flex align-items-center">
+        <img src="https://img.icons8.com/ios-filled/128/000000/people.png" class="card-img-top w-25" alt="...">
         <div class="card-body">
           <%= link_to "Categoria de Clientes", client_categories_path, class:"btn btn-outline-danger"%>
         </div>
