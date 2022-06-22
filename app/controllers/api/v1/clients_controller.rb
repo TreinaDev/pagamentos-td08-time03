@@ -1,5 +1,5 @@
 class Api::V1::ClientsController < ActionController::API
-  include PaymentSuspensionHelper
+  include PaymentSuspension
   before_action :credit, only: [:add_credit]
   before_action :suspend_payment_processing
 

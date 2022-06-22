@@ -4,7 +4,7 @@ describe 'API de Pagamentos' do
   context 'POST /api/v1/clients/credit' do
     it 'com sucesso e o cliente ainda não está cadastrado' do
       create(:company)
-      create(:exchange_rate)
+      create(:exchange_rate, :approved)
       credit_params = {
         client: {
           name: 'João Almeida',
@@ -32,7 +32,7 @@ describe 'API de Pagamentos' do
     it 'com sucesso e o cliente já está cadastrado' do
       client = create(:client)
       create(:company)
-      create(:exchange_rate)
+      create(:exchange_rate, :approved)
       old_balance = client.credits.sum(:rubi_amount)
       balance = client.credits
       credit_params = {
@@ -62,7 +62,7 @@ describe 'API de Pagamentos' do
 
     it 'com dados inválidos' do
       create(:company)
-      create(:exchange_rate)
+      create(:exchange_rate, :approved)
       credit_params = {
         client: {
           name: '',
@@ -88,7 +88,7 @@ describe 'API de Pagamentos' do
     it 'e o sistema de pagamentos está suspenso' do
       create(:client)
       create(:company)
-      create(:exchange_rate, created_at: DateTime.now.days_ago(4))
+      create(:exchange_rate, :approved, created_at: DateTime.now.days_ago(4))
       credit_params = {
         client: {
           name: 'João Almeida',
