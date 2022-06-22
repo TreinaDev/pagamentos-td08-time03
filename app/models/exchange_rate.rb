@@ -4,7 +4,8 @@ class ExchangeRate < ApplicationRecord
   has_many :exchange_rate_approvals
   belongs_to :admin
   after_create :create_first_approval
-  enum status: { pending: 0, approved: 10 }
+  after_update :teste
+  enum status: { pending: 0, rejected: 5, approved: 10 }
 
   def self.fluctuation(exchange_rate = nil)
     if exchange_rate
@@ -28,5 +29,9 @@ class ExchangeRate < ApplicationRecord
 
   def create_first_approval
     ExchangeRateApproval.create!(admin: admin, exchange_rate: self)
+  end
+
+  def teste
+    ExchangeRate.where(status: 0).each { |s| s.rejected! }
   end
 end
