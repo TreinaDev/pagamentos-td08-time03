@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :client_category do
-    name { "MyString" }
-    discount { "9.99" }
+    name { "PREMIUM" }
+    discount { "9" }
   end
 end

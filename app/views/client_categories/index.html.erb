@@ -20,12 +20,12 @@
       </tr>
     </thead>
     <tbody>
-      <% @client_categories.each_with_index do |er, index| %>
-        <tr class="pending_exchange_rate-<%= index %>">
-          <td><%= er.name %></td>
-          <td><%= er.discount %>%</td>
-          <td><%= er.created_at.localtime.strftime('%d/%m/%Y') %></td>
-          <td><%= button_to 'Desativar', create_exchange_rate_approvals_path(er), class: 'btn btn-danger' %></td>
+      <% @client_categories.each_with_index do |cc, index| %>
+        <tr class="client_category-<%= index %>">
+          <td><%= cc.name %></td>
+          <td><%= cc.discount %>%</td>
+          <td><%= cc.created_at.localtime.strftime('%d/%m/%Y') %></td>
+          <td><%= button_to 'Desativar', inactivate_client_categories_path(cc), class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>

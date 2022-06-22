@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_22_193336) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_22_215525) do
   create_table "admin_approvals", force: :cascade do |t|
     t.integer "admin_id"
     t.string "super_admin_email"
@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_22_193336) do
     t.decimal "discount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 10
   end
 
   create_table "clients", force: :cascade do |t|
