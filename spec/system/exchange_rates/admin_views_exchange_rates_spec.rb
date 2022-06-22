@@ -11,7 +11,7 @@ describe 'Administrador visualiza histórico de cotação' do
   end
   it 'a partir da página inicial' do
     admin = create(:admin, :approved)
-    exchange_rate = create(:exchange_rate)
+    create(:exchange_rate)
 
     login_as(admin)
     visit root_path
