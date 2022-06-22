@@ -1,5 +1,10 @@
-<% if admin_signed_in? && !current_admin.approved? %>
-  <p>Sua conta ainda falta ser ativada.</p>
-<% else %>
-  <%= link_to 'Categoria de Clientes', client_categories_path %>
-<% end %>
+<div class="row">
+    <div class="col-lg-3">
+      <div class="card py-2 d-flex align-items-center ">
+        <img src="https://img.icons8.com/color/128/000000/ruby.png" class="card-img-top w-25" alt="...">
+        <div class="card-body">
+          <%= link_to "Categoria de Clientes", client_categories_path, class:"btn btn-outline-danger"%>
+        </div>
+      </div>
+    </div>
+</div>
