@@ -5,7 +5,6 @@ describe 'REQUEST - Admin aprova uma taxa de câmbio' do
     first_admin = create(:admin, :approved, full_name: 'Fernando', email: 'fernando@userubis.com.br', cpf: '12555778904', password: '123456')
     second_admin = create(:admin, :approved)
     exchange_rate = create(:exchange_rate, admin: first_admin)
-    create(:exchange_rate_approval, admin: first_admin, exchange_rate: exchange_rate)
 
     login_as(second_admin)
     post(create_exchange_rate_approvals_path(exchange_rate),
@@ -18,7 +17,6 @@ describe 'REQUEST - Admin aprova uma taxa de câmbio' do
   it 'com falha caso o Admin logado tenha criado a taxa' do
     first_admin = create(:admin, :approved, full_name: 'Fernando', email: 'fernando@userubis.com.br', cpf: '12555778904', password: '123456')
     exchange_rate = create(:exchange_rate, admin: first_admin)
-    create(:exchange_rate_approval, admin: first_admin, exchange_rate: exchange_rate)
 
     login_as(first_admin)
     post(create_exchange_rate_approvals_path(exchange_rate), params: { exchange_rate: { admin: first_admin } })
