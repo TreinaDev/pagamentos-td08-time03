@@ -3,6 +3,7 @@ class ExchangeRate < ApplicationRecord
   validates :real, numericality: { greater_than: 0 }
   has_many :exchange_rate_approvals
   belongs_to :admin
+  after_create :create_first_approval
   enum status: { pending: 0, approved: 10 }
 
   def self.fluctuation(exchange_rate = nil)
@@ -21,5 +22,11 @@ class ExchangeRate < ApplicationRecord
 
   def self.all_approved
     ExchangeRate.where(status: 10).order(created_at: :desc)
+  end
+
+  private
+
+  def create_first_approval
+    ExchangeRateApproval.create!(admin: admin, exchange_rate: self)
   end
 end

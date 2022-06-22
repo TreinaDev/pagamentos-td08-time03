@@ -12,10 +12,8 @@ class ExchangeRatesController < ApplicationController
   def create
     @exchange_rate = ExchangeRate.new(exchange_rate_params)
     @exchange_rate.admin = current_admin
-    approval = ExchangeRateApproval.new(admin: current_admin, exchange_rate: @exchange_rate)
 
     if @exchange_rate.save
-      approval.save
       if ExchangeRate.where(status: 10).count.zero? || (ExchangeRate.fluctuation(@exchange_rate) && ExchangeRate.fluctuation(@exchange_rate).abs <= 10.0)
         ExchangeRateApproval.create!(admin: current_admin, exchange_rate: @exchange_rate)
         redirect_to exchange_rates_path, notice: 'Taxa de câmbio criada com sucesso.'
