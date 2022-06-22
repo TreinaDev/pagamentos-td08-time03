@@ -68,14 +68,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_000939) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "exchange_rate_approvals", force: :cascade do |t|
+    t.integer "admin_id", null: false
+    t.integer "exchange_rate_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_exchange_rate_approvals_on_admin_id"
+    t.index ["exchange_rate_id"], name: "index_exchange_rate_approvals_on_exchange_rate_id"
+  end
+
   create_table "exchange_rates", force: :cascade do |t|
     t.decimal "real", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+    t.integer "admin_id", null: false
+    t.index ["admin_id"], name: "index_exchange_rates_on_admin_id"
   end
 
   add_foreign_key "approvals", "admins"
   add_foreign_key "credits", "clients"
   add_foreign_key "credits", "companies"
   add_foreign_key "credits", "exchange_rates"
+  add_foreign_key "exchange_rate_approvals", "admins"
+  add_foreign_key "exchange_rate_approvals", "exchange_rates"
+  add_foreign_key "exchange_rates", "admins"
 end

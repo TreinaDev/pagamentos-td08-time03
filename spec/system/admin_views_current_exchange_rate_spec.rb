@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe 'Admin visualiza taxa de câmbio atual' do
   it 'com sucesso' do
-    create(:exchange_rate)
-    create(:exchange_rate, real: 11.00)
     admin = create(:admin)
+    create(:exchange_rate, :approved, admin: admin)
+    create(:exchange_rate, :approved, real: 11.00, admin: admin)
     update_date = I18n.l(ExchangeRate.last.created_at.localtime)
 
     login_as(admin)
