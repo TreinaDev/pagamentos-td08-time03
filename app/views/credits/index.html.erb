@@ -1,0 +1,22 @@
+<h2>Créditos Pendentes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data de entrada</th>
+      <th>CPF/CNPJ</th>
+      <th>Nome do Cliente</th>
+      <th>Valor de crédito</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @credits.each do |credit| %>
+    <tr>
+      <td><%= I18n.localize(credit.created_at.to_date) %></td>
+      <td><%= credit.client.registration_number %></td>
+      <td><%= credit.client.name %></td>
+      <td><%= number_to_currency(credit.real_amount) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
