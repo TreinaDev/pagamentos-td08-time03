@@ -6,7 +6,9 @@ describe 'Administrador cadastra um limite de crédito diário' do
 
     login_as(admin)
     visit root_path
-    click_on('Limite de Crédito Diário')
+    within("nav") do
+      click_on('Limite de Crédito Diário')
+    end
     click_on('Configurar limite')
     within('form#daily_credit_limit') do
       fill_in('Valor R$', with: '10000')
@@ -37,7 +39,9 @@ describe 'Administrador cadastra um limite de crédito diário' do
 
     login_as(admin)
     visit root_path
-    click_on('Limite de Crédito Diário')
+    within("nav") do
+      click_on('Limite de Crédito Diário')
+    end
     click_on('Configurar limite')
     click_on('Voltar para limite atual')
 

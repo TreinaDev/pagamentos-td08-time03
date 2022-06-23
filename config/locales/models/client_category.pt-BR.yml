@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      client_category: Categoria de Clientes
+    attributes:
+      client_category:
+        name: Nome
+        discount: Desconto

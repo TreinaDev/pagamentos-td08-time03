@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       post '/:exchange_rate_id', to: 'exchange_rate_approvals#create', as: 'create', on: :collection
     end
     resources :daily_credit_limits, only: %i[index new create]
+    resources :client_categories, only: %i[index new create] do
+      post '/:client_category_id', to: 'client_categories#inactivate', as: 'inactivate', on: :collection
+    end
   end
 
   root to: redirect('/admins/sign_in')
