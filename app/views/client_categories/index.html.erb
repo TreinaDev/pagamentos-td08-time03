@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-between">
+   <h2>Categoria de Clientes</h2>
+   <div class="links gap-2">
+    <%= link_to "Criar categoria de clientes", new_client_category_path, class:"btn btn-outline-danger"%>
+   </div>
+</div>
+<hr>
+
+<p>Total: <%= @client_categories.length %></p>
+<% if @client_categories.empty? %>
+  <p>Nenhuma categoria de clientes cadastrada.</p>
+<% else %>
+  <table class="table align-middle text-center">
+    <thead class="table-light">
+      <tr>
+        <th>Nome</th>
+        <th>Desconto</th>
+        <th>Data</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @client_categories.each_with_index do |cc, index| %>
+        <tr class="client_category-<%= index %>">
+          <td><%= cc.name %></td>
+          <td><%= cc.discount %>%</td>
+          <td><%= cc.created_at.localtime.strftime('%d/%m/%Y') %></td>
+          <td><%= button_to 'Desativar', inactivate_client_categories_path(cc), class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
