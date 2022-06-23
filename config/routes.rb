@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     root to: 'home#index', as: :authenticated_root
     resources :exchange_rates, only: %i[index new create]
     resources :daily_credit_limits, only: %i[index new create]
-    resources :credits, only: [:index]
+    resources :credits, only: [:index] do
+      patch '/approve', to: 'credits#approve'
+      patch '/reject', to: 'credits#reject'
+    end
     resources :admin_approvals, only: [:index] do
       post '/:admin_id', to: 'admin_approvals#create', as: 'create', on: :collection
     end
