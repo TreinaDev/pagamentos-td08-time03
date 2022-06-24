@@ -42,16 +42,4 @@ describe 'Administrador cadastra um limite de crédito diário' do
     expect(page).to have_content('Valor de limite inválido. Tente novamente.')
     expect(page).to have_content('Valor R$ não pode ficar em branco')
   end
-
-  it 'e volta para a tela de limite atual' do
-    admin = create(:admin, :approved)
-
-    login_as(admin)
-    visit root_path
-    visit daily_credit_limits_path
-    click_on('Configurar limite')
-    click_on('Voltar')
-
-    expect(current_path).to eq(daily_credit_limits_path)
-  end
 end
