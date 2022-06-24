@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     resources :client_categories, only: %i[index new create] do
       post '/:client_category_id', to: 'client_categories#inactivate', as: 'inactivate', on: :collection
     end
+    resources :bonus_conversions, only: %i[index new create] do
+      patch '/inactivate', to: 'bonus_conversions#inactivate'
+    end
   end
 
   root to: redirect('/admins/sign_in')
