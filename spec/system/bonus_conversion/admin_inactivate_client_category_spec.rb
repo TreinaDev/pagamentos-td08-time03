@@ -33,6 +33,6 @@ describe 'Administrador desativa uma conversão bônus' do
     expect(page).to have_content("23/06/2022")
     expect(page).to have_content("11/10/2022")
     expect(page).to have_content("4")
-    expect(page).to have_content("BASIC")
+    expect(page).to have_content("BASIC") 
   end
 end
