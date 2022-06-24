@@ -25,9 +25,8 @@ describe 'Admin visualiza lista de admins não-aprovados' do
 
     login_as(admin)
     visit(root_path)
-    within('nav') do
-      click_on('Usuários Pendentes')
-    end
+    click_on('Usuários Pendentes')
+
 
     expect(page).to have_content('Usuários Pendentes')
     within('.pending_admin-0') do
@@ -52,9 +51,7 @@ describe 'Admin visualiza lista de admins não-aprovados' do
 
     login_as(admin)
     visit(root_path)
-    within('nav') do
-      click_on('Usuários Pendentes')
-    end
+    click_on('Usuários Pendentes')
 
     expect(page).to have_content('Solicitações: 0')
     expect(page).to have_content('Nenhum pedido de aprovação encontrado.')
