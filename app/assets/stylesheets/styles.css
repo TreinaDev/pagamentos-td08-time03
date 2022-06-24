@@ -33,9 +33,6 @@ input[type="color"]:focus,
     0 0 8px rgba(220, 53, 69, 0.9);
   outline: 0 none;
 }
-.links a:hover {
-  opacity: 0.7;
-}
 
 .field_with_errors {
   display: inline;

@@ -27,7 +27,7 @@ describe 'Admin registra uma conversão bônus' do
     select '11', :from => 'bonus_conversion_end_date_3i'
     select 'outubro', :from => 'bonus_conversion_end_date_2i'
     select '2022', :from => 'bonus_conversion_end_date_1i'
-    fill_in "Porcentagem bônus",	with: "12"
+    fill_in "Bônus",	with: "12"
     fill_in "Prazo de uso",	with: "5"
     select 'PREMIUM', from: 'bonus_conversion_client_category_id'
     click_on 'Criar'
@@ -52,7 +52,7 @@ describe 'Admin registra uma conversão bônus' do
 
     expect(page).to have_content("Erro ao criar categoria de clientes")
     expect(page).to have_content("Categoria de cliente é obrigatório(a)")
-    expect(page).to have_content("Porcentagem bônus não pode ficar em branco")
+    expect(page).to have_content("Bônus não pode ficar em branco")
     expect(page).to have_content("Data inicial deve ser menor que a data final")
   end
 end

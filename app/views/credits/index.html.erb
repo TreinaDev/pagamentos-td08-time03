@@ -1,4 +1,12 @@
-<h2>Créditos Pendentes</h2>
+<div class="d-flex justify-content-between">
+   <h2>Créditos Pendentes</h2>
+   <div class="links gap-2">
+   </div>
+</div>
+<hr class="my-2">
+
+<p class="text-muted fw-bolder mt-3">Total: <%= @credits.length %></p>
+
 <% if @credits.any? %>
   <table class="table align-middle text-center">
     <thead class="table-light">

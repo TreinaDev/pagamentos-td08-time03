@@ -50,7 +50,7 @@ describe 'Administrador cadastra um limite de crédito diário' do
     visit root_path
     visit daily_credit_limits_path
     click_on('Configurar limite')
-    click_on('Voltar para limite atual')
+    click_on('Voltar')
 
     expect(current_path).to eq(daily_credit_limits_path)
   end

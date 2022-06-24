@@ -1,8 +1,12 @@
-<h2>Histórico de Cotação</h2>
-<div>
-  <%= link_to 'Taxas pendentes', exchange_rate_approvals_path, class: 'btn btn-danger mb-2' %>
-  <%= link_to 'Configurar taxa de câmbio', new_exchange_rate_path, class: 'btn btn-danger mb-2' %>
+<div class="d-flex justify-content-between">
+   <h2>Histórico de Cotação</h2>
+   <div class="links gap-2">
+    <%= link_to 'Taxas pendentes', exchange_rate_approvals_path, class: 'btn btn-outline-danger mb-2' %>
+  <%= link_to 'Configurar taxa de câmbio', new_exchange_rate_path, class: 'btn btn-outline-danger mb-2' %>
+   </div>
 </div>
+<hr class="my-2">
+
 <% if @exchange_rates.any? %>
   <table class="table align-middle text-center">
     <thead class="table-light">

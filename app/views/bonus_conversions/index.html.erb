@@ -1,12 +1,13 @@
-<div class="d-flex justify-content-between align-items-center">
+<div class="d-flex justify-content-between">
    <h2>Conversões Bônus</h2>
    <div class="links gap-2">
-    <%= link_to "Criar conversão bônus", new_bonus_conversion_path, class:"btn btn-outline-danger"%>
+    <%= link_to 'Criar conversão bônus', new_bonus_conversion_path, class: 'btn btn-outline-danger mb-2' %>
    </div>
 </div>
-<hr>
+<hr class="my-2">
 
-<p>Total: <%= @bonus_conversions.length %></p>
+<p class="text-muted fw-bolder mt-3">Total: <%= @bonus_conversions.length %></p>
+
 <% if @bonus_conversions.empty? %>
   <p>Nenhuma conversão bônus cadastrada.</p>
 <% else %>
