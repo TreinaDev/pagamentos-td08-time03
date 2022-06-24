@@ -29,7 +29,7 @@
           <td><%= bc.client_category.name %></td>
           <td><%= bc.bonus_percentage %></td>
           <td><%= bc.deadline %></td>
-          <td><%= button_to 'Desativar', inactivate_bonus_conversions_path(bc), class: 'btn btn-danger', method: :patch %></td>
+          <td><%= button_to 'Desativar', bonus_conversion_inactivate_path(bc), class: 'btn btn-danger', method: :patch %></td>
         </tr>
       <% end %>
     </tbody>

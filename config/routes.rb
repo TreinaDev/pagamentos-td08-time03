@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       post '/:client_category_id', to: 'client_categories#inactivate', as: 'inactivate', on: :collection
     end
     resources :bonus_conversions, only: %i[index new create] do
-      patch '/:bonus_conversion_id', to: 'bonus_conversions#inactivate', as: 'inactivate', on: :collection
+      patch '/inactivate', to: 'bonus_conversions#inactivate'
     end
   end
 
