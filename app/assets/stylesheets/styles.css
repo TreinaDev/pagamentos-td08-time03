@@ -41,3 +41,8 @@ input[type="color"]:focus,
 label {
   opacity: 0.7;
 }
+
+main {
+  min-height: 70vh;
+  margin-bottom: 2rem;
+}
