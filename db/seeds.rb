@@ -34,5 +34,13 @@ ExchangeRateApproval.create(admin: Admin.find(3), exchange_rate: ExchangeRate.fi
 ExchangeRateApproval.create(admin: Admin.find(4), exchange_rate: ExchangeRate.find(2))
 ExchangeRateApproval.create(admin: Admin.find(3), exchange_rate: ExchangeRate.find(2))
 
-puts('### Criando limite de crédito diário')
+puts('### Criando Limite de Crédito Diário')
 DailyCreditLimit.create!(value: 22)
+
+puts('### Criando Categoria de Clientes')
+ClientCategory.create!(name: "BASIC", discount: 5)
+ClientCategory.create!(name: "PREMIUM", discount: 20)
+
+puts('### Criando Conversões Bônus')
+BonusConversion.create!(start_date: 3.day.ago, end_date: 1.day.ago, bonus_percentage: 10, deadline: 7, client_category: ClientCategory.first, )
+BonusConversion.create!(start_date: 10.day.ago, end_date: 2.day.ago, bonus_percentage: 5, deadline: 3, client_category: ClientCategory.first, )
