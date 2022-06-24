@@ -49,8 +49,8 @@ Company.create!(corporate_name: 'Amazon', registration_number: '86.121.752/0001-
 
 puts('### Criando Créditos de Cliente 1')
 Credit.create!(real_amount: 100, exchange_rate: ExchangeRate.find(1), rubi_amount: 100 / ExchangeRate.find(1).real, company: Company.find(1), client: Client.find(1), created_at: DateTime.now.days_ago(2))
-Credit.create!(real_amount: 200, exchange_rate: ExchangeRate.find(1), rubi_amount: 200 / ExchangeRate.find(1).real, company: Company.find(2), client: Client.find(1) created_at: DateTime.now.days_ago(2))
-Credit.create!(real_amount: 300, exchange_rate: ExchangeRate.find(1), rubi_amount: 300 / ExchangeRate.find(1).real, company: Company.find(3), client: Client.find(1) created_at: DateTime.now.days_ago(2))
+Credit.create!(real_amount: 200, exchange_rate: ExchangeRate.find(1), rubi_amount: 200 / ExchangeRate.find(1).real, company: Company.find(2), client: Client.find(1), created_at: DateTime.now.days_ago(2))
+Credit.create!(real_amount: 300, exchange_rate: ExchangeRate.find(1), rubi_amount: 300 / ExchangeRate.find(1).real, company: Company.find(3), client: Client.find(1), created_at: DateTime.now.days_ago(2))
 Credit.create!(real_amount: 150, exchange_rate: ExchangeRate.find(2), rubi_amount: 150 / ExchangeRate.find(2).real, company: Company.find(1), client: Client.find(1), created_at: DateTime.now.yesterday)
 Credit.create!(real_amount: 250, exchange_rate: ExchangeRate.find(2), rubi_amount: 250 / ExchangeRate.find(2).real, company: Company.find(2), client: Client.find(1), created_at: DateTime.now.yesterday)
 Credit.create!(real_amount: 350, exchange_rate: ExchangeRate.find(2), rubi_amount: 350 / ExchangeRate.find(2).real, company: Company.find(3), client: Client.find(1), created_at: DateTime.now.yesterday)
@@ -60,8 +60,8 @@ Credit.create!(real_amount: 375, exchange_rate: ExchangeRate.find(3), rubi_amoun
 
 puts('### Criando Créditos de Cliente 2')
 Credit.create!(real_amount: 200, exchange_rate: ExchangeRate.find(1), rubi_amount: 200 / ExchangeRate.find(1).real, company: Company.find(1), client: Client.find(2), created_at: DateTime.now.days_ago(2))
-Credit.create!(real_amount: 300, exchange_rate: ExchangeRate.find(1), rubi_amount: 300 / ExchangeRate.find(1).real, company: Company.find(2), client: Client.find(2) created_at: DateTime.now.days_ago(2))
-Credit.create!(real_amount: 400, exchange_rate: ExchangeRate.find(1), rubi_amount: 400 / ExchangeRate.find(1).real, company: Company.find(3), client: Client.find(2) created_at: DateTime.now.days_ago(2))
+Credit.create!(real_amount: 300, exchange_rate: ExchangeRate.find(1), rubi_amount: 300 / ExchangeRate.find(1).real, company: Company.find(2), client: Client.find(2), created_at: DateTime.now.days_ago(2))
+Credit.create!(real_amount: 400, exchange_rate: ExchangeRate.find(1), rubi_amount: 400 / ExchangeRate.find(1).real, company: Company.find(3), client: Client.find(2), created_at: DateTime.now.days_ago(2))
 Credit.create!(real_amount: 250, exchange_rate: ExchangeRate.find(2), rubi_amount: 250 / ExchangeRate.find(2).real, company: Company.find(1), client: Client.find(2), created_at: DateTime.now.yesterday)
 Credit.create!(real_amount: 350, exchange_rate: ExchangeRate.find(2), rubi_amount: 350 / ExchangeRate.find(2).real, company: Company.find(2), client: Client.find(2), created_at: DateTime.now.yesterday)
 Credit.create!(real_amount: 450, exchange_rate: ExchangeRate.find(2), rubi_amount: 450 / ExchangeRate.find(2).real, company: Company.find(3), client: Client.find(2), created_at: DateTime.now.yesterday)
@@ -71,8 +71,8 @@ Credit.create!(real_amount: 475, exchange_rate: ExchangeRate.find(3), rubi_amoun
 
 puts('### Criando Créditos de Cliente 3')
 Credit.create!(real_amount: 300, exchange_rate: ExchangeRate.find(1), rubi_amount: 300 / ExchangeRate.find(1).real, company: Company.find(1), client: Client.find(3), created_at: DateTime.now.days_ago(2))
-Credit.create!(real_amount: 400, exchange_rate: ExchangeRate.find(1), rubi_amount: 400 / ExchangeRate.find(1).real, company: Company.find(2), client: Client.find(3) created_at: DateTime.now.days_ago(2))
-Credit.create!(real_amount: 500, exchange_rate: ExchangeRate.find(1), rubi_amount: 500 / ExchangeRate.find(1).real, company: Company.find(3), client: Client.find(3) created_at: DateTime.now.days_ago(2))
+Credit.create!(real_amount: 400, exchange_rate: ExchangeRate.find(1), rubi_amount: 400 / ExchangeRate.find(1).real, company: Company.find(2), client: Client.find(3), created_at: DateTime.now.days_ago(2))
+Credit.create!(real_amount: 500, exchange_rate: ExchangeRate.find(1), rubi_amount: 500 / ExchangeRate.find(1).real, company: Company.find(3), client: Client.find(3), created_at: DateTime.now.days_ago(2))
 Credit.create!(real_amount: 350, exchange_rate: ExchangeRate.find(2), rubi_amount: 350 / ExchangeRate.find(2).real, company: Company.find(1), client: Client.find(3), created_at: DateTime.now.yesterday)
 Credit.create!(real_amount: 450, exchange_rate: ExchangeRate.find(2), rubi_amount: 450 / ExchangeRate.find(2).real, company: Company.find(2), client: Client.find(3), created_at: DateTime.now.yesterday)
 Credit.create!(real_amount: 550, exchange_rate: ExchangeRate.find(2), rubi_amount: 550 / ExchangeRate.find(2).real, company: Company.find(3), client: Client.find(3), created_at: DateTime.now.yesterday)

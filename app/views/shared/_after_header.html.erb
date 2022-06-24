@@ -1,11 +1,11 @@
 <div class="current-exchange-rate container-fluid bg-danger d-flex justify-content-center gap-3 py-2  text-white mb-4">
   <i class="bi bi-dot"></i>
-  <% if ExchangeRate.actual %>
+  <% if ExchangeRate.current %>
     <div class="fw-bolder me-1">
       <span>
         <i class="bi bi-gem fs-6 ">
         </i>RB 1 <i class="bi bi-arrow-left-right mx-1"></i>
-        <%= number_to_currency(ExchangeRate.actual.real) %>
+        <%= number_to_currency(ExchangeRate.current.real) %>
       </span>
       <% if ExchangeRate.fluctuation && ExchangeRate.fluctuation != 0 %>
         <span class="mx-2 ">|</span>
@@ -16,7 +16,7 @@
       <% end %>
     </div>
     <span class="fw-bolder">|</span>
-    <span>Última atualização em <%= l(ExchangeRate.actual.created_at.localtime) %></span>
+    <span>Última atualização em <%= l(ExchangeRate.current.created_at.localtime) %></span>
   <% else %>
     <span class="fw-bolder">Você precisa cadastrar uma nova taxa de câmbio.</span>
   <% end %>

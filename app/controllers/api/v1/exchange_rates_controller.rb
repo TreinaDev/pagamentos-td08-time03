@@ -1,6 +1,6 @@
 class Api::V1::ExchangeRatesController < ActionController::API
   def current
-    @exchange_rate = ExchangeRate.last
+    @exchange_rate = ExchangeRate.current
     if @exchange_rate
       render status: 200
     else

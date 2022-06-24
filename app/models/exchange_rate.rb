@@ -17,7 +17,7 @@ class ExchangeRate < ApplicationRecord
     end
   end
 
-  def self.actual
+  def self.current
     ExchangeRate.where(status: 10).last
   end
 
