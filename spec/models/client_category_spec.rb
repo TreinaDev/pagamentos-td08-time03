@@ -9,7 +9,6 @@ RSpec.describe ClientCategory, type: :model do
     context "numericality" do
       it { should validate_numericality_of(:discount).is_greater_than(0) }
       it { should validate_numericality_of(:discount).is_less_than(99) }
-      it { should validate_numericality_of(:discount).is_less_than(99) }
     end
     context "uniqueness" do
       it { should validate_uniqueness_of(:name).case_insensitive }
