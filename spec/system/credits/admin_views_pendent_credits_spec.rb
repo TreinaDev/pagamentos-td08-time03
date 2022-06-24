@@ -12,7 +12,9 @@ describe 'Administrador vê créditos pendentes' do
 
     login_as(admin)
     visit root_path
-    click_on('Créditos Pendentes')
+    within('.row') do
+      click_on('Créditos Pendentes')
+    end
 
     within('h2') do
       expect(page).to have_content('Créditos Pendentes')
@@ -45,7 +47,9 @@ describe 'Administrador vê créditos pendentes' do
 
     login_as(first_admin)
     visit root_path
-    click_on('Créditos Pendentes')
+    within('.row') do
+      click_on('Créditos Pendentes')
+    end
 
     expect(page).not_to have_css('table')
     expect(page).to have_content('Não existem créditos pendentes')

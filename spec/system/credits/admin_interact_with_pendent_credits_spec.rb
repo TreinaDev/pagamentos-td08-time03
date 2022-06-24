@@ -13,7 +13,9 @@ describe 'Administrador acessa página de créditos pendentes' do
 
     login_as(admin)
     visit root_path
-    click_on('Créditos Pendentes')
+    within('.row') do
+      click_on('Créditos Pendentes')
+    end
     within('.pending_credit-1') do
       click_on('Aprovar')
     end
@@ -38,7 +40,9 @@ describe 'Administrador acessa página de créditos pendentes' do
 
     login_as(admin)
     visit root_path
-    click_on('Créditos Pendentes')
+    within('.row') do
+      click_on('Créditos Pendentes')
+    end
     within('.pending_credit-1') do
       click_on('Reprovar')
     end
