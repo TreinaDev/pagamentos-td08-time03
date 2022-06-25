@@ -1,13 +1,11 @@
 <div class="d-flex justify-content-between">
-   <h2>Taxas Pendentes</h2>
-   <div class="l">
-    <%= link_to 'Histórico de Cotação', exchange_rates_path, class: 'btn btn-outline-danger mb-2' %>
-  <%= link_to 'Configurar taxa de câmbio', new_exchange_rate_path, class: 'btn btn-outline-danger mb-2' %>
-   </div>
+  <h2>Taxas Pendentes</h2>
+  <div class="links gap-2">
+    <%= link_to 'Voltar', exchange_rates_path, class: 'btn btn-outline-danger mb-2' %>
+    <%= link_to 'Configurar taxa de câmbio', new_exchange_rate_path, class: 'btn btn-outline-danger mb-2' %>
+  </div>
 </div>
 <hr class="my-2">
-
-
 <p class="text-muted fw-bolder mt-3">Solicitações: <%= @pending_exchange_rates.length %></p>
 <% if @pending_exchange_rates.empty? %>
   <p>Não foram encontradas taxas pendentes no sistema.</p>
