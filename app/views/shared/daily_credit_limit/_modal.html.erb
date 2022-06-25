@@ -3,33 +3,28 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-
         <h4 class="modal-title" id="exampleModalLabel">Configurar limite
-</h4>
+        </h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    <div class="modal-body">
-
-     <div class="alert-warning p-3 mb-2">
-          <p>Valor deverá ser maior do que 0</p>
+      <div class="modal-body">
+        <div class="alert-warning p-3 mb-2">
+          <p>Valor deverá ser maior do que R$0,00</p>
+        </div>
+        <div class="p-3">
+          <%= form_with(model: DailyCreditLimit.new, id: 'daily_credit_limit') do |f| %>
+            <div class="row ">
+              <div class="form-group col-lg-12 p-0 mb-2">
+                <%= f.label :value, class: 'form-label' %>
+                <%= f.number_field :value, step: 0.01, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="row">
+              <%= f.submit 'Criar limite', class: 'btn btn-danger col-lg-12 mb-2' %>
+            </div>
+          <% end %>
+        </div>
       </div>
-
-<div class="p-3">
-  <%= form_with(model: DailyCreditLimit.new, id: 'daily_credit_limit') do |f| %>
-    <div class="row ">
-      <div class="form-group col-lg-12 p-0 mb-2">
-        <%= f.label :value, class: 'form-label' %>
-        <%= f.number_field :value, step: 0.01, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="row">
-      <%= f.submit 'Criar limite', class: 'btn btn-danger col-lg-12 mb-2' %>
-    </div>
-  <% end %>
-</div>
-
     </div>
   </div>
 </div>
-</div>
-
