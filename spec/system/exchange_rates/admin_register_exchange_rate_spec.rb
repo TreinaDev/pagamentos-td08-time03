@@ -11,7 +11,6 @@ describe 'Administrador cria uma taxa de câmbio' do
     end
     click_on 'Configurar taxa de câmbio'
 
-    expect(current_path).to eq(new_exchange_rate_path)
     expect(page).to have_field('Cotação')
     expect(page).to have_button('Enviar')
   end

@@ -1,12 +1,14 @@
-<div class="d-flex justify-content-between">
-   <h2>Histórico de Cotação</h2>
-   <div class="links gap-2">
-    <%= link_to 'Taxas pendentes', exchange_rate_approvals_path, class: 'btn btn-outline-danger mb-2' %>
-  <%= link_to 'Configurar taxa de câmbio', new_exchange_rate_path, class: 'btn btn-outline-danger mb-2' %>
-   </div>
+<div class="d-flex justify-content-between align-items-center">
+  <h2>Histórico de Cotação</h2>
+  <div class="links gap-2">
+    <%= link_to 'Taxas pendentes', exchange_rate_approvals_path, class: 'btn btn-outline-danger' %>
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Configurar taxa de câmbio
+    </button>
+    <%= render 'shared/exchange_rates/modal'%>
+  </div>
 </div>
 <hr class="my-2">
-
 <% if @exchange_rates.any? %>
   <table class="table align-middle text-center">
     <thead class="table-light">
