@@ -46,3 +46,7 @@ main {
   min-height: 70vh;
   margin-bottom: 2rem;
 }
+
+.table > :not(:first-child) {
+  border-top: none;
+}
