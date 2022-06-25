@@ -1,12 +1,16 @@
 <h2>Limite de Crédito Diário</h2>
-
-<% if @daily_credit_limit %>
-  <p>Limite atual: <%= number_to_currency(@daily_credit_limit.value) %></p>
-
-<% else %>
-  <p>Nenhum limite de crédito configurado</p>
-<% end %>
-
-<%# <%= link_to 'Configurar limite', new_daily_credit_limit_path, class: 'btn btn-danger' %>
-
-<%= render 'shared/daily_credit_limit/modal'%>
+<hr>
+<div class="row">
+  <% if @daily_credit_limit %>
+    <li class="list-group-item d-flex justify-content-between align-items-center col-lg-3">
+      Limite atual:
+      <span class="badge bg-danger rounded-pill"><%= number_to_currency(@daily_credit_limit.value) %></span>
+    </li>
+  <% else %>
+    <p>Nenhum limite de crédito configurado</p>
+  <% end %>
+  <button type="button" class="btn btn-danger col-lg-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Configurar limite
+  </button>
+  <%= render 'shared/daily_credit_limit/modal'%>
+</div>
