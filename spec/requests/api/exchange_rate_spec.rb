@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'API de Pagamentos' do
   context 'GET /api/v1/exchange_rates/current' do
     it 'com sucesso' do
-      create(:exchange_rate)
+      create(:exchange_rate, :approved)
 
       get '/api/v1/exchange_rates/current'
       json_response = JSON.parse(response.body)

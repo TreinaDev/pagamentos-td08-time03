@@ -7,7 +7,7 @@ describe 'Administrador vê limite de crédito diário atual' do
 
     login_as(admin)
     visit root_path
-    within("nav") do
+    within("main") do
       click_on('Limite de Crédito Diário')
     end
     within('h2') do
@@ -23,7 +23,7 @@ describe 'Administrador vê limite de crédito diário atual' do
 
     login_as(admin)
     visit root_path
-    within("nav") do
+    within("main") do
       click_on('Limite de Crédito Diário')
     end
 

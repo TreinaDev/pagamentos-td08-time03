@@ -6,7 +6,7 @@ describe 'Administrador cria uma taxa de câmbio' do
 
     login_as(admin)
     visit root_path
-    within('nav') do
+    within('main') do
       click_on 'Cotação de Rubis'
     end
     click_on 'Configurar taxa de câmbio'

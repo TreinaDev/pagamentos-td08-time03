@@ -24,7 +24,7 @@ describe 'Administrador consulta o saldo de um cliente' do
     create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
     create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
 
-    login_as(:admin)
+    login_as(admin)
     visit root_path
     click_on('Saldo de Clientes')
     fill_in('CPF/CNPJ', with: '123.456.789-00')
