@@ -49,7 +49,7 @@ Company.create!(corporate_name: 'Renner', registration_number: '12.345.678/0009-
 Company.create!(corporate_name: 'Americanas S.A.', registration_number: '61.268.816/0001-99')
 Company.create!(corporate_name: 'Amazon', registration_number: '86.121.752/0001-26')
 
-puts('### Criando Créditos de Cliente 1')
+puts('### Criando Créditos de Clientes ###' )
 Credit.create!(real_amount: 100, exchange_rate: ExchangeRate.find(1), rubi_amount: 100 / ExchangeRate.find(1).real, company: Company.find(1), client: Client.find(1), created_at: DateTime.now.days_ago(2))
 Credit.create!(real_amount: 200, exchange_rate: ExchangeRate.find(1), rubi_amount: 200 / ExchangeRate.find(1).real, company: Company.find(2), client: Client.find(1), created_at: DateTime.now.days_ago(2))
 Credit.create!(real_amount: 300, exchange_rate: ExchangeRate.find(1), rubi_amount: 300 / ExchangeRate.find(1).real, company: Company.find(3), client: Client.find(1), created_at: DateTime.now.days_ago(2))
