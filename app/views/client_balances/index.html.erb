@@ -1,0 +1,23 @@
+<h2>Consultar Saldo de Clientes</h2>
+
+<div class="p-3">
+  <%= form_with(url: search_client_balances_path, method: :post) do |f| %>
+    <div class="row">
+      <div class="form-group col-lg-2 p-0 mb-2">
+        <%= f.label :registration_number, 'CPF/CNPJ' %>
+        <%= f.text_field :registration_number %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.submit 'Consultar', class: 'btn btn-danger col-lg-2 mb-2' %>
+    </div>
+  <% end %>
+</div>
+<hr>
+<% if @client.present? %>
+  <div class="p-3">
+    <strong>CPF/CNPJ:</strong> <p><%= @client.registration_number %></p>
+    <strong>Nome:</strong> <p><%= @client.name %></p>
+    <strong>Saldo:</strong> RB <%= @client.balance_rubi %> (<%= number_to_currency(@client.balance_brl) %>)
+  </div>
+<% end %>

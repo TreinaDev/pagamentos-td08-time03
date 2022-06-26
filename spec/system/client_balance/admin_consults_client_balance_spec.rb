@@ -18,7 +18,7 @@ describe 'Administrador consulta o saldo de um cliente' do
 
   it 'com sucesso' do
     admin = create(:admin, :approved)
-    er = create(:exchange_rate, admin: admin)
+    er = create(:exchange_rate, :approved, admin: admin)
     company = create(:company)
     client = create(:client)
     create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
@@ -32,6 +32,6 @@ describe 'Administrador consulta o saldo de um cliente' do
 
     expect(page).to have_content('123.456.789-00')
     expect(page).to have_content(client.name)
-    expect(page).to have_content('Saldo: RB 1.150')
+    expect(page).to have_content('Saldo: RB 115.0 (R$ 1.150,00)')
   end
 end
