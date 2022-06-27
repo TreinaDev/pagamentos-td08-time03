@@ -21,6 +21,8 @@ Style/Documentation:
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*.rb"
+    - db/schema.rb
+  Max: 40
 Style/HashSyntax:
   Enabled: false
 Style/FrozenStringLiteralComment:
@@ -38,8 +40,6 @@ Rails/HttpStatus:
 Style/SpecialGlobalVars:
   Enabled: false
 Layout/LineLength:
-  Enabled: false
-Metrics/BlockLength:
   Exclude:
+    - "spec/**/*.rb"
     - db/schema.rb
-  Max: 40
