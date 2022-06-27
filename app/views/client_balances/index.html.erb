@@ -13,8 +13,8 @@
     </div>
   <% end %>
 </div>
-<hr>
 <% if @client.present? %>
+  <hr>
   <div class="p-3">
     <strong>CPF/CNPJ:</strong> <p><%= @client.registration_number %></p>
     <strong>Nome:</strong> <p><%= @client.name %></p>
