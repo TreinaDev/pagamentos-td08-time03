@@ -28,6 +28,9 @@ FileUtils.chdir APP_ROOT do
   puts "\n== Populando o Banco de Dados =="
   system! "bin/rails db:seed"
 
+  puts "\n=== Gerando CSS ==="
+  system! "bin/rails css:build" 
+
   puts "\n== Removendo logs antigos =="
   system! "bin/rails log:clear tmp:clear"
 
