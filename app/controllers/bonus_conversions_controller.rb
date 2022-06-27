@@ -1,4 +1,6 @@
 class BonusConversionsController < ApplicationController
+  before_action :authenticate_approved_admin
+
   def index
     @bonus_conversions = BonusConversion.where(status: 10).order(created_at: :desc)
   end
@@ -32,5 +34,9 @@ class BonusConversionsController < ApplicationController
 
   def bonus_conversion_params
     params.require(:bonus_conversion).permit(:start_date, :end_date, :bonus_percentage, :deadline, :client_category_id)
+  end
+
+  def authenticate_approved_admin
+    redirect_to root_path unless current_admin.approved?
   end
 end

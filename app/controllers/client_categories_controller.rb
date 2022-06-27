@@ -38,5 +38,4 @@ class ClientCategoriesController < ApplicationController
   def authenticate_approved_admin
     redirect_to root_path unless current_admin.approved?
   end
-
 end

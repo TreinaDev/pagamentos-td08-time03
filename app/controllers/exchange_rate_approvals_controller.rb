@@ -19,11 +19,11 @@ class ExchangeRateApprovalsController < ApplicationController
 
   private
 
-  def authenticate_approved_admin
-    redirect_to root_path unless current_admin.approved?
-  end
-
   def exchange_rate_approvals_parameters
     params.require(:exchange_rate_approvals).permit(:admin, :exchange_rate)
+  end
+
+  def authenticate_approved_admin
+    redirect_to root_path unless current_admin.approved?
   end
 end

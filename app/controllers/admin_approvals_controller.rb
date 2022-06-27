@@ -19,11 +19,11 @@ class AdminApprovalsController < ApplicationController
 
   private
 
-  def authenticate_approved_admin
-    redirect_to root_path unless current_admin.approved?
-  end
-
   def approvals_parameters
     params.require(:admin_approval).permit(:admin, :super_admin_email)
+  end
+
+  def authenticate_approved_admin
+    redirect_to root_path unless current_admin.approved?
   end
 end
