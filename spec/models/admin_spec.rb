@@ -21,11 +21,15 @@ RSpec.describe Admin, type: :model do
     context 'length' do
       it { should validate_length_of(:cpf).is_equal_to(11) }
     end
+  end
 
-    context 'custom validations' do
-      it { should allow_value('joao@userubis.com.br').for(:email) }
+  describe '#full_description' do
+    it 'should display name and email' do
+      admin = create(:admin, :approved)
 
-      it { should_not allow_value('joao@gmail.com.br').for(:email) }
+      res = admin.full_description
+
+      expect(res).to eq('João | joao@userubis.com.br')
     end
   end
 end

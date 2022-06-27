@@ -7,7 +7,7 @@ describe 'Administrador vê créditos pendentes' do
     er = create(:exchange_rate, admin: admin)
     company = create(:company)
     client = create(:client)
-    first_credit = create(:credit, real_amount: 6_000, company: company, client: client, exchange_rate: er)
+    create(:credit, real_amount: 6_000, company: company, client: client, exchange_rate: er)
     second_credit = create(:credit, real_amount: 5_000, company: company, client: client, exchange_rate: er)
 
     login_as(admin)

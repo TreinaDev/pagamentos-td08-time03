@@ -11,16 +11,18 @@
 require: rubocop-rails
 AllCops:
   Exclude:
-  - 'db/**/*.rb'
-  - 'config/**/*.rb'
-  - 'bin/*'
-  - 'app/mailers/**/*.rb'
-  - 'spec/rails_helper.rb'
+    - "db/**/*.rb"
+    - "config/**/*.rb"
+    - "bin/*"
+    - "app/mailers/**/*.rb"
+    - "spec/rails_helper.rb"
 Style/Documentation:
   Enabled: false
 Metrics/BlockLength:
   Exclude:
-  - 'spec/**/*.rb'
+    - "spec/**/*.rb"
+    - db/schema.rb
+  Max: 40
 Style/HashSyntax:
   Enabled: false
 Style/FrozenStringLiteralComment:
@@ -37,3 +39,7 @@ Rails/HttpStatus:
   Enabled: false
 Style/SpecialGlobalVars:
   Enabled: false
+Layout/LineLength:
+  Exclude:
+    - "spec/**/*.rb"
+    - db/schema.rb

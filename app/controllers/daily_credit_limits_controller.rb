@@ -1,4 +1,6 @@
 class DailyCreditLimitsController < ApplicationController
+  before_action :authenticate_approved_admin
+
   def index
     @daily_credit_limit = DailyCreditLimit.last
   end
@@ -16,5 +18,9 @@ class DailyCreditLimitsController < ApplicationController
       flash.now[:alert] = 'Valor de limite inválido. Tente novamente.'
       render 'new'
     end
+  end
+
+  def authenticate_approved_admin
+    redirect_to root_path unless current_admin.approved?
   end
 end

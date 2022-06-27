@@ -23,7 +23,7 @@ class Api::V1::ClientsController < ActionController::API
     registration_number = params.require(:company).permit(:registration_number)
     company = Company.find_by(registration_number)
     client = Client.find_or_create_by(client_params)
-    exchange_rate = ExchangeRate.last
+    exchange_rate = ExchangeRate.current
     @credit = Credit.builder(client, credit_params, company, exchange_rate)
   end
 end
