@@ -1,5 +1,5 @@
 <h1 align="center"> 
-	<p>	 <img src="https://imgur.com/AaVNOIP.png"> USERUBIS - API de Pagamentos</p>
+	<img src="https://imgur.com/AaVNOIP.png"> USERUBIS - API de Pagamentos
 </h1>
 <p align="center">
 <img src="https://img.shields.io/static/v1?label=Ruby&message=3.1.0&color=red&style=for-the-badge&logo=ruby" />
@@ -9,23 +9,20 @@
 <p align="center"> 
 	 Projeto Final - Treinadev Turma 8
 </p>
-<hr>
-
 ## Descrição do Projeto
 
 ## Requisitos:
 * Ruby 3.1.0
-* Rails 7+
+* SQlite3 (1.4.4)
 * NodeJs
 * Yarn
 
-	
 ## Gems Utilizadas
 -   [Devise (4.8.1)](https://github.com/heartcombo/devise)
 -   [FactoryBot Rails (6.2.1) ](https://github.com/thoughtbot/factory_bot_rails)
 -   [Rubocop (1.30.1)](https://github.com/rubocop/rubocop)
 -   [Rspec (5.1.2)](https://github.com/rspec/rspec-rails)
--   [Capybara (3.37.1)]((https://github.com/teamcapybara/capybara)
+-   [Capybara (3.37.1)](https://github.com/teamcapybara/capybara)
 -   [Shoulda-matchers (5.1.0)](https://github.com/thoughtbot/shoulda-matchers)
 -   [Simplecov (0.21.2)](https://github.com/simplecov-ruby/simplecov)
 -   [cssbundling-rails (1.1.1)](https://github.com/rails/cssbundling-rails)
@@ -43,10 +40,10 @@ git clone git@github.com:TreinaDev/pagamentos-td08-time03.git
 Abra o diretório:
 
 ```bash
-cd  pagamentos-td08-time03
+cd pagamentos-td08-time03
 ```
 
-Rode o script bin/setup para configurar adequadamente o projeto:
+Rode o comando bin/setup para configurar adequadamente o projeto:
 
 ```bash
 bin/setup
@@ -58,18 +55,34 @@ Para inicializar o servidor:
 rails s
 ```
 
-## Rodando o projeto em desenvolvimento
-Rode o script bin/dev para configurar o projeto para o modo desenvolvimento:
+## Desenvolvimento
+Caso queira desenvolver o projeto, rode o comando abaixo ao invés do 'rails s'.
 
 ```bash
 bin/dev
 ```
 
-## Rodar testes
+### Login com Administrador padrão
+Após rodar as seeds, são gerados administrados aprovados e não aprovados, o exemplo abaixo é de um administrador aprovado:
+
+E-mail:
+
+```
+mateus@userubis.com.br
+```
+
+Senha:
+
+```
+123456
+```
+
+## Testes
 Para rodar os testes da aplicação, execute o comando:
 
 ```
 bundle exec rspec 
 ```
+
 
 
