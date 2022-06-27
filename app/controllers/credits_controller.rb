@@ -10,7 +10,7 @@ class CreditsController < ApplicationController
     if @credit.approved!
       redirect_to credits_path, notice: 'Crédito aprovado com sucesso!'
     else
-      flash.now[:alert] = ('Algo deu errado...')
+      flash.now[:alert] = 'Algo deu errado...'
       render 'index'
     end
   end
@@ -19,7 +19,7 @@ class CreditsController < ApplicationController
     if @credit.rejected!
       redirect_to credits_path, notice: 'Crédito reprovado com sucesso!'
     else
-      flash.now[:alert] = ('Algo deu errado...')
+      flash.now[:alert] = 'Algo deu errado...'
       render 'index'
     end
   end

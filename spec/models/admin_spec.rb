@@ -23,13 +23,13 @@ RSpec.describe Admin, type: :model do
     end
   end
 
-  describe "#full_description" do
+  describe '#full_description' do
     it 'should display name and email' do
-    admin = create(:admin, :approved)
+      admin = create(:admin, :approved)
 
-    res = admin.full_description
+      res = admin.full_description
 
-    expect(res).to eq("João | joao@userubis.com.br")
+      expect(res).to eq('João | joao@userubis.com.br')
     end
   end
 end

@@ -27,7 +27,6 @@ describe 'Admin visualiza lista de admins não-aprovados' do
     visit(root_path)
     click_on('Usuários Pendentes')
 
-
     expect(page).to have_content('Usuários Pendentes')
     within('.pending_admin-0') do
       expect(page).to have_content('Fernando')

@@ -26,7 +26,7 @@ RSpec.describe Credit, type: :model do
   end
 
   describe 'methods' do
-    context 'validates_client_last_credit' do 
+    context 'validates_client_last_credit' do
       it 'não existe um limite de crédito diário' do
         admin = create(:admin, :approved)
         er = create(:exchange_rate, admin: admin)
@@ -35,10 +35,9 @@ RSpec.describe Credit, type: :model do
         second_credit = create(:credit, real_amount: 10_000, exchange_rate: er, client: client)
         third_credit = create(:credit, real_amount: 15_000, exchange_rate: er, client: client)
 
-
-        expect(first_credit.status).to eq ('approved')
-        expect(second_credit.status).to eq ('approved')
-        expect(third_credit.status).to eq ('approved')
+        expect(first_credit.status).to eq('approved')
+        expect(second_credit.status).to eq('approved')
+        expect(third_credit.status).to eq('approved')
       end
 
       it 'e os créditos estão abaixo do limite diário' do
@@ -49,8 +48,8 @@ RSpec.describe Credit, type: :model do
         first_credit = create(:credit, real_amount: 5_000, exchange_rate: er, client: client, created_at: DateTime.now.yesterday)
         second_credit = create(:credit, real_amount: 9_000, exchange_rate: er, client: client)
 
-        expect(first_credit.status).to eq ('approved')
-        expect(second_credit.status).to eq ('approved')
+        expect(first_credit.status).to eq('approved')
+        expect(second_credit.status).to eq('approved')
       end
 
       it 'e os créditos estão acima do limite diário' do
@@ -61,8 +60,8 @@ RSpec.describe Credit, type: :model do
         first_credit = create(:credit, real_amount: 5_000, exchange_rate: er, client: client)
         second_credit = create(:credit, real_amount: 9_000, exchange_rate: er, client: client)
 
-        expect(first_credit.status).to eq ('approved')
-        expect(second_credit.status).to eq ('pending')        
+        expect(first_credit.status).to eq('approved')
+        expect(second_credit.status).to eq('pending')
       end
     end
   end

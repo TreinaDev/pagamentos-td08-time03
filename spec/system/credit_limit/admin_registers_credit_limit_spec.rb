@@ -7,9 +7,9 @@ describe 'Administrador cadastra um limite de crédito diário' do
     login_as(admin)
     visit root_path
     visit daily_credit_limits_path
-    click_on("Configurar limite")
+    click_on('Configurar limite')
 
-    expect(page).to have_button("Criar limite")
+    expect(page).to have_button('Criar limite')
   end
   it 'com sucesso' do
     admin = create(:admin, :approved)

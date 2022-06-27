@@ -22,11 +22,11 @@ class ClientCategoriesController < ApplicationController
   def inactivate
     @client_category = ClientCategory.find(params[:client_category_id])
     if @client_category.inactive!
-      flash[:notice] = "Categoria de clientes desativada com sucesso!"
+      flash[:notice] = 'Categoria de clientes desativada com sucesso!'
       return redirect_to client_categories_path
     end
 
-    flash[:alert] = "Algo deu errado."
+    flash[:alert] = 'Algo deu errado.'
   end
 
   private
