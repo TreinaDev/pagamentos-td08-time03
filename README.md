@@ -62,8 +62,8 @@ Caso queira desenvolver o projeto, rode o comando abaixo ao invés do 'rails s'.
 bin/dev
 ```
 
-### Login com Administrador padrão
-Após rodar as seeds, são gerados administrados aprovados e não aprovados, o exemplo abaixo é de um administrador aprovado:
+## Login
+Após rodar as seeds, são gerados administradores aprovados e não aprovados, o exemplo abaixo é de um administrador aprovado:
 
 E-mail:
 
@@ -84,5 +84,5 @@ Para rodar os testes da aplicação, execute o comando:
 bundle exec rspec 
 ```
 
-
-
+## API
+[Documentação](https://github.com/TreinaDev/pagamentos-td08-time03/blob/main/api.md)
