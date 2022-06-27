@@ -14,7 +14,7 @@ class AdminApprovalsController < ApplicationController
 
     return unless approval.save!
 
-    redirect_to admin_approvals_path, notice: 'Admin aprovado com sucesso!'
+    redirect_to admin_approvals_path, notice: 'Permissão concedida a um administrador pendente.'
   end
 
   private
