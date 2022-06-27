@@ -20,4 +20,44 @@ RSpec.describe Client, type: :model do
       it { should have_many(:credits) }
     end
   end
+
+  describe 'methods' do
+    context 'balance_rubi' do
+      it 'cliente sem saldo' do
+        client = create(:client)
+
+        expect(client.balance_rubi).to eq(0)
+      end
+
+      it 'cliente possui saldo' do
+        admin = create(:admin)
+        er = create(:exchange_rate, :approved, admin: admin, real: 10)
+        company = create(:company)
+        client = create(:client)
+        create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
+        create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
+
+        expect(client.balance_rubi).to eq(115)
+      end
+    end
+
+    context 'balance_brl' do
+      it 'cliente sem saldo' do
+        client = create(:client)
+
+        expect(client.balance_brl).to eq(0)
+      end
+
+      it 'cliente possui saldo' do
+        admin = create(:admin)
+        er = create(:exchange_rate, :approved, admin: admin, real: 10)
+        company = create(:company)
+        client = create(:client)
+        create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
+        create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
+
+        expect(client.balance_brl).to eq(1150)
+      end
+    end
+  end
 end

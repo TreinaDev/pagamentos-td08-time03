@@ -20,7 +20,7 @@ AdminApproval.create!(super_admin_email: 'maria@userubis.com.br', admin: Admin.f
 AdminApproval.create!(super_admin_email: 'gabriel@userubis.com.br', admin: Admin.find(3))
 AdminApproval.create!(super_admin_email: 'maria@userubis.com.br', admin: Admin.find(4))
 AdminApproval.create!(super_admin_email: 'gabriel@userubis.com.br', admin: Admin.find(4))
-AdminApproval.balanccreate!(super_admin_email: 'maria@userubis.com.br', admin: Admin.find(5))
+AdminApproval.create!(super_admin_email: 'maria@userubis.com.br', admin: Admin.find(5))
 AdminApproval.create!(super_admin_email: 'gabriel@userubis.com.br', admin: Admin.find(6))
 
 puts('### Criando Taxas de Câmbio')

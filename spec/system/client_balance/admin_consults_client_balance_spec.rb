@@ -20,7 +20,7 @@ describe 'Administrador consulta o saldo de um cliente' do
     admin = create(:admin, :approved)
     er = create(:exchange_rate, :approved, admin: admin)
     company = create(:company)
-    client = create(:client)
+    client = create(:client, registration_number: '123.456.789-00')
     create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
     create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
 
@@ -38,7 +38,7 @@ describe 'Administrador consulta o saldo de um cliente' do
     admin = create(:admin, :approved)
     er = create(:exchange_rate, :approved, admin: admin)
     company = create(:company)
-    client = create(:client)
+    client = create(:client, registration_number: '123.456.789-00')
     create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
     create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
 

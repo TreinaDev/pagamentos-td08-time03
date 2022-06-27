@@ -5,7 +5,7 @@
     <div class="row">
       <div class="form-group col-lg-2 p-0 mb-2">
         <%= f.label :registration_number, 'CPF/CNPJ' %>
-        <%= f.text_field :registration_number %>
+        <%= f.text_field :registration_number, required: true %>
       </div>
     </div>
     <div class="row">
@@ -13,11 +13,17 @@
     </div>
   <% end %>
 </div>
-<% if @client.present? %>
-  <hr>
-  <div class="p-3">
-    <strong>CPF/CNPJ:</strong> <p><%= @client.registration_number %></p>
-    <strong>Nome:</strong> <p><%= @client.name %></p>
-    <strong>Saldo:</strong> RB <%= @client.balance_rubi %> (<%= number_to_currency(@client.balance_brl) %>)
-  </div>
+<% if @flag_search %>
+    <hr>
+  <% if @client.present? %>
+    <div class="p-3">
+      <strong>CPF/CNPJ:</strong> <p><%= @client.registration_number %></p>
+      <strong>Nome:</strong> <p><%= @client.name %></p>
+      <strong>Saldo:</strong> RB <%= @client.balance_rubi %> (<%= number_to_currency(@client.balance_brl) %>)
+    </div>
+  <% else %>
+    <div class="p-3">
+      <strong>Cliente não encontrado</strong>
+    </div>
+  <% end %>
 <% end %>
