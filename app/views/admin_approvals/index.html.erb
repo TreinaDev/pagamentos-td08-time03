@@ -1,5 +1,10 @@
-<h2>Usuários Pendentes</h2>
-<p>Solicitações: <%= @requested_admins.length %></p>
+<div class="d-flex justify-content-between">
+  <h2>Usuários Pendentes</h2>
+  <div class="links gap-2">
+  </div>
+</div>
+<hr class="my-2">
+<p class="text-muted fw-bolder mt-3">Solicitações: <%= @requested_admins.length %></p>
 <% if @requested_admins.empty? %>
   <p>Nenhum pedido de aprovação encontrado.</p>
 <% else %>

@@ -33,16 +33,4 @@ describe 'Administrador visualiza histórico de cotação' do
     expect(page).to have_content('Nenhuma taxa criada')
     expect(page).not_to have_css('table')
   end
-
-  it 'e volta para a página inicial' do
-    admin = create(:admin, :approved)
-
-    login_as(admin)
-    visit exchange_rates_path
-    within('nav') do
-      click_on 'USERUBIS'
-    end
-
-    expect(current_path).to eq(root_path)
-  end
 end

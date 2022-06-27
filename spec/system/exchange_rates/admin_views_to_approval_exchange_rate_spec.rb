@@ -14,16 +14,16 @@ describe 'Admin visualiza taxas pendentes de aprovação%' do
     visit exchange_rates_path
     click_on 'Taxas pendentes'
 
-    within(".pending_exchange_rate-0") do
-      expect(page).to have_content("fernando@userubis.com.br")
-      expect(page).to have_content("R$ 18,00")
-      expect(page).to have_button("Aprovar")
+    within('.pending_exchange_rate-0') do
+      expect(page).to have_content('fernando@userubis.com.br')
+      expect(page).to have_content('R$ 18,00')
+      expect(page).to have_button('Aprovar')
     end
-    within(".pending_exchange_rate-1") do
-      expect(page).to have_content("fernando@userubis.com.br")
-      expect(page).to have_content("R$ 11,00")
-      expect(page).to have_button("Aprovar")
+    within('.pending_exchange_rate-1') do
+      expect(page).to have_content('fernando@userubis.com.br')
+      expect(page).to have_content('R$ 11,00')
+      expect(page).to have_button('Aprovar')
     end
-    expect(page).not_to have_content("R$ 200,00")
+    expect(page).not_to have_content('R$ 200,00')
   end
 end

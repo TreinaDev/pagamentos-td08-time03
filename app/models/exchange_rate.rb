@@ -32,6 +32,6 @@ class ExchangeRate < ApplicationRecord
   end
 
   def teste
-    ExchangeRate.where(status: 0).each { |s| s.rejected! }
+    ExchangeRate.where(status: 0).find_each(&:rejected!)
   end
 end

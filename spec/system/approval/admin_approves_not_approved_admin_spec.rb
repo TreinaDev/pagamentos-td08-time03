@@ -12,7 +12,7 @@ describe 'Admin aprova um admin cadastrado' do
       click_on('Aprovar')
     end
 
-    expect(page).to have_content('Admin aprovado com sucesso!')
+    expect(page).to have_content('Permissão concedida a um administrador pendente.')
     expect(page).to have_content('Solicitações: 0')
     expect(page).not_to have_content('Fernando')
     expect(page).not_to have_content('fernando@userubis.com.br')
@@ -54,7 +54,7 @@ describe 'Admin aprova um admin cadastrado' do
     expect(AdminApproval.last.super_admin_email).to eq('joao@userubis.com.br')
     expect(AdminApproval.last.admin).to eq(to_approve_admin)
     expect(Admin.last.approved?).to eq(true)
-    expect(page).to have_content('Admin aprovado com sucesso!')
+    expect(page).to have_content('Permissão concedida a um administrador pendente.')
     expect(page).to have_content('Solicitações: 0')
     expect(page).not_to have_content('Fernando')
     expect(page).not_to have_content('fernando@userubis.com.br')

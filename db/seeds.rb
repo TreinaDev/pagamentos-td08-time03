@@ -16,6 +16,8 @@ Admin.create!(full_name: 'Vlad', cpf: '49141478921', email: 'vlad@userubis.com.b
 Admin.create!(full_name: 'Júlio', cpf: '95145478921', email: 'julio@userubis.com.br', password: '123456')
 
 puts('### Criando Aprovações de admin')
+Admin.find(1).approved!
+Admin.find(2).approved!
 AdminApproval.create!(super_admin_email: 'maria@userubis.com.br', admin: Admin.find(3))
 AdminApproval.create!(super_admin_email: 'gabriel@userubis.com.br', admin: Admin.find(3))
 AdminApproval.create!(super_admin_email: 'maria@userubis.com.br', admin: Admin.find(4))
@@ -48,7 +50,7 @@ Company.create!(corporate_name: 'Renner', registration_number: '12.345.678/0009-
 Company.create!(corporate_name: 'Americanas S.A.', registration_number: '61.268.816/0001-99')
 Company.create!(corporate_name: 'Amazon', registration_number: '86.121.752/0001-26')
 
-puts('### Criando Créditos de Cliente 1')
+puts('### Criando Créditos de Clientes ###')
 Credit.create!(real_amount: 100, exchange_rate: ExchangeRate.find(1), rubi_amount: 100 / ExchangeRate.find(1).real, company: Company.find(1), client: Client.find(1), created_at: DateTime.now.days_ago(2))
 Credit.create!(real_amount: 200, exchange_rate: ExchangeRate.find(1), rubi_amount: 200 / ExchangeRate.find(1).real, company: Company.find(2), client: Client.find(1), created_at: DateTime.now.days_ago(2))
 Credit.create!(real_amount: 300, exchange_rate: ExchangeRate.find(1), rubi_amount: 300 / ExchangeRate.find(1).real, company: Company.find(3), client: Client.find(1), created_at: DateTime.now.days_ago(2))
@@ -58,9 +60,6 @@ Credit.create!(real_amount: 350, exchange_rate: ExchangeRate.find(2), rubi_amoun
 Credit.create!(real_amount: 175, exchange_rate: ExchangeRate.find(3), rubi_amount: 175 / ExchangeRate.find(3).real, company: Company.find(1), client: Client.find(1))
 Credit.create!(real_amount: 275, exchange_rate: ExchangeRate.find(3), rubi_amount: 275 / ExchangeRate.find(3).real, company: Company.find(2), client: Client.find(1))
 Credit.create!(real_amount: 375, exchange_rate: ExchangeRate.find(3), rubi_amount: 375 / ExchangeRate.find(3).real, company: Company.find(3), client: Client.find(1))
-
-puts('### Criando Créditos de Cliente 2')
-Credit.create!(real_amount: 200, exchange_rate: ExchangeRate.find(1), rubi_amount: 200 / ExchangeRate.find(1).real, company: Company.find(1), client: Client.find(2), created_at: DateTime.now.days_ago(2))
 Credit.create!(real_amount: 300, exchange_rate: ExchangeRate.find(1), rubi_amount: 300 / ExchangeRate.find(1).real, company: Company.find(2), client: Client.find(2), created_at: DateTime.now.days_ago(2))
 Credit.create!(real_amount: 400, exchange_rate: ExchangeRate.find(1), rubi_amount: 400 / ExchangeRate.find(1).real, company: Company.find(3), client: Client.find(2), created_at: DateTime.now.days_ago(2))
 Credit.create!(real_amount: 250, exchange_rate: ExchangeRate.find(2), rubi_amount: 250 / ExchangeRate.find(2).real, company: Company.find(1), client: Client.find(2), created_at: DateTime.now.yesterday)
@@ -69,8 +68,6 @@ Credit.create!(real_amount: 450, exchange_rate: ExchangeRate.find(2), rubi_amoun
 Credit.create!(real_amount: 275, exchange_rate: ExchangeRate.find(3), rubi_amount: 275 / ExchangeRate.find(3).real, company: Company.find(1), client: Client.find(2))
 Credit.create!(real_amount: 375, exchange_rate: ExchangeRate.find(3), rubi_amount: 375 / ExchangeRate.find(3).real, company: Company.find(2), client: Client.find(2))
 Credit.create!(real_amount: 475, exchange_rate: ExchangeRate.find(3), rubi_amount: 475 / ExchangeRate.find(3).real, company: Company.find(3), client: Client.find(2))
-
-puts('### Criando Créditos de Cliente 3')
 Credit.create!(real_amount: 300, exchange_rate: ExchangeRate.find(1), rubi_amount: 300 / ExchangeRate.find(1).real, company: Company.find(1), client: Client.find(3), created_at: DateTime.now.days_ago(2))
 Credit.create!(real_amount: 400, exchange_rate: ExchangeRate.find(1), rubi_amount: 400 / ExchangeRate.find(1).real, company: Company.find(2), client: Client.find(3), created_at: DateTime.now.days_ago(2))
 Credit.create!(real_amount: 500, exchange_rate: ExchangeRate.find(1), rubi_amount: 500 / ExchangeRate.find(1).real, company: Company.find(3), client: Client.find(3), created_at: DateTime.now.days_ago(2))
@@ -82,9 +79,9 @@ Credit.create!(real_amount: 475, exchange_rate: ExchangeRate.find(3), rubi_amoun
 Credit.create!(real_amount: 575, exchange_rate: ExchangeRate.find(3), rubi_amount: 575 / ExchangeRate.find(3).real, company: Company.find(3), client: Client.find(3))
 
 puts('### Criando Categoria de Clientes')
-ClientCategory.create!(name: "BASIC", discount: 5)
-ClientCategory.create!(name: "PREMIUM", discount: 20)
+ClientCategory.create!(name: 'BASIC', discount: 5)
+ClientCategory.create!(name: 'PREMIUM', discount: 20)
 
 puts('### Criando Conversões Bônus')
-BonusConversion.create!(start_date: 3.day.ago, end_date: 1.day.ago, bonus_percentage: 10, deadline: 7, client_category: ClientCategory.first, )
-BonusConversion.create!(start_date: 10.day.ago, end_date: 2.day.ago, bonus_percentage: 5, deadline: 3, client_category: ClientCategory.first, )
+BonusConversion.create!(start_date: 3.days.ago, end_date: 1.day.ago, bonus_percentage: 10, deadline: 7, client_category: ClientCategory.first)
+BonusConversion.create!(start_date: 10.days.ago, end_date: 2.days.ago, bonus_percentage: 5, deadline: 3, client_category: ClientCategory.first)

@@ -11,7 +11,7 @@ describe 'Admin aprova uma taxa de câmbio com variação maior que 10%' do
     login_as(second_admin)
     visit exchange_rates_path
     click_on 'Taxas pendentes'
-    within(".pending_exchange_rate-0") do
+    within('.pending_exchange_rate-0') do
       click_on 'Aprovar'
     end
 
