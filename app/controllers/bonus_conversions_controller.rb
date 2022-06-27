@@ -22,12 +22,10 @@ class BonusConversionsController < ApplicationController
 
   def inactivate
     @bonus_conversion = BonusConversion.find(params[:bonus_conversion_id])
-    if @bonus_conversion.inactive!
-      flash[:notice] = 'Conversão bônus desativada com sucesso!'
-      return redirect_to bonus_conversions_path
-    end
+    return unless @bonus_conversion.inactive!
 
-    flash[:alert] = 'Algo deu errado.'
+    flash[:notice] = 'Conversão bônus desativada com sucesso!'
+    redirect_to bonus_conversions_path
   end
 
   private
