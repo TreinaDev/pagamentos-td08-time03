@@ -5,5 +5,9 @@ FactoryBot.define do
     association :exchange_rate
     association :client
     association :company
+
+    trait :approved do
+      status { 'approved' }
+    end
   end
 end
