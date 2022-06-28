@@ -9,6 +9,10 @@ class Api::V1::ClientsController < ActionController::API
     end
   end
 
+  def balance
+    @client = NoSymbolsRegistrationNumberSearcher.new(client_params[:registration_number]).search
+  end
+
   private
 
   def client_params
