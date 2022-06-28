@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_28_003103) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_28_193719) do
   create_table "admin_approvals", force: :cascade do |t|
     t.integer "admin_id"
     t.string "super_admin_email"
@@ -106,6 +106,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_003103) do
     t.index ["admin_id"], name: "index_exchange_rates_on_admin_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "order_code"
+    t.integer "client_id", null: false
+    t.decimal "transaction_total_value"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_orders_on_client_id"
+  end
+
   add_foreign_key "admin_approvals", "admins"
   add_foreign_key "bonus_conversions", "client_categories"
   add_foreign_key "credits", "clients"
@@ -114,4 +124,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_003103) do
   add_foreign_key "exchange_rate_approvals", "admins"
   add_foreign_key "exchange_rate_approvals", "exchange_rates"
   add_foreign_key "exchange_rates", "admins"
+  add_foreign_key "orders", "clients"
 end

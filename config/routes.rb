@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       scope :exchange_rates do
         get 'current', to: 'exchange_rates#current'
       end
+      post 'orders', to: 'orders#create'
     end
   end
 end
