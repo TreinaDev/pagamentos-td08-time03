@@ -8,11 +8,11 @@ describe 'Administrador consulta o saldo de um cliente' do
     visit root_path
     click_on('Saldo de Clientes')
 
+    expect(current_path).to eq(clients_path)
     within('h2') do
       expect(page).to have_content('Consultar Saldo de Clientes')
     end
-    expect(page).to have_css('input')
-    expect(page).to have_content('CPF/CNPJ')
+    expect(page).to have_field('CPF/CNPJ')
     expect(page).to have_button('Consultar')
   end
 
@@ -25,7 +25,7 @@ describe 'Administrador consulta o saldo de um cliente' do
     create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
 
     login_as(admin)
-    visit client_balances_path
+    visit clients_path
     fill_in('CPF/CNPJ', with: '123.456.789-00')
     click_on('Consultar')
 
@@ -43,7 +43,7 @@ describe 'Administrador consulta o saldo de um cliente' do
     create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
 
     login_as(admin)
-    visit client_balances_path
+    visit clients_path
     fill_in('CPF/CNPJ', with: '12345678900')
     click_on('Consultar')
 
@@ -59,7 +59,7 @@ describe 'Administrador consulta o saldo de um cliente' do
     create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
 
     login_as(admin)
-    visit client_balances_path
+    visit clients_path
     fill_in('CPF/CNPJ', with: '915.772.461-79')
     click_on('Consultar')
 
@@ -67,8 +67,4 @@ describe 'Administrador consulta o saldo de um cliente' do
     expect(page).not_to have_content('123.456.789-00')
     expect(page).not_to have_content('João Almeida')
   end
-
-  # it 'mas não aceita formatos inválidos de CPF/CNPJ' do
-
-  # end
 end

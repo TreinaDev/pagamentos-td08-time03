@@ -24,8 +24,8 @@ Rails.application.routes.draw do
     resources :bonus_conversions, only: %i[index new create] do
       patch '/inactivate', to: 'bonus_conversions#inactivate'
     end
-    resources :client_balances, only: %i[index] do
-      post '/search', to: 'client_balances#index', on: :collection
+    resources :clients, only: %i[index] do
+      post '/search', to: 'clients#search', on: :collection
     end
   end
 
