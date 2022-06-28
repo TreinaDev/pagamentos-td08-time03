@@ -10,7 +10,7 @@ class Api::V1::ClientsController < ActionController::API
   end
 
   def balance
-    @client = NoSymbolsRegistrationNumberSearcher.new(client_params[:registration_number]).search
+    @client = find_or_create_client
   end
 
   private
@@ -23,11 +23,14 @@ class Api::V1::ClientsController < ActionController::API
     params.permit(:real_amount)
   end
 
+  def find_or_create_client
+    Client.find_or_create_by(client_params)
+  end
+
   def credit
     registration_number = params.require(:company).permit(:registration_number)
     company = Company.find_by(registration_number)
-    client = Client.find_or_create_by(client_params)
     exchange_rate = ExchangeRate.current
-    @credit = Credit.builder(client, credit_params, company, exchange_rate)
+    @credit = Credit.builder(find_or_create_client, credit_params, company, exchange_rate)
   end
 end
