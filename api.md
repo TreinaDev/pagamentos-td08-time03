@@ -37,11 +37,32 @@ Adiciona créditos à conta de um cliente
 ```
 ## GET /api/v1/exchange_rates/current
 Retorna a taxa de câmbio atual (RUBI -> REAIS)
-### Exemplo de Resposta
+### Exemplo de resposta (Requisição bem-sucedida)
 ```json
 {
   "exchange_rate": {
     "value": 100.00
+  }
+}
+```
+## POST /api/v1/clients/balance
+Retorna informações referentes ao saldo do cliente
+### Exemplo de requisição
+```json
+{
+  "client": {
+    "registration_number": "123.456.789-00"
+  }
+}
+```
+### Exemplo de resposta
+```json
+{
+  "client": {
+    "registration_number": "123.456.789-00",
+    "name": "João Almeida",
+    "balance_rubi": 150.00,
+    "balance_brl": 1500.00
   }
 }
 ```
