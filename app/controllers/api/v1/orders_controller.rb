@@ -3,9 +3,9 @@ class Api::V1::OrdersController < ActionController::API
     @order = Order.new(orders_params)
     @order.client = Client.find_by(registration_number: params[:client][:registration_number])
     @order.exchange_rate = ExchangeRate.current
-    
+
     if @order.save
-      render status: 201, json: @order
+      render status: 201
     else
       render status: 402, json: { errors: @order.errors.full_messages }
     end

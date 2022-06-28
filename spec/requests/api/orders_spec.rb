@@ -5,7 +5,6 @@ describe 'API de Pagamentos' do
     it 'com sucesso' do
       credit = create(:credit, :approved)
       client = credit.client
-
       order_params = {
         order_code: 'ABCDEFG12356KAJSD',
         client: {
