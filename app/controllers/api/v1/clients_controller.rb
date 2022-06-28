@@ -11,6 +11,11 @@ class Api::V1::ClientsController < ActionController::API
 
   def balance
     @client = find_or_create_client
+    if @client.save
+      render status: 200
+    else
+      render status: 400, json: { errors: @client.errors.full_messages }
+    end
   end
 
   private

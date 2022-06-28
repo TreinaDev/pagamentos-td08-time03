@@ -42,10 +42,11 @@ describe 'API de Pagamentos' do
       post '/api/v1/clients/balance', params: client_params
       json_response = JSON.parse(response.body)
 
-      expect(response).to have_http_status(402)
+      expect(response).to have_http_status(400)
       expect(response.content_type).to include 'application/json'
-      expect(json_response['errors']).to include 'CPF/CNPJ é obrigatório(a)'
-      expect(json_response['errors']).to include 'Nome é obrigatório(a)'
+      expect(json_response['errors']).to include 'CPF/CNPJ formato inválido'
+      expect(json_response['errors']).to include 'CPF/CNPJ não pode ficar em branco'
+      expect(json_response['errors']).to include 'Nome não pode ficar em branco'
     end
   end
 end
