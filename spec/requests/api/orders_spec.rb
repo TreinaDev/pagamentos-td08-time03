@@ -5,6 +5,7 @@ describe 'API de Pagamentos' do
     it 'com sucesso' do
       credit = create(:credit, :approved)
       client = credit.client
+
       order_params = {
         order_code: 'ABCDEFG12356KAJSD',
         client: {
@@ -17,7 +18,7 @@ describe 'API de Pagamentos' do
       post '/api/v1/orders', params: order_params
       json_response = JSON.parse(response.body)
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(201)
       expect(response.content_type).to include 'application/json'
       expect(json_response['order']['id']).to eq(1)
       expect(json_response['order']['status']).to eq('pending')
