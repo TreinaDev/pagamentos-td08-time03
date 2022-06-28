@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      client: Cliente
+    attributes:
+      client:
+        name: Nome
+        registration_number: CPF/CNPJ
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      invalid_format: formato inválido
