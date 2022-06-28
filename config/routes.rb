@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       scope :clients do
         post 'credit', to: 'clients#add_credit'
+        post 'balance', to: 'clients#balance'
       end
       scope :exchange_rates do
         get 'current', to: 'exchange_rates#current'
