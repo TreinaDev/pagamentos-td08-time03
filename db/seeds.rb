@@ -43,6 +43,7 @@ puts('### Criando Clientes')
 Client.create!(name: 'João Almeida', registration_number: '123.456.789-00')
 Client.create!(name: 'Erika Campos', registration_number: '987.654.321-01')
 Client.create!(name: 'Luana Sales', registration_number: '555.851.100-76')
+Client.create!(name: 'Apple inc.', registration_number: '99.521.666/0001-98')
 
 puts('### Criando Empresas Fornecedoras de Crédito')
 Company.create!(corporate_name: 'Renner', registration_number: '12.345.678/0009-10')

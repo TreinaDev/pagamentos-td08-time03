@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     resources :bonus_conversions, only: %i[index new create] do
       patch '/inactivate', to: 'bonus_conversions#inactivate'
     end
+    resources :clients, only: %i[index] do
+      post '/search', to: 'clients#search', on: :collection
+    end
   end
 
   root to: redirect('/admins/sign_in')

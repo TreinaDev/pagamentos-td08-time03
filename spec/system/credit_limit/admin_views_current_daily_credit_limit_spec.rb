@@ -22,7 +22,6 @@ describe 'Administrador vê limite de crédito diário atual' do
     admin = create(:admin, :approved)
 
     login_as(admin)
-    visit root_path
     visit daily_credit_limits_path
 
     expect(page).to have_content('Nenhum limite de crédito configurado')
