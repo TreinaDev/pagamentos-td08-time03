@@ -15,7 +15,7 @@ describe 'Administrador visualiza histórico de cotação' do
 
     login_as(admin)
     visit root_path
-    within('nav') do
+    within('main') do
       click_on 'Cotação de Rubis'
     end
 

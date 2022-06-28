@@ -11,4 +11,12 @@ class Client < ApplicationRecord
 
     errors.add(:registration_number, 'invalid format')
   end
+
+  def balance_rubi
+    credits.pluck(:rubi_amount).sum
+  end
+
+  def balance_brl
+    credits.pluck(:real_amount).sum
+  end
 end
