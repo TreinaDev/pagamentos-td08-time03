@@ -7,7 +7,7 @@ class Api::V1::OrdersController < ActionController::API
     if @order.save
       render status: 201
     else
-      render status: 402, json: { errors: @order.errors.full_messages }
+      render status: 412, json: { errors: @order.errors.full_messages }
     end
   end
 
