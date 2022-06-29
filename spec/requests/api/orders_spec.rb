@@ -46,5 +46,26 @@ describe 'API de Pagamentos' do
       expect(json_response).not_to include 'order'
       expect(Order.all.count).to eq(0)
     end
+
+    it 'e o cliente não possui saldo suficiente' do
+      credit = create(:credit, :approved)
+      client = credit.client
+      order_params = {
+        order_code: 'ABCDEFG12356KAJSD',
+        client: {
+          name: client.name,
+          registration_number: client.registration_number
+        },
+        transaction_total_value: 100.0
+      }
+
+      post '/api/v1/orders', params: order_params
+      json_response = JSON.parse(response.body)
+
+      expect(response).to have_http_status(412)
+      expect(response.content_type).to include 'application/json'
+      expect(json_response['errors']).to include 'Saldo do cliente insuficiente'
+      expect(Order.all.count).to eq(0)
+    end
   end
 end
