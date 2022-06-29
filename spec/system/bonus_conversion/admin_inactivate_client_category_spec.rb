@@ -21,8 +21,8 @@ describe 'Administrador desativa uma conversão bônus' do
     first_client_category = create(:client_category, name: 'BASIC')
     second_client_category = create(:client_category, name: 'PREMIUM')
     create(:bonus_conversion, client_category: first_client_category)
-    create(:bonus_conversion, client_category: second_client_category)
-
+    create(:bonus_conversion, start_date: '01/06/2022', end_date: '15/06/2022', client_category: second_client_category)
+    
     login_as(admin)
     visit bonus_conversions_path
     within('.bonus_conversion-0') do
@@ -34,5 +34,8 @@ describe 'Administrador desativa uma conversão bônus' do
     expect(page).to have_content('11/10/2022')
     expect(page).to have_content('4')
     expect(page).to have_content('BASIC')
+    expect(page).not_to have_content('PREMIUM')
+    expect(page).not_to have_content('01/06/2022')
+    expect(page).not_to have_content('15/06/2022')
   end
 end

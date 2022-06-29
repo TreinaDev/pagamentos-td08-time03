@@ -10,3 +10,6 @@ pt-BR:
         deadline: Prazo de uso
         client_category: Categoria de cliente
         client_category_id: Categoria de cliente
+  errors:
+    messages:
+      unique_period_and_category: Período já contemplado para essa categoria

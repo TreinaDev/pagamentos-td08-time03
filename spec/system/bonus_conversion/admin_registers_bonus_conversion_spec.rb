@@ -21,12 +21,8 @@ describe 'Admin registra uma conversão bônus' do
     login_as(admin)
     visit new_bonus_conversion_path
 
-    select '11', :from => 'bonus_conversion_start_date_3i'
-    select 'maio', :from => 'bonus_conversion_start_date_2i'
-    select '2022', :from => 'bonus_conversion_start_date_1i'
-    select '11', :from => 'bonus_conversion_end_date_3i'
-    select 'outubro', :from => 'bonus_conversion_end_date_2i'
-    select '2022', :from => 'bonus_conversion_end_date_1i'
+    fill_in 'Data inicial', with: '11/05/2022'
+    fill_in 'Data final', with: '11/10/2022'
     fill_in 'Bônus',	with: '12'
     fill_in 'Prazo de uso',	with: '5'
     select 'PREMIUM', from: 'bonus_conversion_client_category_id'
