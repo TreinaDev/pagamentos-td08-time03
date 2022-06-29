@@ -67,5 +67,28 @@ describe 'API de Pagamentos' do
       expect(json_response['errors']).to include 'Cliente não possui saldo suficiente'
       expect(Order.all.count).to eq(0)
     end
+
+    it 'com dados inválidos' do
+      order_params = {
+        order_code: '',
+        client: {
+          name: '',
+          registration_number: ''
+        },
+        transaction_total_value: ''
+      }
+
+      post '/api/v1/orders', params: order_params
+      json_response = JSON.parse(response.body)
+      
+      expect(response).to have_http_status(412)
+      expect(response.content_type).to include 'application/json'
+      expect(json_response['errors']).to include 'Usuário não encontrado'
+      expect(json_response['errors']).to include 'Código do Pedido não pode ficar em branco'
+      expect(json_response['errors']).to include 'Valor total da transação não pode ficar em branco'
+      puts(json_response)
+      expect(Order.all.count).to eq(0)
+    end
+
   end
 end

@@ -7,11 +7,11 @@ class Api::V1::OrdersController < ActionController::API
     if @order.save
       render status: 201
     elsif @order.client.nil?
-      render status: 412, json: { errors: ['Usuário não encontrado'] }
+      render status: 412, json: { errors: @order.errors.full_messages << "Usuário não encontrado"}
     else
       render status: 412, json: { errors: @order.errors.full_messages }
-    end
-  end 
+    end      
+  end
 
   private
 
