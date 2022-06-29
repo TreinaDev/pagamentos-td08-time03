@@ -7,6 +7,7 @@ describe 'API de Pagamentos' do
 
       get '/api/v1/exchange_rates/current'
       json_response = JSON.parse(response.body)
+      
       expect(response).to have_http_status(200)
       expect(response.content_type).to include 'application/json'
       expect(json_response['exchange_rate']['value']).to eq('10.0')
