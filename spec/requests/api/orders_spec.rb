@@ -64,7 +64,7 @@ describe 'API de Pagamentos' do
 
       expect(response).to have_http_status(412)
       expect(response.content_type).to include 'application/json'
-      expect(json_response['errors']).to include 'Saldo do cliente insuficiente'
+      expect(json_response['errors']).to include 'Cliente não possui saldo suficiente'
       expect(Order.all.count).to eq(0)
     end
   end
