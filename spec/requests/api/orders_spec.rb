@@ -86,7 +86,6 @@ describe 'API de Pagamentos' do
       expect(json_response['errors']).to include 'Usuário não encontrado'
       expect(json_response['errors']).to include 'Código do Pedido não pode ficar em branco'
       expect(json_response['errors']).to include 'Valor total da transação não pode ficar em branco'
-      puts(json_response)
       expect(Order.all.count).to eq(0)
     end
 
