@@ -8,3 +8,7 @@ pt-BR:
         client: "Cliente"
         transaction_total_value: "Valor total da transação"
         exchange_rate: "Taxa de câmbio"
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      outdated_exchange_rate: utilizada não está atualizada

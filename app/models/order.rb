@@ -1,11 +1,20 @@
 class Order < ApplicationRecord
   belongs_to :client
-  belongs_to :exchange_rate
+  belongs_to :exchange_rate, optional: true
   validate :check_client_balance, on: :create
-  validates :order_code, :transaction_total_value, presence: true
+  validate :check_exchange_rate, on: :create
+  validates :order_code, :transaction_total_value, :rate_used, presence: true
   enum status: { pending: 0, approved: 5, rejected: 10 }
 
   private
+
+  def check_exchange_rate
+    if ExchangeRate.current && ExchangeRate.current.real == rate_used.to_d
+      self.exchange_rate = ExchangeRate.current
+    else
+      errors.add(:exchange_rate, :outdated_exchange_rate)
+    end
+  end
 
   def check_client_balance
     return if client.present? && client.balance_brl >= transaction_total_value

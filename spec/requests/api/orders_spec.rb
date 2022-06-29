@@ -11,6 +11,7 @@ describe 'API de Pagamentos' do
           name: client.name,
           registration_number: client.registration_number
         },
+        rate_used: credit.exchange_rate.real,
         transaction_total_value: 1.0
       }
 
@@ -27,13 +28,14 @@ describe 'API de Pagamentos' do
     end
 
     it 'e o cliente não está cadastrado' do
-      create(:exchange_rate, :approved)
+      exchange_rate = create(:exchange_rate, :approved)
       order_params = {
         order_code: 'ABCDEFG12356KAJSD',
         client: {
           name: 'Fernando Albuquerque Menezes',
           registration_number: '542.504.948-48'
         },
+        rate_used: exchange_rate.real,
         transaction_total_value: 55.0
       }
 
@@ -56,6 +58,7 @@ describe 'API de Pagamentos' do
           name: client.name,
           registration_number: client.registration_number
         },
+        rate_used: credit.exchange_rate.real,
         transaction_total_value: 100.0
       }
 
@@ -75,12 +78,13 @@ describe 'API de Pagamentos' do
           name: '',
           registration_number: ''
         },
-        transaction_total_value: ''
+        transaction_total_value: '',
+        rate_used: ''
       }
 
       post '/api/v1/orders', params: order_params
       json_response = JSON.parse(response.body)
-      
+
       expect(response).to have_http_status(412)
       expect(response.content_type).to include 'application/json'
       expect(json_response['errors']).to include 'Usuário não encontrado'
@@ -89,5 +93,25 @@ describe 'API de Pagamentos' do
       expect(Order.all.count).to eq(0)
     end
 
+    it 'e a taxa utilizada não é a atual' do
+      credit = create(:credit, :approved)
+      client = credit.client
+      order_params = {
+        order_code: 'ABCDEFG12356KAJSD',
+        client: {
+          name: client.name,
+          registration_number: client.registration_number
+        },
+        rate_used: 1000.0,
+        transaction_total_value: 1.0
+      }
+
+      post '/api/v1/orders', params: order_params
+      json_response = JSON.parse(response.body)
+
+      expect(response).to have_http_status(412)
+      expect(response.content_type).to include 'application/json'
+      expect(json_response['errors']).to include 'Taxa de câmbio utilizada não está atualizada'
+    end
   end
 end
