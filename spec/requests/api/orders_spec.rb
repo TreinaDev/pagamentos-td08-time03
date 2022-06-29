@@ -27,8 +27,7 @@ describe 'API de Pagamentos' do
     end
 
     it 'e o cliente não está cadastrado' do
-       create(:exchange_rate, :approved)
-
+      create(:exchange_rate, :approved)
       order_params = {
         order_code: 'ABCDEFG12356KAJSD',
         client: {
@@ -43,7 +42,7 @@ describe 'API de Pagamentos' do
 
       expect(response).to have_http_status(412)
       expect(response.content_type).to include 'application/json'
-      expect(json_response['errors']).to include 'Usuário não encontrado.'
+      expect(json_response['errors']).to include 'Usuário não encontrado'
       expect(json_response).not_to include 'order'
       expect(Order.all.count).to eq(0)
     end
