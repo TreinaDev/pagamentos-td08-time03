@@ -1,12 +1,24 @@
 require 'rails_helper'
 
 describe 'Administrador cadastra um limite de crédito diário' do
-  it 'com sucesso' do
+  it 'a partir do menu inicial' do
     admin = create(:admin, :approved)
 
     login_as(admin)
     visit root_path
-    click_on('Limite de Crédito Diário')
+    within("main") do
+      click_on('Limite de Crédito Diário')
+    end
+    click_on('Configurar limite')
+
+    expect(page).to have_button('Criar limite')
+  end
+  
+  it 'com sucesso' do
+    admin = create(:admin, :approved)
+
+    login_as(admin)
+    visit daily_credit_limits_path
     click_on('Configurar limite')
     within('form#daily_credit_limit') do
       fill_in('Valor R$', with: '10000')
@@ -30,17 +42,5 @@ describe 'Administrador cadastra um limite de crédito diário' do
 
     expect(page).to have_content('Valor de limite inválido. Tente novamente.')
     expect(page).to have_content('Valor R$ não pode ficar em branco')
-  end
-
-  it 'e volta para a tela de limite atual' do
-    admin = create(:admin, :approved)
-
-    login_as(admin)
-    visit root_path
-    click_on('Limite de Crédito Diário')
-    click_on('Configurar limite')
-    click_on('Voltar para limite atual')
-
-    expect(current_path).to eq(daily_credit_limits_path)
   end
 end

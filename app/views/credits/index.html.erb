@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-between">
+  <h2>Créditos Pendentes</h2>
+  <div class="links gap-2">
+  </div>
+</div>
+<hr class="my-2">
+<p class="text-muted fw-bolder mt-3">Total: <%= @credits.length %></p>
+<% if @credits.any? %>
+  <table class="table align-middle text-center">
+    <thead class="table-light">
+      <tr>
+        <th>Data de entrada</th>
+        <th>CPF/CNPJ</th>
+        <th>Nome do Cliente</th>
+        <th>Valor de crédito</th>
+        <th>Origem do crédito</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @credits.each_with_index do |credit, index| %>
+        <tr class="pending_credit-<%= index %>">
+          <td><%= I18n.localize(credit.created_at.to_date) %></td>
+          <td><%= credit.client.registration_number %></td>
+          <td><%= credit.client.name %></td>
+          <td><%= number_to_currency(credit.real_amount) %></td>
+          <td><%= credit.company.corporate_name %></td>
+          <td>
+            <div class="d-flex justify-content-center gap-1">
+              <%= button_to 'Aprovar', credit_approve_path(credit), method: :patch, class: 'btn btn-danger ' %><%= button_to 'Reprovar', credit_reject_path(credit), method: :patch, class: 'btn btn-dark' %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Não existem créditos pendentes</p>
+<% end %>

@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      order: "Pedido"
+    attributes:
+      order:
+        order_code: "Código do Pedido"
+        client: "Cliente"
+        transaction_total_value: "Valor total da transação"
+        exchange_rate: "Taxa de câmbio"

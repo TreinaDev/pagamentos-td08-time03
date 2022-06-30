@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-between">
+  <h2>Conversões Bônus</h2>
+  <div class="links gap-2">
+    <%= link_to 'Criar conversão bônus', new_bonus_conversion_path, class: 'btn btn-outline-danger mb-2' %>
+  </div>
+</div>
+<hr class="my-2">
+<p class="text-muted fw-bolder mt-3">Total: <%= @bonus_conversions.length %></p>
+<% if @bonus_conversions.empty? %>
+  <p>Nenhuma conversão bônus cadastrada.</p>
+<% else %>
+  <table class="table align-middle text-center">
+    <thead class="table-light">
+      <tr>
+        <th>Data Inicial</th>
+        <th>Data Final</th>
+        <th>Categoria de Cliente</th>
+        <th>Bônus (%)</th>
+        <th>Prazo (dias)</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bonus_conversions.each_with_index do |bc, index| %>
+        <tr class="bonus_conversion-<%= index %>">
+          <td><%= bc.start_date.strftime('%d/%m/%Y') %></td>
+          <td><%= bc.end_date.strftime('%d/%m/%Y') %></td>
+          <td><%= bc.client_category.name %></td>
+          <td><%= bc.bonus_percentage %></td>
+          <td><%= bc.deadline %></td>
+          <td><%= button_to 'Desativar', bonus_conversion_inactivate_path(bc), class: 'btn btn-dark', method: :patch %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

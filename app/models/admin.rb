@@ -14,4 +14,8 @@ class Admin < ApplicationRecord
   has_many :exchange_rates
 
   enum activation: { not_approved: 0, half_approved: 5, approved: 10 }
+
+  def full_description
+    "#{full_name} | #{email}"
+  end
 end

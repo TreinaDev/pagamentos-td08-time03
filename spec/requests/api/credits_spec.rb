@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'API de Pagamentos' do
   context 'POST /api/v1/clients/credit' do
     it 'com sucesso e o cliente ainda não está cadastrado' do
-      create(:company)
+      company = create(:company)
       create(:exchange_rate, :approved)
       credit_params = {
         client: {
@@ -11,8 +11,8 @@ describe 'API de Pagamentos' do
           registration_number: '123.456.789-00'
         },
         company: {
-          name: 'E-Commerce',
-          registration_number: '00.000.000/0000-00'
+          name: company.corporate_name,
+          registration_number: company.registration_number
         },
         real_amount: 1500.00
       }
@@ -31,7 +31,7 @@ describe 'API de Pagamentos' do
 
     it 'com sucesso e o cliente já está cadastrado' do
       client = create(:client)
-      create(:company)
+      company = create(:company)
       create(:exchange_rate, :approved)
       old_balance = client.credits.sum(:rubi_amount)
       balance = client.credits
@@ -41,8 +41,8 @@ describe 'API de Pagamentos' do
           registration_number: '123.456.789-00'
         },
         company: {
-          name: 'E-Commerce',
-          registration_number: '00.000.000/0000-00'
+          name: company.corporate_name,
+          registration_number: company.registration_number
         },
         real_amount: 1500.00
       }

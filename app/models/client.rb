@@ -9,6 +9,14 @@ class Client < ApplicationRecord
     cnpj_reg = %r{\A\d\d\.\d{3}\.\d{3}/\d{4}-\d\d\z}
     return if registration_number && (registration_number.match(cpf_reg) || registration_number.match(cnpj_reg))
 
-    errors.add(:registration_number, 'invalid format')
+    errors.add(:registration_number, :invalid_format)
+  end
+
+  def balance_rubi
+    credits.pluck(:rubi_amount).sum
+  end
+
+  def balance_brl
+    credits.pluck(:real_amount).sum
   end
 end

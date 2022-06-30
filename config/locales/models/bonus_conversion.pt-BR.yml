@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      bonus_conversion: Conversão Bônus
+    attributes:
+      bonus_conversion:
+        start_date: Data inicial
+        end_date: Data final
+        bonus_percentage: Bônus
+        deadline: Prazo de uso
+        client_category: Categoria de cliente
+        client_category_id: Categoria de cliente

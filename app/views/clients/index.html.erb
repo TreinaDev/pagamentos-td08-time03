@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-between">
+  <h2>Consultar Saldo de Clientes</h2>
+  <div class="links gap-2">
+    <%= link_to 'Voltar', root_path, class: 'btn btn-outline-danger ' %>
+  </div>
+</div>
+<hr class="my-2">
+
+<div class="p-3">
+  <%= form_with(url: search_clients_path, method: :post) do |f| %>
+    <div class="row">
+      <div class="form-group col-lg-2 p-0 mb-2 form-floating">
+        <%= f.text_field :registration_number, class: 'form-control', placeholder: ' ', required: true %>
+        <%= f.label :registration_number, 'CPF/CNPJ', class: 'form-label' %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.submit 'Consultar', class: 'btn btn-danger col-lg-2 mb-2' %>
+    </div>
+  <% end %>
+</div>
+<% if @flag_search %>
+    <hr>
+  <% if @client.present? %>
+    <div class="p-3">
+      <strong>CPF/CNPJ:</strong> <p><%= @client.registration_number %></p>
+      <strong>Nome:</strong> <p><%= @client.name %></p>
+      <strong>Saldo:</strong> RB <%= @client.balance_rubi %> (<%= number_to_currency(@client.balance_brl) %>)
+    </div>
+  <% else %>
+    <div class="p-3">
+      <strong>Cliente não encontrado</strong>
+    </div>
+  <% end %>
+<% end %>

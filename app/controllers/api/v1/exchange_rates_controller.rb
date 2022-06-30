@@ -3,7 +3,8 @@ class Api::V1::ExchangeRatesController < ActionController::API
   before_action :suspend_payment_processing
 
   def current
-    @exchange_rate = ExchangeRate.where(status: 'approved').last
+    @exchange_rate = ExchangeRate.current
+
     render status: 200 if @exchange_rate
   end
 end

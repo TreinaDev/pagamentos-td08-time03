@@ -3,3 +3,7 @@ pt-BR:
     attributes:
       exchange_rate:
         real: Cotação
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      outdated_exchange_rate: utilizada não está atualizada
