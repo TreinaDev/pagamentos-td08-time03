@@ -23,6 +23,7 @@ describe 'API de Pagamentos' do
     end
 
     it 'com sucesso e o cliente não está cadastrado' do
+      create(:client_category)
       client_params = { client: { registration_number: '123.456.789-00', name: 'João Almeida' } }
 
       post '/api/v1/clients/balance', params: client_params

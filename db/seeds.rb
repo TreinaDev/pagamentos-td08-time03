@@ -39,6 +39,10 @@ ExchangeRateApproval.create!(admin: Admin.find(3), exchange_rate: ExchangeRate.f
 puts('### Criando limite de crédito diário')
 DailyCreditLimit.create!(value: 1_000)
 
+puts('### Criando Categoria de Clientes')
+ClientCategory.create!(name: 'BASIC', discount: 5)
+ClientCategory.create!(name: 'PREMIUM', discount: 20)
+
 puts('### Criando Clientes')
 Client.create!(name: 'João Almeida', registration_number: '123.456.789-00')
 Client.create!(name: 'Erika Campos', registration_number: '987.654.321-01')
@@ -78,10 +82,6 @@ Credit.create!(real_amount: 375, exchange_rate: ExchangeRate.find(3), rubi_amoun
 Credit.create!(real_amount: 475, exchange_rate: ExchangeRate.find(3), rubi_amount: 475 / ExchangeRate.find(3).real, company: Company.find(2), client: Client.find(3))
 Credit.create!(real_amount: 575, exchange_rate: ExchangeRate.find(3), rubi_amount: 575 / ExchangeRate.find(3).real, company: Company.find(3), client: Client.find(3))
 
-puts('### Criando Categoria de Clientes')
-ClientCategory.create!(name: 'BASIC', discount: 5)
-ClientCategory.create!(name: 'PREMIUM', discount: 20)
-
 puts('### Criando Conversões Bônus')
-BonusConversion.create!(start_date: 3.days.ago, end_date: 1.day.ago, bonus_percentage: 10, deadline: 7, client_category: ClientCategory.first)
-BonusConversion.create!(start_date: 10.days.ago, end_date: 2.days.ago, bonus_percentage: 5, deadline: 3, client_category: ClientCategory.first)
+BonusConversion.create!(start_date: 5.days.ago, end_date: 2.day.ago, bonus_percentage: 10, deadline: 7, client_category: ClientCategory.first)
+BonusConversion.create!(start_date: 1.day.ago, end_date: 15.days.from_now, bonus_percentage: 5, deadline: 3, client_category: ClientCategory.first)
