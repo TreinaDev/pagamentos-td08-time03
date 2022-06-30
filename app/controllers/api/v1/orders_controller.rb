@@ -1,4 +1,7 @@
 class Api::V1::OrdersController < ActionController::API
+  include PaymentSuspensionService
+  before_action :suspend_payment_processing
+
   def create
     @order = Order.new(orders_params)
     @order.client = Client.find_by(registration_number: params[:client][:registration_number])
