@@ -15,6 +15,13 @@ Adiciona créditos à conta de um cliente
   "real_amount": 1500.00
 }
 ```
+O campo `company` deve ser preenchido com dados de alguma empresa cadastrada no sistema. 
+#### Empresas cadastradas
+|       name      | registration_number |
+|:---------------:|:-------------------:|
+|      Renner     |  12.345.678/0009-10 |
+| Americanas S.A. |  61.268.816/0001-99 |
+|      Amazon     |  86.121.752/0001-26 |
 ### Exemplo de resposta (Requisição bem-sucedida)
 ```json
 {
@@ -88,8 +95,8 @@ Cria um pedido para um cliente
     "id": 1,
     "status": "pending",
     "client": {
-    "name": "João Almeida",
-    "registration_number": "123.456.789-00"
+      "name": "João Almeida",
+      "registration_number": "123.456.789-00"
     }
   }
 }
