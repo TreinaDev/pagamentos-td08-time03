@@ -30,8 +30,7 @@ RSpec.describe Client, type: :model do
       end
 
       it 'cliente possui saldo' do
-        admin = create(:admin)
-        er = create(:exchange_rate, :approved, admin: admin, real: 10)
+        er = create(:exchange_rate, :approved, real: 10)
         company = create(:company)
         client = create(:client)
         create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
@@ -49,14 +48,36 @@ RSpec.describe Client, type: :model do
       end
 
       it 'cliente possui saldo' do
-        admin = create(:admin)
-        er = create(:exchange_rate, :approved, admin: admin, real: 10)
+        er = create(:exchange_rate, :approved, real: 10)
         company = create(:company)
         client = create(:client)
         create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
         create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
 
         expect(client.balance_brl).to eq(1150)
+      end
+    end
+
+    context 'balance_bonus' do
+      it 'cliente possui saldo bônus' do
+        er = create(:exchange_rate, :approved, real: 10)
+        company = create(:company)
+        client_category = create(:client_category)
+        client = create(:client, registration_number: '123.456.789-00', name: 'João Almeida',
+                        client_category: client_category)
+        create(:bonus_conversion, bonus_percentage: 15, client_category: client_category)
+        create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
+        create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
+
+        expect(client.balance_bonus).to eq(17.25)        
+      end
+
+      it 'saldo bônus do cliente expirou' do
+        client = create(:client)
+        bonus_credit = create(:bonus_credit, expiration_date: 1.day.ago.to_date, client: client)
+
+        expect(client.balance_bonus).to eq(0)    
+        expect(bonus_credit.expired?).to eq(true)    
       end
     end
   end
