@@ -72,6 +72,7 @@ describe 'API de Pagamentos' do
     end
 
     it 'com dados inválidos' do
+      create(:exchange_rate, :approved)
       order_params = {
         order_code: '',
         client: {
@@ -112,6 +113,28 @@ describe 'API de Pagamentos' do
       expect(response).to have_http_status(412)
       expect(response.content_type).to include 'application/json'
       expect(json_response['errors']).to include 'Taxa de câmbio utilizada não está atualizada'
+    end
+
+    it 'e o sistema está suspenso' do
+      client = create(:client)
+      exchange_rate = create(:exchange_rate, :approved, created_at: DateTime.now.days_ago(4))
+      create(:credit, exchange_rate: exchange_rate)
+      order_params = {
+        order_code: 'ABCDEFG12356KAJSD',
+        client: {
+          name: client.name,
+          registration_number: client.registration_number
+        },
+        rate_used: 10.0,
+        transaction_total_value: 1.0
+      }
+
+      post '/api/v1/orders', params: order_params
+      json_response = JSON.parse(response.body)
+
+      expect(response).to have_http_status(503)
+      expect(response.content_type).to include 'application/json'
+      expect(json_response['errors']).to include 'Sistema de pagamentos suspenso'
     end
   end
 end

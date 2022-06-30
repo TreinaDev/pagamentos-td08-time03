@@ -24,6 +24,7 @@ describe 'API de Pagamentos' do
 
     it 'com sucesso e o cliente não está cadastrado' do
       client_params = { client: { registration_number: '123.456.789-00', name: 'João Almeida' } }
+      create(:exchange_rate, :approved)
 
       post '/api/v1/clients/balance', params: client_params
       json_response = JSON.parse(response.body)
@@ -38,6 +39,7 @@ describe 'API de Pagamentos' do
 
     it 'com dados inválidos' do
       client_params = { client: { registration_number: '', name: '' } }
+      create(:exchange_rate, :approved)
 
       post '/api/v1/clients/balance', params: client_params
       json_response = JSON.parse(response.body)
