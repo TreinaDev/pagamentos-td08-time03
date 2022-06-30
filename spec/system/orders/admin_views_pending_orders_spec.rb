@@ -1,0 +1,51 @@
+require 'rails_helper'
+
+describe 'Administrador vê pedidos pendentes' do
+  it 'com sucesso' do
+    admin = create(:admin, :approved)
+    er = create(:exchange_rate, :approved, admin: admin)
+    company = create(:company)
+    first_client = create(:client, registration_number: '987.654.321-01', name: 'Sergio')
+    second_client = create(:client, registration_number: '981.634.221-01', name: 'Maria')
+    create(:credit, real_amount: 12_000, company: company, client: first_client, exchange_rate: er)
+    create(:credit, real_amount: 12_000, company: company, client: second_client, exchange_rate: er)
+
+    create(:order, client: first_client, rate_used: 10.00)
+    create(:order, client: second_client, rate_used: 10.00, order_code: '#DDXXCCDDEEFFDDFFFJJJJJ',
+                   transaction_total_value: 112.95)
+
+    login_as(admin)
+    visit(root_path)
+    click_on('Pedidos Pendentes')
+    expect(current_path).to eq(orders_path)
+    expect(page).to have_content('Pedidos Pendentes')
+    expect(page).to have_content('Total: 2')
+
+    within('.pending_order-0') do
+      expect(page).to have_content('#DDXXCCDDEEFFDDFFFJJJJJ')
+      expect(page).to have_content('Maria')
+      expect(page).to have_content('981.634.221-01')
+      expect(page).to have_content('R$ 112,95')
+      expect(page).to have_button('Aprovar')
+      expect(page).to have_button('Reprovar')
+    end
+
+    within('.pending_order-1') do
+      expect(page).to have_content('#AABBCCDDEEFFGGHHIIJJKKK')
+      expect(page).to have_content('Sergio')
+      expect(page).to have_content('987.654.321-01')
+      expect(page).to have_content('R$ 2,99')
+      expect(page).to have_button('Aprovar')
+      expect(page).to have_button('Reprovar')
+    end
+  end
+
+  it 'mas não existem pedidos pendentes' do
+    admin = create(:admin, :approved)
+
+    login_as(admin)
+    visit(orders_path)
+    expect(page).to have_content('Total: 0')
+    expect(page).to have_content('Não existem pedidos pendentes')
+  end
+end
