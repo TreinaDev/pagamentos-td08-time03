@@ -1,6 +1,6 @@
 class Api::V1::ClientsController < ActionController::API
   include SuspensionService
-  before_action :suspend_processing?
+  before_action :suspend_processing?, except: [:balance]
   before_action :credit, only: [:add_credit]
 
   def add_credit
