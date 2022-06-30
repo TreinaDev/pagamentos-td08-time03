@@ -66,3 +66,36 @@ Retorna informações referentes ao saldo do cliente
   }
 }
 ```
+## POST /api/v1/orders
+Cria um pedido para um cliente
+### Exemplo de requisição
+```json
+{
+  "order_code": "ABCDEDFFKAS1245",
+  "client": {
+    "name": "João Almeida",
+    "registration_number": "123.456.789-00"
+  },
+  "rate_used": 10.0,
+  "transaction_total_value": 1500.0
+}
+```
+### Exemplo de resposta (Requisição bem-sucedida)
+```json
+{
+  "order": {
+    "order_code": "QUINZCARACTERES",
+    "id": 1,
+    "status": "pending",
+    "client": {
+    "name": "João Almeida",
+    "registration_number": "123.456.789-00"
+    }
+  }
+}
+```
+### Exemplo de resposta (Erro na requisição)
+```json
+{
+  "errors": ["Taxa de câmbio utilizada não está atualizada"]
+}
