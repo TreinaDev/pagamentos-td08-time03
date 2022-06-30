@@ -60,24 +60,55 @@ RSpec.describe Client, type: :model do
 
     context 'balance_bonus' do
       it 'cliente possui saldo bônus' do
-        er = create(:exchange_rate, :approved, real: 10)
-        company = create(:company)
-        client_category = create(:client_category)
-        client = create(:client, registration_number: '123.456.789-00', name: 'João Almeida',
-                        client_category: client_category)
-        create(:bonus_conversion, bonus_percentage: 15, client_category: client_category)
-        create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
-        create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
+        client = create(:client, registration_number: '123.456.789-00', name: 'João Almeida')
+        create(:bonus_credit, client: client, amount: 17.25)
+        create(:bonus_credit, client: client, amount: 12.75)
 
-        expect(client.balance_bonus).to eq(17.25)        
+        expect(client.balance_bonus).to eq(30)
       end
 
       it 'saldo bônus do cliente expirou' do
         client = create(:client)
-        bonus_credit = create(:bonus_credit, expiration_date: 1.day.ago.to_date, client: client)
+        create(:bonus_credit, amount: 25, expiration_date: 1.day.ago.to_date, client: client)
+        create(:bonus_credit, amount: 100, client: client)
 
-        expect(client.balance_bonus).to eq(0)    
-        expect(bonus_credit.expired?).to eq(true)    
+        expect(client.balance_bonus).to eq(100)
+        expect(BonusCredit.first.expired?).to eq(true)
+      end
+    end
+
+    context 'expire_bonus_credit' do
+      it 'não expira nenhum crédito bônus' do
+        client = create(:client)
+        create(:bonus_credit, amount: 25, client: client)
+        create(:bonus_credit, amount: 100, client: client)
+
+        client.expire_bonus_credits
+
+        expect(client.bonus_credits.first).to be_active
+        expect(client.bonus_credits.find(2)).to be_active
+      end
+
+      it 'expira 1 (um) crédito bônus' do
+        client = create(:client)
+        create(:bonus_credit, amount: 25, expiration_date: 1.day.ago.to_date, client: client)
+        create(:bonus_credit, amount: 100, client: client)
+
+        client.expire_bonus_credits
+
+        expect(client.bonus_credits.first).to be_expired
+        expect(client.bonus_credits.find(2)).to be_active
+      end
+
+      it 'expira 2(dois) créditos bônus' do
+        client = create(:client)
+        create(:bonus_credit, amount: 25, expiration_date: 1.day.ago.to_date, client: client)
+        create(:bonus_credit, amount: 100, expiration_date: 2.day.ago.to_date , client: client)
+
+        client.expire_bonus_credits
+
+        expect(client.bonus_credits.first).to be_expired
+        expect(client.bonus_credits.find(2)).to be_expired
       end
     end
   end

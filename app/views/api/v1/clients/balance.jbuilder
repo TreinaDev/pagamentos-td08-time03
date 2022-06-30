@@ -3,4 +3,5 @@ json.client do
   json.name @client.name
   json.balance_rubi @client.balance_rubi
   json.balance_brl @client.balance_brl
+  json.balance_bonus @client.balance_bonus
 end

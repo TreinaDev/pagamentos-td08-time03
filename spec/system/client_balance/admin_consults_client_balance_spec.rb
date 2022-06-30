@@ -40,9 +40,9 @@ describe 'Administrador consulta o saldo de um cliente' do
     company = create(:company)
     client_category = create(:client_category)
     client = create(:client, registration_number: '123.456.789-00', client_category: client_category)
-    create(:bonus_conversion, bonus_percentage: 15, client_category: client_category)
     create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
     create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
+    create(:bonus_credit, client: client, amount: 17.25)
 
     login_as(admin)
     visit clients_path

@@ -85,3 +85,11 @@ Credit.create!(real_amount: 575, exchange_rate: ExchangeRate.find(3), rubi_amoun
 puts('### Criando Conversões Bônus')
 BonusConversion.create!(start_date: 5.days.ago, end_date: 2.day.ago, bonus_percentage: 10, deadline: 7, client_category: ClientCategory.first)
 BonusConversion.create!(start_date: 1.day.ago, end_date: 15.days.from_now, bonus_percentage: 5, deadline: 3, client_category: ClientCategory.first)
+
+puts ('### Criando Créditos Bônus')
+BonusCredit.create!(amount: 20, expiration_date: 10.days.from_now.to_date, client: Client.find(1))
+BonusCredit.create!(amount: 45, expiration_date: 10.days.from_now.to_date, client: Client.find(1))
+BonusCredit.create!(amount: 15, expiration_date: 7.days.from_now.to_date, client: Client.find(2))
+BonusCredit.create!(amount: 40, expiration_date: 7.days.from_now.to_date, client: Client.find(2))
+BonusCredit.create!(amount: 65, expiration_date: 4.days.from_now.to_date, client: Client.find(3))
+BonusCredit.create!(amount: 35, expiration_date: 4.days.from_now.to_date, client: Client.find(3))
