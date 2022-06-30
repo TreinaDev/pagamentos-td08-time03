@@ -3,6 +3,7 @@ class Client < ApplicationRecord
   validates :name, :registration_number, presence: true
 
   has_many :credits
+  has_many :debits
 
   def cpf_cnpj
     cpf_reg = /\A\d{3}\.\d{3}\.\d{3}-\d\d\z/
@@ -13,10 +14,10 @@ class Client < ApplicationRecord
   end
 
   def balance_rubi
-    credits.pluck(:rubi_amount).sum
+    credits.pluck(:rubi_amount).sum - debits.pluck(:rubi_amount).sum
   end
 
   def balance_brl
-    credits.pluck(:real_amount).sum
+    credits.pluck(:real_amount).sum - debits.pluck(:real_amount).sum
   end
 end
