@@ -1,6 +1,6 @@
 class Api::V1::ExchangeRatesController < ActionController::API
-  include PaymentSuspensionService
-  before_action :suspend_payment_processing
+  include SuspensionService
+  before_action :suspend_processing?
 
   def current
     @exchange_rate = ExchangeRate.current
