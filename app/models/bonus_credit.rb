@@ -3,6 +3,9 @@ class BonusCredit < ApplicationRecord
 
   enum status: { active: 0, expired: 5 }
 
+  validates :expiration_date, :amount, presence: true
+  validates :amount, numericality: true
+
   def self.builder(client, rubi_amount)
     bonus_conversion = BonusConversion.where('client_category_id = ? AND start_date <= ? AND ? <= end_date',
                                              client.client_category, Date.current, Date.current).first
