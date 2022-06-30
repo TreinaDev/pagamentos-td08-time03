@@ -21,23 +21,7 @@ describe 'Administrador vê pedidos pendentes' do
     expect(page).to have_content('Pedidos Pendentes')
     expect(page).to have_content('Total: 2')
 
-    within('.pending_order-0') do
-      expect(page).to have_content('#DDXXCCDDEEFFDDFFFJJJJJ')
-      expect(page).to have_content('Maria')
-      expect(page).to have_content('981.634.221-01')
-      expect(page).to have_content('R$ 112,95')
-      expect(page).to have_button('Aprovar')
-      expect(page).to have_button('Reprovar')
-    end
-
-    within('.pending_order-1') do
-      expect(page).to have_content('#AABBCCDDEEFFGGHHIIJJKKK')
-      expect(page).to have_content('Sergio')
-      expect(page).to have_content('987.654.321-01')
-      expect(page).to have_content('R$ 2,99')
-      expect(page).to have_button('Aprovar')
-      expect(page).to have_button('Reprovar')
-    end
+   
   end
 
   it 'mas não existem pedidos pendentes' do
