@@ -18,9 +18,7 @@ class Order < ApplicationRecord
   end
 
   def check_client_balance
-    if client.present? && client.balance_brl + client.balance_bonus * ExchangeRate.current.real >= transaction_total_value
-      return
-    end
+    return if client.present? && client.balance_brl + client.balance_bonus >= transaction_total_value
 
     errors.add(:client, :insufficient_balance)
   end
