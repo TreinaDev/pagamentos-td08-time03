@@ -69,7 +69,7 @@ RSpec.describe Client, type: :model do
 
       it 'saldo bônus do cliente expirou' do
         client = create(:client)
-        create(:bonus_credit, amount: 25, expiration_date: 1.day.ago.to_date, client: client)
+        create(:bonus_credit, amount: 25, expiration_date: DateTime.now.days_ago(1).to_date, client: client)
         create(:bonus_credit, amount: 100, client: client)
 
         expect(client.balance_bonus).to eq(100)
@@ -91,7 +91,7 @@ RSpec.describe Client, type: :model do
 
       it 'expira 1 (um) crédito bônus' do
         client = create(:client)
-        create(:bonus_credit, amount: 25, expiration_date: 1.day.ago.to_date, client: client)
+        create(:bonus_credit, amount: 25, expiration_date: DateTime.now.days_ago(1).to_date, client: client)
         create(:bonus_credit, amount: 100, client: client)
 
         client.expire_bonus_credits
@@ -102,8 +102,8 @@ RSpec.describe Client, type: :model do
 
       it 'expira 2(dois) créditos bônus' do
         client = create(:client)
-        create(:bonus_credit, amount: 25, expiration_date: 1.day.ago.to_date, client: client)
-        create(:bonus_credit, amount: 100, expiration_date: 2.day.ago.to_date , client: client)
+        create(:bonus_credit, amount: 25, expiration_date: DateTime.now.days_ago(1).to_date, client: client)
+        create(:bonus_credit, amount: 100, expiration_date: DateTime.now.days_ago(2).to_date , client: client)
 
         client.expire_bonus_credits
 
