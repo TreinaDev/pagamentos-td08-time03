@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_30_152524) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_01_150354) do
   create_table "admin_approvals", force: :cascade do |t|
     t.integer "admin_id"
     t.string "super_admin_email"
@@ -101,8 +101,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_152524) do
   end
 
   create_table "debits", force: :cascade do |t|
-    t.decimal "real_amount"
-    t.decimal "rubi_amount"
+    t.decimal "real_amount", precision: 10, scale: 2
+    t.decimal "rubi_amount", precision: 10, scale: 2
     t.integer "exchange_rate_id", null: false
     t.integer "client_id", null: false
     t.integer "order_id", null: false
