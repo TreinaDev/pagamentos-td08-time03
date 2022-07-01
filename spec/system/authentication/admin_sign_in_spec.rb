@@ -14,7 +14,7 @@ describe 'Administrador se autentica' do
   end
 
   it 'não estando aprovado ainda' do
-    create(:admin, :not_approved)
+    create(:admin, :pending)
 
     visit(root_path)
 

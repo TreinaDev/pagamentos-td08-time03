@@ -22,7 +22,7 @@
         <tr class="pending_admin-<%= index %>">
           <td><%= admin.full_name %></td>
           <td><%= admin.email %></td>
-          <% if admin.not_approved? %>
+          <% if admin.pending? %>
             <td>0/2</td>
           <% else %>
             <td>1/2</td>

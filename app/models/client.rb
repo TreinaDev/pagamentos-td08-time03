@@ -10,11 +10,11 @@ class Client < ApplicationRecord
   before_validation :associate_default_category
 
   def balance_rubi
-    credits.where(status: :approved).pluck(:rubi_amount).sum - debits.where(status: :checking_account).pluck(:rubi_amount).sum
+    credits.where(status: :approved).pluck(:rubi_amount).sum - debits.where(account_type: :checking_account).pluck(:rubi_amount).sum
   end
 
   def balance_brl
-    credits.where(status: :approved).pluck(:real_amount).sum - debits.where(status: :checking_account).pluck(:real_amount).sum
+    credits.where(status: :approved).pluck(:real_amount).sum - debits.where(account_type: :checking_account).pluck(:real_amount).sum
   end
 
   def balance_bonus(type = nil)
@@ -26,7 +26,7 @@ class Client < ApplicationRecord
         acc + (v.credit.exchange_rate.real * v.amount)
       end
     end
-    bonus_value - debits.where(status: :bonus_account).pluck(:real_amount).sum
+    bonus_value - debits.where(account_type: :bonus_account).pluck(:real_amount).sum
   end
 
   def expire_bonus_credits

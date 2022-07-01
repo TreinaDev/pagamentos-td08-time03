@@ -7,7 +7,7 @@ class Debit < ApplicationRecord
   validates :real_amount, :rubi_amount, numericality: { greater_than: 0 }
   before_create :select_account
 
-  enum status: { checking_account: 0, bonus_account: 5 }
+  enum account_type: { checking_account: 0, bonus_account: 5 }
 
   private
 
@@ -19,9 +19,9 @@ class Debit < ApplicationRecord
     return if client.balance_brl > real_amount || bonus_account?
 
     if client.balance_bonus >= real_amount
-      self.status = 'bonus_account'
+      self.account_type = 'bonus_account'
     else
-      bonus_debit = Debit.new(real_amount: real_amount - client.balance_brl, status: :bonus_account,
+      bonus_debit = Debit.new(real_amount: real_amount - client.balance_brl, account_type: :bonus_account,
                               exchange_rate: exchange_rate, order: order, client: client)
       self.real_amount = client.balance_brl
       rubi_value
