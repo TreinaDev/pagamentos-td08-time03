@@ -2,7 +2,6 @@ class Api::V1::OrdersController < ActionController::API
   def create
     @order = Order.new(orders_params)
     @order.client = Client.find_by(registration_number: params[:client][:registration_number])
-
     if @order.save
       render status: 201
     elsif @order.client.nil?
