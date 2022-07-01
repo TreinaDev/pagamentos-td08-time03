@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   validate :check_client_balance, on: :create
   validate :check_exchange_rate, on: :create
   validates :order_code, :transaction_total_value, :rate_used, presence: true
+  validates :transaction_total_value, numericality: { greater_than_or_equal_to: 0 }
   enum status: { pending: 0, approved: 5, rejected: 10 }
 
   private
