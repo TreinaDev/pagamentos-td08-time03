@@ -12,7 +12,7 @@
         <%= f.text_field :registration_number, class: 'form-control', placeholder: ' ', required: true %>
         <%= f.label :registration_number, 'CPF/CNPJ', class: 'form-label' %>
       </div>
-      <%= f.submit 'Consultar', class: 'btn btn-danger col-lg-2 mb-2' %>
+      <%= f.submit 'Consultar', class: 'btn btn-danger col-lg-2 mb-2 fs-5' %>
     </div>
   <% end %>
 </div>
@@ -42,7 +42,7 @@
       <li class="list-group-item d-flex justify-content-between align-items-center col-lg-4 fs-5">
         Saldo Bônus:
         <span class="badge bg-danger rounded-pill">
-          RB <%= @client.balance_bonus('rubi') %>
+          RB <%= @client.balance_bonus('rubi') %> (<%= number_to_currency(@client.balance_bonus) %>)
         </span>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-center col-lg-4 fs-5">
@@ -51,12 +51,11 @@
           <%= @client.client_category.name %>
         </span>
       </li>
-      <hr class="my-4">
-      <h3>Movimentações:</h3>
+      <h3 class="my-4">Movimentações:</h3>
       <% @client.transactions_extract.each do |t| %>
         <% if t.class == Credit%>
           <li class="list-group-item d-flex justify-content-between align-items-center col-lg-12 fs-5">
-            <span class="bi box-arrow-down"> Crédito em Conta</span>
+            <span class="bi bi-box-arrow-up text-success"> Crédito em Conta</span>
             <span class="text-muted">
               <%= t.created_at.localtime.strftime('%d/%m/%Y') %>
             </span>
@@ -66,7 +65,7 @@
           </li>
         <% else %>
           <li class="list-group-item d-flex justify-content-between align-items-center col-lg-12 fs-5">
-            <span class="bi bi-save"> Débito em Conta</span>
+            <span class="bi bi-box-arrow-down text-danger"> Débito em Conta</span>
             <span class="text-muted ">
               <%= t.created_at.localtime.strftime('%d/%m/%Y') %>
             </span>
