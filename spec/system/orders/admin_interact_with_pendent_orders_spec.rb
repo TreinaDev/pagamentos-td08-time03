@@ -31,7 +31,7 @@ describe 'Administrador acessa página de pedidos pendentes' do
     expect(page).not_to have_button('Reprovar')
     expect(Order.last.approved?).to eq(true)
     expect(Client.last.balance_brl).to eq(55.67)
-    expect(Client.last.balance_rubi).to eq(5.567)
+    expect(Client.last.balance_rubi).to eq(5.57)
   end
 
   it 'e reprova um pedido' do
