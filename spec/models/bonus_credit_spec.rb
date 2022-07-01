@@ -40,6 +40,7 @@ RSpec.describe BonusCredit, type: :model do
         client = create(:client)
         credit = create(:credit, real_amount: 200, client: client)
         bonus = create(:bonus_credit, credit: credit, amount: 25, client: client)
+
         expect(bonus.real_amount).to eq(250)
       end
     end
