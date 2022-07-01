@@ -13,7 +13,7 @@ describe 'Administrador acessa página de pedidos pendentes' do
       order_status: 'paid'
     }.to_json
     fake_response = double('faraday_response', status: 204)
-    allow(Faraday).to receive(:post).with('http://localhost:3000/api/v1/orders/update_status', json_data, content_type: 'application/json').and_return(fake_response)
+    allow(Faraday).to receive(:patch).with('http://localhost:3000/api/v1/orders/update_status', json_data, content_type: 'application/json').and_return(fake_response)
 
     login_as(admin)
     visit root_path
@@ -46,7 +46,7 @@ describe 'Administrador acessa página de pedidos pendentes' do
       order_status: 'refused'
     }.to_json
     fake_response = double('faraday_response', status: 204)
-    allow(Faraday).to receive(:post).with('http://localhost:3000/api/v1/orders/update_status', json_data, content_type: 'application/json').and_return(fake_response)
+    allow(Faraday).to receive(:patch).with('http://localhost:3000/api/v1/orders/update_status', json_data, content_type: 'application/json').and_return(fake_response)
 
     login_as(admin)
     visit root_path
