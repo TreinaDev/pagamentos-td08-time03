@@ -5,31 +5,60 @@
   </div>
 </div>
 <hr class="my-2">
-
 <div class="p-3">
   <%= form_with(url: search_clients_path, method: :post) do |f| %>
     <div class="row">
-      <div class="form-group col-lg-2 p-0 mb-2 form-floating">
+      <div class="form-group col-lg-4 p-0 mb-2 form-floating">
         <%= f.text_field :registration_number, class: 'form-control', placeholder: ' ', required: true %>
         <%= f.label :registration_number, 'CPF/CNPJ', class: 'form-label' %>
       </div>
-    </div>
-    <div class="row">
       <%= f.submit 'Consultar', class: 'btn btn-danger col-lg-2 mb-2' %>
     </div>
   <% end %>
 </div>
 <% if @flag_search %>
-    <hr>
+  <hr>
   <% if @client.present? %>
-    <div class="p-3">
-      <strong>CPF/CNPJ:</strong> <p><%= @client.registration_number %></p>
-      <strong>Nome:</strong> <p><%= @client.name %></p>
-      <strong>Saldo:</strong> RB <%= @client.balance_rubi %> (<%= number_to_currency(@client.balance_brl) %>)
+    <h3 class="my-4">Resultado da sua busca:</h3>
+    <div class="p-3 shadow-sm row">
+      <li class="list-group-item d-flex justify-content-between align-items-center col-lg-4 fs-5">
+        Nome:
+        <span class="badge bg-danger rounded-pill">
+          <%= @client.name %>
+        </span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center col-lg-4 fs-5">
+        CPF/CNPJ:
+        <span class="badge bg-danger rounded-pill">
+          <%= @client.registration_number %>
+        </span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center col-lg-4 fs-5">
+        Saldo:
+        Saldo: RB 115.0 (R$ 1.150,00)
+        <span class="badge bg-danger rounded-pill">
+          RB <%= @client.balance_rubi %> (<%= number_to_currency(@client.balance_brl) %>)
+        </span>
+      </li>
     </div>
+    <hr>
+    <h3 class="my-4">Movimentações:</h3>
+    <% @client.credits.each do |single| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center col-lg-6 fs-5">
+        <span class="bi bi-save"> Crédito em Conta</span>
+        <span class="text-muted">
+          <%= single.created_at.localtime.strftime('%d/%m/%Y') %>
+        </span>
+        <span class="badge bg-success rounded-pill">
+          <%= number_to_currency(single.real_amount) %>
+        </span>
+      </li>
+    <% end %>
   <% else %>
     <div class="p-3">
-      <strong>Cliente não encontrado</strong>
+      <strong>
+        <h3 class="bi bi-x text-center text-muted">Cliente não encontrado</h3>
+      </strong>
     </div>
   <% end %>
 <% end %>
