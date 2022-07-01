@@ -19,12 +19,14 @@ describe 'Administrador vê pedidos pendentes' do
 
     login_as(admin)
     visit(root_path)
-    click_on('Pedidos Pendentes')
+    within("nav") do
+      click_on('Pedidos Pendentes')
+    end
     expect(current_path).to eq(orders_path)
     expect(page).to have_content('Pedidos Pendentes')
     expect(page).to have_content('Total: 2')
 
-   
+
   end
 
   it 'mas não existem pedidos pendentes' do
