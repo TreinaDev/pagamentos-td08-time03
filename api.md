@@ -80,7 +80,6 @@ Cria um pedido para um cliente
 {
   "order_code": "ABCDEDFFKAS1245",
   "client": {
-    "name": "João Almeida",
     "registration_number": "123.456.789-00"
   },
   "rate_used": 10.0,
