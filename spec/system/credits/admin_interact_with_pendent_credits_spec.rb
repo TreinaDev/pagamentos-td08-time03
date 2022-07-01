@@ -6,8 +6,9 @@ describe 'Administrador acessa página de créditos pendentes' do
     create(:daily_credit_limit, value: 10_000)
     er = create(:exchange_rate, admin: admin)
     company = create(:company)
-    first_client = create(:client)
-    second_client = create(:client, registration_number: '987.654.321-01', name: 'Sergio')
+    client_category = create(:client_category)
+    first_client = create(:client, client_category: client_category)
+    second_client = create(:client, registration_number: '987.654.321-01', name: 'Sergio', client_category: client_category)
     create(:credit, real_amount: 12_000, company: company, client: first_client, exchange_rate: er)
     create(:credit, real_amount: 15_000, company: company, client: second_client, exchange_rate: er)
 
@@ -33,8 +34,9 @@ describe 'Administrador acessa página de créditos pendentes' do
     create(:daily_credit_limit, value: 10_000)
     er = create(:exchange_rate, admin: admin)
     company = create(:company)
-    first_client = create(:client)
-    second_client = create(:client, registration_number: '987.654.321-01', name: 'Sergio')
+    client_category = create(:client_category)
+    first_client = create(:client, client_category: client_category)
+    second_client = create(:client, registration_number: '987.654.321-01', name: 'Sergio', client_category: client_category)
     create(:credit, real_amount: 12_000, company: company, client: first_client, exchange_rate: er)
     create(:credit, real_amount: 15_000, company: company, client: second_client, exchange_rate: er)
 

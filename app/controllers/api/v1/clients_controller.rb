@@ -38,6 +38,8 @@ class Api::V1::ClientsController < ActionController::API
     registration_number = params.require(:company).permit(:registration_number)
     company = Company.find_by(registration_number)
     exchange_rate = ExchangeRate.current
-    @credit = Credit.builder(find_or_create_client, credit_params, company, exchange_rate)
+    client = find_or_create_client
+    @credit = Credit.builder(client, credit_params, company, exchange_rate)
+    @bonus_credit = BonusCredit.builder(client, @credit.rubi_amount)
   end
 end

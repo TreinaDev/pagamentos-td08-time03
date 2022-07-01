@@ -118,7 +118,7 @@ describe 'API de Pagamentos' do
     it 'e o sistema está suspenso' do
       client = create(:client)
       exchange_rate = create(:exchange_rate, :approved, created_at: DateTime.now.days_ago(4))
-      create(:credit, exchange_rate: exchange_rate)
+      create(:credit, exchange_rate: exchange_rate, client: client)
       order_params = {
         order_code: 'ABCDEFG12356KAJSD',
         client: {
