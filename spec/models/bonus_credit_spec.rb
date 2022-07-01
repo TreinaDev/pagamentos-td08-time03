@@ -35,5 +35,13 @@ RSpec.describe BonusCredit, type: :model do
         expect(bonus_credit).to be_persisted
       end
     end
+    context 'real_amount' do
+      it 'retorna o valor do bonus em reais' do
+        client = create(:client)
+        credit = create(:credit, real_amount: 200, client: client)
+        bonus = create(:bonus_credit, credit: credit, amount: 25, client: client)
+        expect(bonus.real_amount).to eq(250)
+      end
+    end
   end
 end

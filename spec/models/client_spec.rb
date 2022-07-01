@@ -144,5 +144,16 @@ RSpec.describe Client, type: :model do
         expect(client.bonus_credits.find(2)).to be_expired
       end
     end
+
+    context 'select_account' do
+      it 'cliente possui saldo bônus' do
+        client = create(:client)
+        credit = create(:credit, client: client)
+        create(:bonus_credit, credit: credit, amount: 25, client: client)
+        order = create(:order, client: client, transaction_total_value: 200)
+        debit = create(:debit, real_amount: order.transaction_total_value, exchange_rate: ExchangeRate.current, client: client, order:order)
+        expect(debit.account_type).to eq("bonus_account")
+      end
+    end
   end
 end
