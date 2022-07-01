@@ -5,6 +5,7 @@ describe 'API de Pagamentos' do
     it 'com sucesso e o cliente ainda não está cadastrado' do
       company = create(:company)
       create(:exchange_rate, :approved)
+      create(:client_category)
       credit_params = {
         client: {
           name: 'João Almeida',

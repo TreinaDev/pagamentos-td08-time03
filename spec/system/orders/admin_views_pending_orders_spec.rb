@@ -5,8 +5,11 @@ describe 'Administrador vê pedidos pendentes' do
     admin = create(:admin, :approved)
     er = create(:exchange_rate, :approved, admin: admin)
     company = create(:company)
-    first_client = create(:client, registration_number: '987.654.321-01', name: 'Sergio')
-    second_client = create(:client, registration_number: '981.634.221-01', name: 'Maria')
+    client_category = create(:client_category)
+    first_client = create(:client, registration_number: '987.654.321-01', name: 'Sergio',
+                          client_category: client_category)
+    second_client = create(:client, registration_number: '981.634.221-01', name: 'Maria',
+                           client_category: client_category)
     create(:credit, real_amount: 12_000, company: company, client: first_client, exchange_rate: er)
     create(:credit, real_amount: 12_000, company: company, client: second_client, exchange_rate: er)
 

@@ -13,25 +13,23 @@
 <% end %>
 <div class="p-3">
   <%= form_with(model: @bonus_conversion) do |f| %>
-    <div class="row">
-      <div class="row col-5 gx-2 mb-2">
+    <div class="row my-2">
+      <div class="form-group col-lg-2 p-0 mb-2">
         <%= f.label :start_date %>
-        <%= f.date_select :start_date, {start_day: Date.today, order: [:day, :month, :year]}, {class: 'form-select w-25 py-3 me-3'} %>
+        <%= f.date_field :start_date, class: 'form-select py-3 me-3' %>
       </div>
-    </div>
-    <div class="row">
-      <div class="row col-5 gx-2 mb-2">
+      <div class="form-group col-lg-2 p-0 mb-2">
         <%= f.label :end_date %>
-        <%= f.date_select :end_date, {start_day: Date.yesterday, order: [:day, :month, :year]}, {class: 'form-select w-25 py-3 me-3'} %>
+        <%= f.date_field :end_date, class: 'form-select py-3 me-3' %>
       </div>
     </div>
     <div class="row my-2">
       <div class="form-group col-lg-2 p-0 mb-2 form-floating">
-        <%= f.number_field :bonus_percentage, step: 0.1, class: 'form-control', placeholder: '' %>
+        <%= f.number_field :bonus_percentage, step: 0.1, class: 'form-control', placeholder: ' ' %>
         <%= f.label :bonus_percentage, class: 'form-label ' %>
       </div>
       <div class="form-group col-lg-2 p-0 mb-2 form-floating">
-        <%= f.number_field :deadline, class: 'form-control', placeholder: '' %>
+        <%= f.number_field :deadline, class: 'form-control', placeholder: ' ' %>
         <%= f.label :deadline, class: 'form-label ' %>
       </div>
     </div>

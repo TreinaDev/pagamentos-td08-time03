@@ -15,7 +15,7 @@ class BonusConversionsController < ApplicationController
     if @bonus_conversion.save
       redirect_to bonus_conversions_path, notice: 'Conversão bônus cadastrada com sucesso!'
     else
-      flash.now[:alert] = 'Erro ao criar categoria de clientes'
+      flash.now[:alert] = 'Erro ao criar conversão bônus'
       render :new
     end
   end

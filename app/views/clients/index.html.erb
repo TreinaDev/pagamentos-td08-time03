@@ -19,6 +19,7 @@
 <% if @flag_search %>
   <hr>
   <% if @client.present? %>
+<<<<<<< HEAD
     <h3 class="my-4">Resultado da sua busca:</h3>
     <div class="p-3 shadow-sm row">
       <li class="list-group-item d-flex justify-content-between align-items-center col-lg-4 fs-5">
@@ -40,6 +41,13 @@
           RB <%= @client.balance_rubi %> (<%= number_to_currency(@client.balance_brl) %>)
         </span>
       </li>
+=======
+    <div class="p-3">
+      <p><strong>CPF/CNPJ:</strong> <%= @client.registration_number %></p>
+      <p><strong>Nome:</strong> <%= @client.name %></p>
+      <p><strong>Saldo:</strong> RB <%= @client.balance_rubi %> (<%= number_to_currency(@client.balance_brl) %>)</p>
+      <p><strong>Saldo Bônus:</strong> RB <%= @client.balance_bonus %></p>
+>>>>>>> 9b52beef4134719a81f656a829621ade7be4ead3
     </div>
     <hr>
     <h3 class="my-4">Movimentações:</h3>

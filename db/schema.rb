@@ -46,6 +46,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_152524) do
     t.index ["client_category_id"], name: "index_bonus_conversions_on_client_category_id"
   end
 
+  create_table "bonus_credits", force: :cascade do |t|
+    t.integer "status", default: 0
+    t.date "expiration_date"
+    t.decimal "amount"
+    t.integer "client_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_bonus_credits_on_client_id"
+  end
+
   create_table "client_categories", force: :cascade do |t|
     t.string "name"
     t.decimal "discount"
@@ -59,6 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_152524) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "client_category_id", null: false
+    t.index ["client_category_id"], name: "index_clients_on_client_category_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -134,6 +146,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_152524) do
 
   add_foreign_key "admin_approvals", "admins"
   add_foreign_key "bonus_conversions", "client_categories"
+  add_foreign_key "bonus_credits", "clients"
+  add_foreign_key "clients", "client_categories"
   add_foreign_key "credits", "clients"
   add_foreign_key "credits", "companies"
   add_foreign_key "credits", "exchange_rates"

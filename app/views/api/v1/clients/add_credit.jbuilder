@@ -8,3 +8,7 @@ json.client do
   json.name @credit.client.name
   json.registration_number @credit.client.registration_number
 end
+
+json.bonus_credit do 
+  json.amount @bonus_credit.amount
+end
