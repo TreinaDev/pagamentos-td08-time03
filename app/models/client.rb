@@ -17,14 +17,21 @@ class Client < ApplicationRecord
     credits.where(status: :approved).pluck(:real_amount).sum - debits.where(status: :checking_account).pluck(:real_amount).sum
   end
 
-  def balance_bonus 
+  def balance_bonus(type = nil)
     expire_bonus_credits
-    bonus_credits.where(status: :active).pluck(:amount).sum * ExchangeRate.current.real - debits.where(status: :bonus_account).pluck(:real_amount).sum
+    bonus_value = bonus_credits.where(status: :active).reduce(0) do |acc, v|
+      if type == 'rubi'
+        acc + v.amount
+      else
+        acc + (v.credit.exchange_rate.real * v.amount)
+      end
+    end
+    bonus_value - debits.where(status: :bonus_account).pluck(:real_amount).sum
   end
 
   def expire_bonus_credits
     to_be_expired_bonus_credits = bonus_credits.where('expiration_date < ?', DateTime.now.to_date)
-    to_be_expired_bonus_credits.each { |bc| bc.expired! }
+    to_be_expired_bonus_credits.each(&:expired!)
   end
 
   def transactions_extract(max: 10)

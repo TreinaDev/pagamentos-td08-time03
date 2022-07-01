@@ -29,9 +29,9 @@ RSpec.describe BonusCredit, type: :model do
       it 'build a bonus credit' do
         credit = create(:credit)
         create(:bonus_conversion, client_category: ClientCategory.last)
-        
-        bonus_credit = BonusCredit.builder(credit.client, credit.rubi_amount)
-  
+
+        bonus_credit = BonusCredit.builder(credit.client, credit.rubi_amount, credit)
+
         expect(bonus_credit).to be_persisted
       end
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_01_155209) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_01_195705) do
   create_table "admin_approvals", force: :cascade do |t|
     t.integer "admin_id"
     t.string "super_admin_email"
@@ -53,7 +53,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_01_155209) do
     t.integer "client_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "credit_id", null: false
     t.index ["client_id"], name: "index_bonus_credits_on_client_id"
+    t.index ["credit_id"], name: "index_bonus_credits_on_credit_id"
   end
 
   create_table "client_categories", force: :cascade do |t|
@@ -148,6 +150,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_01_155209) do
   add_foreign_key "admin_approvals", "admins"
   add_foreign_key "bonus_conversions", "client_categories"
   add_foreign_key "bonus_credits", "clients"
+  add_foreign_key "bonus_credits", "credits"
   add_foreign_key "clients", "client_categories"
   add_foreign_key "credits", "clients"
   add_foreign_key "credits", "companies"

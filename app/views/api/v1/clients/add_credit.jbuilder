@@ -9,6 +9,8 @@ json.client do
   json.registration_number @credit.client.registration_number
 end
 
-json.bonus_credit do 
-  json.amount @bonus_credit.amount
+if @bonus_credit
+  json.bonus_credit do
+    json.amount @bonus_credit.amount
+  end
 end

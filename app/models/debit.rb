@@ -16,16 +16,15 @@ class Debit < ApplicationRecord
   end
 
   def select_account
-    return if client.balance_brl > real_amount or bonus_account?
+    return if client.balance_brl > real_amount || bonus_account?
 
-    if client.balance_bonus > real_amount
+    if client.balance_bonus >= real_amount
       self.status = 'bonus_account'
     else
       bonus_debit = Debit.new(real_amount: real_amount - client.balance_brl, status: :bonus_account,
                               exchange_rate: exchange_rate, order: order, client: client)
       self.real_amount = client.balance_brl
       rubi_value
-      debugger
       bonus_debit.save!
     end
   end

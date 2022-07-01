@@ -40,6 +40,6 @@ class Api::V1::ClientsController < ActionController::API
     exchange_rate = ExchangeRate.current
     client = find_or_create_client
     @credit = Credit.builder(client, credit_params, company, exchange_rate)
-    @bonus_credit = BonusCredit.builder(client, @credit.rubi_amount)
+    @bonus_credit = BonusCredit.builder(client, @credit.rubi_amount, @credit)
   end
 end
