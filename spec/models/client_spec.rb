@@ -40,6 +40,7 @@ RSpec.describe Client, type: :model do
       end
     end
 
+
     context 'balance_brl' do
       it 'cliente sem saldo' do
         client = create(:client)
@@ -58,7 +59,6 @@ RSpec.describe Client, type: :model do
       end
     end
 
-<<<<<<< HEAD
     context 'transactions_extract' do
       it 'sem parâmetros definidos' do
         admin = create(:admin)
@@ -84,7 +84,8 @@ RSpec.describe Client, type: :model do
 
         expect(client.transactions_extract(max: 1).length).to eq(1)
         expect(client.transactions_extract(max: 1)[0]).to eq(debit)
-=======
+      end
+    end
     context 'balance_bonus' do
       it 'cliente possui saldo bônus' do
         client = create(:client, registration_number: '123.456.789-00', name: 'João Almeida')
@@ -136,7 +137,6 @@ RSpec.describe Client, type: :model do
 
         expect(client.bonus_credits.first).to be_expired
         expect(client.bonus_credits.find(2)).to be_expired
->>>>>>> 9b52beef4134719a81f656a829621ade7be4ead3
       end
     end
   end
