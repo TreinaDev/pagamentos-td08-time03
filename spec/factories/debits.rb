@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :debit do
-    real_amount { 1 }
-    rubi_amount { 1 }
-    exchange_rate { nil }
-    client { nil }
+    real_amount { 12 }
+    association :client
+    association :exchange_rate
   end
 end

@@ -13,11 +13,9 @@ class Client < ApplicationRecord
     errors.add(:registration_number, :invalid_format)
   end
 
-  def balance_rubi
-    credits.pluck(:rubi_amount).sum - debits.pluck(:rubi_amount).sum
-  end
-
-  def balance_brl
-    credits.pluck(:real_amount).sum - debits.pluck(:real_amount).sum
+  def transactions_extract(max: 10)
+    # max, por padrão retorna as 10 últimas transações de um determinado cliente
+    transactions_extract = credits.where(status: 5) | debits
+    transactions_extract.sort_by(&:created_at).reverse.first(max)
   end
 end
