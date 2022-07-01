@@ -4,5 +4,6 @@ FactoryBot.define do
     expiration_date { 15.days.from_now.to_date }
     amount { 10 }
     association(:client)
+    association :credit
   end
 end

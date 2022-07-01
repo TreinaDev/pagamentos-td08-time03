@@ -57,7 +57,7 @@ describe 'API de Pagamentos' do
       expect(json_response['credit']['status']).to eq('approved')
       expect(json_response['credit']['real_amount']).to eq('1500.0')
       expect(json_response['credit']['rubi_amount']).to eq('150.0')
-      expect(json_response['bonus_credit']['amount']).to eq('0.0')
+      expect(json_response.keys).not_to include 'bonus_credit'
     end
   end
 end
