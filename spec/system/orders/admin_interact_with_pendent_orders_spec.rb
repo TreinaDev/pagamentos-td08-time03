@@ -7,9 +7,13 @@ describe 'Administrador acessa página de pedidos pendentes' do
     company = create(:company)
     first_client = create(:client, registration_number: '987.654.321-01', name: 'Sergio')
     create(:credit, real_amount: 100, company: company, client: first_client, exchange_rate: er)
-    create(:order, client: first_client, rate_used: 10.00, transaction_total_value: 44.33)
+    order = create(:order, client: first_client, rate_used: 10.00, transaction_total_value: 44.33)
+    json_data = {
+      order_code: order.order_code,
+      order_status: 'paid'
+    }.to_json
     fake_response = double('faraday_response', status: 204)
-    allow(Faraday).to receive(:post).with('http://localhost:3000/api/v1/orders/update_status').and_return(fake_response)
+    allow(Faraday).to receive(:post).with('http://localhost:3000/api/v1/orders/update_status', json_data, content_type: 'application/json').and_return(fake_response)
 
     login_as(admin)
     visit root_path
@@ -36,9 +40,13 @@ describe 'Administrador acessa página de pedidos pendentes' do
     company = create(:company)
     first_client = create(:client, registration_number: '987.654.321-01', name: 'Sergio')
     create(:credit, real_amount: 100, company: company, client: first_client, exchange_rate: er)
-    create(:order, client: first_client, rate_used: 10.00, transaction_total_value: 44.33)
+    order = create(:order, client: first_client, rate_used: 10.00, transaction_total_value: 44.33)
+    json_data = {
+      order_code: order.order_code,
+      order_status: 'refused'
+    }.to_json
     fake_response = double('faraday_response', status: 204)
-    allow(Faraday).to receive(:post).with('http://localhost:3000/api/v1/orders/update_status').and_return(fake_response)
+    allow(Faraday).to receive(:post).with('http://localhost:3000/api/v1/orders/update_status', json_data, content_type: 'application/json').and_return(fake_response)
 
     login_as(admin)
     visit root_path
