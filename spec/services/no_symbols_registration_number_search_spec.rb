@@ -22,10 +22,10 @@ describe NoSymbolsRegistrationNumberSearcher do
       end
 
       it 'e o cliente não está cadastrado' do
-        client = create(:client, registration_number: '123.456.789-00')
+        create(:client, registration_number: '123.456.789-00')
 
         client_search = NoSymbolsRegistrationNumberSearcher.new('987.654.321-00').search
-        
+
         expect(client_search).to eq(nil)
       end
     end
@@ -50,10 +50,10 @@ describe NoSymbolsRegistrationNumberSearcher do
       end
 
       it 'e o cliente não está cadastrado' do
-        client = create(:client, registration_number: '99.521.666/0001-98')
+        create(:client, registration_number: '99.521.666/0001-98')
 
         client_search = NoSymbolsRegistrationNumberSearcher.new('98.666.521/0001-99').search
-        
+
         expect(client_search).to eq(nil)
       end
     end

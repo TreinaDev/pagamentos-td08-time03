@@ -4,7 +4,7 @@ describe 'Admin aprova um outro admin' do
   it 'com sucesso' do
     admin = create(:admin, :approved)
     to_approve_admin = create(:admin, :pending, full_name: 'Fernando', email: 'fernando@userubis.com.br',
-                                                     cpf: '12555778904', password: '123456')
+                                                cpf: '12555778904', password: '123456')
 
     login_as(admin)
     post(create_admin_approvals_path(to_approve_admin),
@@ -18,7 +18,7 @@ describe 'Admin aprova um outro admin' do
   it 'com falha caso Admin aprovador não seja aprovado' do
     admin = create(:admin, :pending)
     to_approve_admin = create(:admin, :pending, full_name: 'Fernando', email: 'fernando@userubis.com.br',
-                                                     cpf: '12555778904', password: '123456')
+                                                cpf: '12555778904', password: '123456')
 
     login_as(admin)
     post(create_admin_approvals_path(to_approve_admin), params: { approval: { admin: admin, super_admin_email: admin.email } })

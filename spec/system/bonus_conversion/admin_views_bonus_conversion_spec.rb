@@ -6,9 +6,9 @@ describe 'Admin visualiza conversões bônus' do
     first_client_category = create(:client_category, name: 'BASIC')
     second_client_category = create(:client_category, name: 'PREMIUM')
     create(:bonus_conversion, client_category: first_client_category, start_date: 5.days.ago.to_date,
-           end_date: 10.days.from_now.to_date, bonus_percentage: 5)
+                              end_date: 10.days.from_now.to_date, bonus_percentage: 5)
     create(:bonus_conversion, client_category: second_client_category, start_date: 30.days.from_now.to_date,
-           end_date: 45.days.from_now.to_date, bonus_percentage: 10)
+                              end_date: 45.days.from_now.to_date, bonus_percentage: 10)
 
     login_as(admin)
     visit root_path

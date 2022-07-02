@@ -5,7 +5,7 @@ describe 'API de Pagamentos' do
     it 'com sucesso e adiciona crédito bonus' do
       company = create(:company)
       create(:exchange_rate, :approved)
-      bc = create(:bonus_conversion)
+      create(:bonus_conversion)
       credit_params = {
         client: {
           name: 'João Almeida',

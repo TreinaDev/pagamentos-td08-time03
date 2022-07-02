@@ -13,7 +13,7 @@ describe 'Admin visualiza lista de admins não-aprovados' do
   it 'com sucesso' do
     admin = create(:admin, :approved)
     create(:admin, :pending, full_name: 'Fernando', email: 'fernando@userubis.com.br', cpf: '12555778904',
-                                  password: '123456')
+                             password: '123456')
     create(:admin, :half_approved, full_name: 'Gabriel', email: 'gabriel@userubis.com.br', cpf: '00355778901',
                                    password: '123456')
     create(:admin, :approved, full_name: 'Maria', email: 'maria@userubis.com.br', cpf: '12555778905',

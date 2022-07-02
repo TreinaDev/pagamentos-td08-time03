@@ -4,7 +4,7 @@ FactoryBot.define do
     transaction_total_value { 2.99 }
     rate_used { 10.00 }
     association :client
-    
+
     trait :pending do
       status { 'pending' }
     end

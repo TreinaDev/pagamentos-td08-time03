@@ -42,7 +42,7 @@ describe 'API de Pagamentos' do
       company = create(:company)
       client_category = create(:client_category)
       client = create(:client, registration_number: '123.456.789-00', name: 'João Almeida',
-                      client_category: client_category)
+                               client_category: client_category)
       first_credit = create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
       second_credit = create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
       create(:bonus_credit, credit: first_credit, client: client, amount: 25)

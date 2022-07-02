@@ -8,4 +8,3 @@ json.client do
     json.balance_bonus_brl @client.balance_bonus
   end
 end
-

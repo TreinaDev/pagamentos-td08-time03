@@ -40,7 +40,6 @@ RSpec.describe Client, type: :model do
       end
     end
 
-
     context 'balance_brl' do
       it 'cliente sem saldo' do
         client = create(:client)
@@ -136,7 +135,7 @@ RSpec.describe Client, type: :model do
         client = create(:client)
         credit = create(:credit, client: client)
         create(:bonus_credit, credit: credit, amount: 25, expiration_date: DateTime.now.days_ago(1).to_date, client: client)
-        create(:bonus_credit, credit: credit, amount: 100, expiration_date: DateTime.now.days_ago(2).to_date , client: client)
+        create(:bonus_credit, credit: credit, amount: 100, expiration_date: DateTime.now.days_ago(2).to_date, client: client)
 
         client.expire_bonus_credits
 
@@ -151,8 +150,8 @@ RSpec.describe Client, type: :model do
         credit = create(:credit, client: client)
         create(:bonus_credit, credit: credit, amount: 25, client: client)
         order = create(:order, client: client, transaction_total_value: 200)
-        debit = create(:debit, real_amount: order.transaction_total_value, exchange_rate: ExchangeRate.current, client: client, order:order)
-        expect(debit.account_type).to eq("bonus_account")
+        debit = create(:debit, real_amount: order.transaction_total_value, exchange_rate: ExchangeRate.current, client: client, order: order)
+        expect(debit.account_type).to eq('bonus_account')
       end
     end
   end
