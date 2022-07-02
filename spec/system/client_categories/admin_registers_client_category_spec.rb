@@ -43,6 +43,6 @@ describe 'Administrador cria uma categoria de clientes' do
 
     expect(page).to have_content 'Erro ao criar categoria de clientes'
     expect(page).to have_content 'Nome não pode ficar em branco'
-    expect(page).to have_content 'Desconto deve ser maior que 0'
+    expect(page).to have_content 'Desconto deve ser maior ou igual a 0'
   end
 end

@@ -3,6 +3,7 @@ FactoryBot.define do
     order_code { "#AABBCCDDEEFFGGHHIIJJKKK" }
     transaction_total_value { 2.99 }
     rate_used { 10.00 }
+    association :client
 
     trait :pending do
       status { 'pending'}

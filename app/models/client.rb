@@ -27,6 +27,10 @@ class Client < ApplicationRecord
     to_be_expired_bonus_credits.each { |bc| bc.expired! }
   end
 
+  def full_description
+    "#{registration_number} - #{name}"
+  end
+
   private
   
   def cpf_cnpj

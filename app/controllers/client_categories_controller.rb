@@ -10,10 +10,13 @@ class ClientCategoriesController < ApplicationController
 
   def create
     @client_category = ClientCategory.new(client_category_params)
-
-    if @client_category.save
+    client_ids = params[:client_category][:client_ids]
+    if @client_category.valid? && client_ids
+      @client_category.save!
+      client_ids.each { |client_id| Client.update(client_id, client_category: @client_category) }
       redirect_to client_categories_path, notice: 'Categoria de cliente cadastrada com sucesso!'
     else
+      @client_category.errors.add(:base, 'A categoria deve estar associada a pelo menos um cliente') unless client_ids
       flash.now[:alert] = 'Erro ao criar categoria de clientes'
       render :new
     end
