@@ -17,12 +17,14 @@ describe 'Administrador cria uma categoria de clientes' do
 
   it 'com sucesso' do
     admin = create(:admin, :approved)
+    create(:client, name: 'João Almeida', registration_number: '123.456.789-00')
     today = DateTime.now.strftime('%d/%m/%Y')
 
     login_as(admin)
     visit new_client_category_path
     fill_in 'Nome', with: 'Bronze'
     fill_in 'Desconto', with: '15.5'
+    check '123.456.789-00 - João Almeida'
     click_on 'Criar'
 
     expect(page).to have_content 'Categoria de cliente cadastrada com sucesso!'
