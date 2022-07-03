@@ -9,7 +9,10 @@
 <p align="center"> 
 	 Projeto Final - Treinadev Turma 8
 </p>
+
 ## Descrição do Projeto
+
+USERUBIS é um sistema de pagamentos, desenvolvido durante a segunda etapa do [TreinaDev 8](https://treinadev.com.br/), que permite o gerenciamento de transações feitas por uma plataforma de [E-Commerce](https://github.com/TreinaDev/e-commerce-td08-time03).
 
 ## Requisitos:
 * Ruby 3.1.0
@@ -28,6 +31,7 @@
 -   [cssbundling-rails (1.1.1)](https://github.com/rails/cssbundling-rails)
 -   [htmlbeautifier (1.4.2)](https://github.com/threedaymonk/htmlbeautifier)
 -   [erb_lint (0.1.3)](https://github.com/Shopify/erb-lint)
+-   [Faraday (2.3.0)](https://github.com/lostisland/faraday)
 
 ## Rodando o projeto
 
@@ -56,7 +60,7 @@ rails s
 ```
 
 ## Desenvolvimento
-Caso queira desenvolver o projeto, rode o comando abaixo ao invés do 'rails s'.
+Caso queira desenvolver o projeto, rode o comando abaixo ao invés do `rails s`.
 
 ```bash
 bin/dev
@@ -85,4 +89,4 @@ bundle exec rspec
 ```
 
 ## API
-[Documentação](https://github.com/TreinaDev/pagamentos-td08-time03/blob/main/api.md)
+[Documentação](api.md)
