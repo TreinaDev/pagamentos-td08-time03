@@ -1,10 +1,10 @@
 class Api::V1::ExchangeRatesController < ActionController::API
+  include SuspensionService
+  before_action :suspend_processing?
+
   def current
     @exchange_rate = ExchangeRate.current
-    if @exchange_rate
-      render status: 200
-    else
-      render status: 200, json: { errors: 'Nenhuma taxa cadastrada' }
-    end
+
+    render status: 200 if @exchange_rate
   end
 end

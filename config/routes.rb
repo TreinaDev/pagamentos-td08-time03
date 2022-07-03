@@ -27,6 +27,10 @@ Rails.application.routes.draw do
     resources :clients, only: %i[index] do
       post '/search', to: 'clients#search', on: :collection
     end
+    resources :orders, only: [:index] do
+      patch '/approve', to: 'orders#approve'
+      patch '/reject', to: 'orders#reject'
+    end
   end
 
   root to: redirect('/admins/sign_in')

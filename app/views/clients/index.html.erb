@@ -23,9 +23,10 @@
     <hr>
   <% if @client.present? %>
     <div class="p-3">
-      <strong>CPF/CNPJ:</strong> <p><%= @client.registration_number %></p>
-      <strong>Nome:</strong> <p><%= @client.name %></p>
-      <strong>Saldo:</strong> RB <%= @client.balance_rubi %> (<%= number_to_currency(@client.balance_brl) %>)
+      <p><strong>CPF/CNPJ:</strong> <%= @client.registration_number %></p>
+      <p><strong>Nome:</strong> <%= @client.name %></p>
+      <p><strong>Saldo:</strong> RB <%= @client.balance_rubi %> (<%= number_to_currency(@client.balance_brl) %>)</p>
+      <p><strong>Saldo Bônus:</strong> RB <%= @client.balance_bonus %></p>
     </div>
   <% else %>
     <div class="p-3">

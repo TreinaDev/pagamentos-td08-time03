@@ -17,10 +17,10 @@ describe 'API de Pagamentos' do
       get '/api/v1/exchange_rates/current'
       json_response = JSON.parse(response.body)
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(503)
       expect(response.content_type).to include 'application/json'
       expect(json_response).not_to include 'exchange_rate'
-      expect(json_response['errors']).to include 'Nenhuma taxa cadastrada'
+      expect(json_response['errors']).to include 'Sistema de pagamentos suspenso'
     end
   end
 end
