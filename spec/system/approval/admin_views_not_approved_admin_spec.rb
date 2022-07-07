@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Admin visualiza lista de admins não-aprovados' do
   it 'apenas se estiver aprovado' do
-    admin = create(:admin, :not_approved)
+    admin = create(:admin, :pending)
 
     login_as(admin)
     visit(admin_approvals_path)
@@ -12,8 +12,8 @@ describe 'Admin visualiza lista de admins não-aprovados' do
 
   it 'com sucesso' do
     admin = create(:admin, :approved)
-    create(:admin, :not_approved, full_name: 'Fernando', email: 'fernando@userubis.com.br', cpf: '12555778904',
-                                  password: '123456')
+    create(:admin, :pending, full_name: 'Fernando', email: 'fernando@userubis.com.br', cpf: '12555778904',
+                             password: '123456')
     create(:admin, :half_approved, full_name: 'Gabriel', email: 'gabriel@userubis.com.br', cpf: '00355778901',
                                    password: '123456')
     create(:admin, :approved, full_name: 'Maria', email: 'maria@userubis.com.br', cpf: '12555778905',

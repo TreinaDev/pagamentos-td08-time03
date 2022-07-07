@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
   def approve
     debit = Debit.new(real_amount: @order.transaction_total_value, client: @order.client,
                       exchange_rate: ExchangeRate.current, order: @order)
+
     return unless debit.save && @order.approved!
 
     OrderUpdateService.update(code: @order.order_code, status: 'paid')

@@ -13,7 +13,7 @@ FactoryBot.define do
       activation { 5 }
     end
 
-    trait :not_approved do
+    trait :pending do
       activation { 0 }
     end
   end

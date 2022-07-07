@@ -29,10 +29,19 @@ RSpec.describe BonusCredit, type: :model do
       it 'build a bonus credit' do
         credit = create(:credit)
         create(:bonus_conversion, client_category: ClientCategory.last)
-        
-        bonus_credit = BonusCredit.builder(credit.client, credit.rubi_amount)
-  
+
+        bonus_credit = BonusCredit.builder(credit.client, credit.rubi_amount, credit)
+
         expect(bonus_credit).to be_persisted
+      end
+    end
+    context 'real_amount' do
+      it 'retorna o valor do bonus em reais' do
+        client = create(:client)
+        credit = create(:credit, real_amount: 200, client: client)
+        bonus = create(:bonus_credit, credit: credit, amount: 25, client: client)
+
+        expect(bonus.real_amount).to eq(250)
       end
     end
   end

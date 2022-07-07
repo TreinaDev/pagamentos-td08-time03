@@ -29,8 +29,8 @@ RSpec.describe BonusConversion, type: :model do
 
       it 'with client category and start date already covered' do
         client_categ = create(:client_category, name: 'PREMIUM')
-        first_bc = create(:bonus_conversion, start_date: '23/06/2022', end_date: '11/10/2022', bonus_percentage: 12.5,
-                          deadline: 4, client_category: client_categ)
+        create(:bonus_conversion, start_date: '23/06/2022', end_date: '11/10/2022', bonus_percentage: 12.5,
+                                  deadline: 4, client_category: client_categ)
         second_bc = BonusConversion.new(start_date: '25/06/2022', end_date: '01/11/2022', bonus_percentage: 15,
                                         deadline: 4, client_category: client_categ)
 
@@ -41,8 +41,8 @@ RSpec.describe BonusConversion, type: :model do
 
       it 'with client category and end date already covered' do
         client_categ = create(:client_category, name: 'PREMIUM')
-        first_bc = create(:bonus_conversion, start_date: '23/06/2022', end_date: '11/10/2022', bonus_percentage: 12.5,
-                          deadline: 4, client_category: client_categ)
+        create(:bonus_conversion, start_date: '23/06/2022', end_date: '11/10/2022', bonus_percentage: 12.5,
+                                  deadline: 4, client_category: client_categ)
         second_bc = BonusConversion.new(start_date: '01/06/2022', end_date: '01/10/2022', bonus_percentage: 15,
                                         deadline: 4, client_category: client_categ)
 
@@ -54,8 +54,8 @@ RSpec.describe BonusConversion, type: :model do
       it 'with period already covered, but different client category' do
         first_client_categ = create(:client_category, name: 'BASIC')
         second_client_categ = create(:client_category, name: 'PREMIUM')
-        first_bc = create(:bonus_conversion, start_date: '23/06/2022', end_date: '11/10/2022', bonus_percentage: 12.5,
-                          deadline: 4, client_category: first_client_categ)
+        create(:bonus_conversion, start_date: '23/06/2022', end_date: '11/10/2022', bonus_percentage: 12.5,
+                                  deadline: 4, client_category: first_client_categ)
         second_bc = BonusConversion.new(start_date: '23/06/2022', end_date: '11/10/2022', bonus_percentage: 15,
                                         deadline: 4, client_category: second_client_categ)
 

@@ -24,7 +24,8 @@
           <td><%= order.order_code %></td>
           <td><%= order.client.name %></td>
           <td><%= order.client.registration_number %></td>
-          <td><%= number_to_currency(order.transaction_total_value) %></td>
+          <td><%= number_to_currency(order.transaction_total_value) %>
+          </td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <%= button_to 'Aprovar', order_approve_path(order), method: :patch, class: 'btn btn-danger ' %><%= button_to 'Reprovar', order_reject_path(order), method: :patch, class: 'btn btn-dark' %>

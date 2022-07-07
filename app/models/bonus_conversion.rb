@@ -22,7 +22,7 @@ def unique_period_and_category
   date_ranges = BonusConversion.where(client_category: client_category).pluck(:start_date, :end_date)
   start_date_valid = range_validator(date_ranges, start_date)
   end_date_valid = range_validator(date_ranges, end_date)
-  return unless start_date_valid or end_date_valid
+  return unless start_date_valid || end_date_valid
 
   errors.add(:base, :unique_period_and_category)
 end

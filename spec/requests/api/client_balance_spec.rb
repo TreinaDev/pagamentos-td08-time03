@@ -42,11 +42,11 @@ describe 'API de Pagamentos' do
       company = create(:company)
       client_category = create(:client_category)
       client = create(:client, registration_number: '123.456.789-00', name: 'João Almeida',
-                      client_category: client_category)
-      create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
-      create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
-      create(:bonus_credit, client: client, amount: 25)
-      create(:bonus_credit, client: client, amount: 35)
+                               client_category: client_category)
+      first_credit = create(:credit, real_amount: 500, exchange_rate: er, client: client, company: company)
+      second_credit = create(:credit, real_amount: 650, exchange_rate: er, client: client, company: company)
+      create(:bonus_credit, credit: first_credit, client: client, amount: 25)
+      create(:bonus_credit, credit: second_credit, client: client, amount: 35)
       client_params = { client: { registration_number: '123.456.789-00' } }
 
       post '/api/v1/clients/balance', params: client_params
@@ -58,7 +58,8 @@ describe 'API de Pagamentos' do
       expect(json_response['client']['name']).to eq('João Almeida')
       expect(json_response['client']['balance_rubi']).to eq('115.0')
       expect(json_response['client']['balance_brl']).to eq('1150.0')
-      expect(json_response['client']['balance_bonus']).to eq('60.0')
+      expect(json_response['client']['balance_bonus_rubi']).to eq('60.0')
+      expect(json_response['client']['balance_bonus_brl']).to eq('600.0')
     end
 
     it 'com dados inválidos' do

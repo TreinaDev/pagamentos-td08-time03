@@ -6,14 +6,14 @@ describe 'Administrador cadastra um limite de crédito diário' do
 
     login_as(admin)
     visit root_path
-    within("main") do
+    within('main') do
       click_on('Limite de Crédito Diário')
     end
     click_on('Configurar limite')
 
     expect(page).to have_button('Criar limite')
   end
-  
+
   it 'com sucesso' do
     admin = create(:admin, :approved)
 

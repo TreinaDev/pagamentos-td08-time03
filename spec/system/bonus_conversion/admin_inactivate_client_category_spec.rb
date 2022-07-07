@@ -21,10 +21,10 @@ describe 'Administrador desativa uma conversão bônus' do
     first_client_category = create(:client_category, name: 'BASIC')
     second_client_category = create(:client_category, name: 'PREMIUM')
     create(:bonus_conversion, start_date: 5.days.ago.to_date, end_date: 10.days.from_now.to_date,
-           client_category: first_client_category)
+                              client_category: first_client_category)
     create(:bonus_conversion, start_date: 1.day.from_now.to_date, end_date: 15.days.from_now.to_date,
-           client_category: second_client_category)
-    
+                              client_category: second_client_category)
+
     login_as(admin)
     visit bonus_conversions_path
     within('.bonus_conversion-0') do

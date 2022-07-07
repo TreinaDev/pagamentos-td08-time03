@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_30_152524) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_01_211604) do
   create_table "admin_approvals", force: :cascade do |t|
     t.integer "admin_id"
     t.string "super_admin_email"
@@ -53,7 +53,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_152524) do
     t.integer "client_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "credit_id", null: false
     t.index ["client_id"], name: "index_bonus_credits_on_client_id"
+    t.index ["credit_id"], name: "index_bonus_credits_on_credit_id"
   end
 
   create_table "client_categories", force: :cascade do |t|
@@ -101,13 +103,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_152524) do
   end
 
   create_table "debits", force: :cascade do |t|
-    t.decimal "real_amount"
-    t.decimal "rubi_amount"
+    t.decimal "real_amount", precision: 10, scale: 2
+    t.decimal "rubi_amount", precision: 10, scale: 2
     t.integer "exchange_rate_id", null: false
     t.integer "client_id", null: false
     t.integer "order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "account_type", default: 0
     t.index ["client_id"], name: "index_debits_on_client_id"
     t.index ["exchange_rate_id"], name: "index_debits_on_exchange_rate_id"
     t.index ["order_id"], name: "index_debits_on_order_id"
@@ -147,6 +150,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_152524) do
   add_foreign_key "admin_approvals", "admins"
   add_foreign_key "bonus_conversions", "client_categories"
   add_foreign_key "bonus_credits", "clients"
+  add_foreign_key "bonus_credits", "credits"
   add_foreign_key "clients", "client_categories"
   add_foreign_key "credits", "clients"
   add_foreign_key "credits", "companies"

@@ -7,9 +7,9 @@ describe 'Administrador vê pedidos pendentes' do
     company = create(:company)
     client_category = create(:client_category)
     first_client = create(:client, registration_number: '987.654.321-01', name: 'Sergio',
-                          client_category: client_category)
+                                   client_category: client_category)
     second_client = create(:client, registration_number: '981.634.221-01', name: 'Maria',
-                           client_category: client_category)
+                                    client_category: client_category)
     create(:credit, real_amount: 12_000, company: company, client: first_client, exchange_rate: er)
     create(:credit, real_amount: 12_000, company: company, client: second_client, exchange_rate: er)
 
@@ -19,12 +19,12 @@ describe 'Administrador vê pedidos pendentes' do
 
     login_as(admin)
     visit(root_path)
-    click_on('Pedidos Pendentes')
+    within('nav') do
+      click_on('Pedidos Pendentes')
+    end
     expect(current_path).to eq(orders_path)
     expect(page).to have_content('Pedidos Pendentes')
     expect(page).to have_content('Total: 2')
-
-   
   end
 
   it 'mas não existem pedidos pendentes' do
