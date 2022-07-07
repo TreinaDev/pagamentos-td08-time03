@@ -23,6 +23,11 @@
         <%= f.number_field :discount, step: 0.1, class: 'form-control', placeholder: '' %>
         <%= f.label :discount, class: 'form-label' %>
       </div>
+    <div class="row">
+      <div>
+        <%= f.collection_check_boxes :client_ids, Client.order(:name), :id, :full_description, { include_hidden: false } %>
+      </div>
+    </div>
     </div>
     <div class="row">
       <%= f.submit 'Criar', class: 'btn btn-danger col-lg-4 mb-2' %>

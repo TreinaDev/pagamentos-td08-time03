@@ -5,7 +5,8 @@ describe 'Administrador acessa página de pedidos pendentes' do
     admin = create(:admin, :approved)
     er = create(:exchange_rate, :approved, admin: admin)
     company = create(:company)
-    first_client = create(:client, registration_number: '987.654.321-01', name: 'Sergio')
+    client_category = create(:client_category, discount: 0)
+    first_client = create(:client, registration_number: '987.654.321-01', name: 'Sergio', client_category: client_category)
     create(:credit, real_amount: 100, company: company, client: first_client, exchange_rate: er)
     order = create(:order, client: first_client, rate_used: 10.00, transaction_total_value: 44.33)
     json_data = {

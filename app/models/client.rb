@@ -40,6 +40,10 @@ class Client < ApplicationRecord
     transactions_extract.sort_by(&:created_at).reverse.first(max)
   end
 
+  def full_description
+    "#{registration_number} - #{name}"
+  end
+
   private
 
   def cpf_cnpj
